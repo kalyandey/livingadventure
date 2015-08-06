@@ -6,10 +6,17 @@ use Illuminate\Http\Request;
 use App\Agent;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+<<<<<<< HEAD
 use \Validator, \Redirect, \Session,\Cookie,\Config;
 use Illuminate\Cookie\CookieJar;
 use Illuminate\Cookie\CookieServiceProvider;
 
+=======
+use \Validator, \Redirect, \Session,\Cookie;
+use Illuminate\Cookie\CookieJar;
+use Illuminate\Cookie\CookieServiceProvider;
+use Hash;
+>>>>>>> edc6ca729faf2f70b533955ae422b337227dcb83
 
 class LoginController extends Controller
 {
@@ -28,7 +35,11 @@ class LoginController extends Controller
 	 *
 	 * @return Response
 	 */
+<<<<<<< HEAD
 	public function index(Request $request)
+=======
+	public function index(CookieJar $cookieJar, Request $request)
+>>>>>>> edc6ca729faf2f70b533955ae422b337227dcb83
 	{
 		// Checking for agent login
 		// if logged in redirect to dashboard
@@ -36,6 +47,7 @@ class LoginController extends Controller
 			return redirect('agent/dashboard');
 		}
 		
+<<<<<<< HEAD
 		
 		
 		$data				= array();
@@ -70,12 +82,21 @@ class LoginController extends Controller
 	public function store(CookieJar $cookieJar,  Request $request)
 	{
 	    if ($request->isMethod('post')){			
+=======
+		if ($request->isMethod('post')){			
+>>>>>>> edc6ca729faf2f70b533955ae422b337227dcb83
 			$agent_email		= $request->get('agent_email');
 			$agent_password		= $request->get('agent_password');
 			$checkAgentExists	= Agent::where("email","=",$agent_email);
 			
+<<<<<<< HEAD
 			$checkAgentExists	= $checkAgentExists->where("password", "=", md5($agent_password.Config::get('constants.SITENAME')));
 			$checkAgentExists	= $checkAgentExists->get();
+=======
+			$checkAgentExists	= $checkAgentExists->where("password", "=", Hash::make($agent_password));
+			$checkAgentExists	= $checkAgentExists->get();
+			
+>>>>>>> edc6ca729faf2f70b533955ae422b337227dcb83
 			if ($request->get('remember_login')){
 				$cookieJar->queue(Cookie::make('agent_email', $admin_email, 60));
 				$cookieJar->queue(Cookie::make('agent_password', $admin_password, 60));
@@ -93,6 +114,7 @@ class LoginController extends Controller
 				return redirect('agent')->with('message', 'Invalid email address or/and password.');
 			}
 		}
+<<<<<<< HEAD
 	}
     
 	
@@ -162,5 +184,19 @@ class LoginController extends Controller
 	public function destroy($id)
 	{
 	    //
+=======
+		
+		$data				= array();
+		$data['agent_email'] 		= '';
+		$data['agent_password'] 	= '';
+		$agent_email 			= Cookie::get('agent_email');
+		$agent_password 		= Cookie::get('agent_password');
+		
+		if( $agent_email && $admin_password ){
+		    $data['agent_email'] 		= $agent_email;
+		    $data['agent_password'] 		= $agent_password;
+		}			
+		return view('agent/login',$data);
+>>>>>>> edc6ca729faf2f70b533955ae422b337227dcb83
 	}
 }

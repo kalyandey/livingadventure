@@ -1,8 +1,3 @@
-	{{--*/
-	$controller = Helpers::getRoute('controller');
-	$action = Helpers::getRoute('action');
-	$alise = Helpers::getRoute('alise');
-	/*--}}
 <!DOCTYPE html>
 <html lang="en">
 <head>	
@@ -51,57 +46,49 @@
         <nav id="topbar" role="navigation" style="margin-bottom: 0; z-index: 2;" class="navbar navbar-default navbar-static-top">
             <div class="navbar-header">
                 <button type="button" data-toggle="collapse" data-target=".sidebar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                <a id="logo" href="/agent/index" class="navbar-brand"><span class="fa fa-rocket">vascript:;</span><span class="logo-text">Living Adventure</span><span style="display: none" class="logo-text-icon">µ</span></a></div>
+                <a id="logo" href="ja" class="navbar-brand"><span class="fa fa-rocket">vascript:;</span><span class="logo-text">ForeignHub.com</span><span style="display: none" class="logo-text-icon">µ</span></a></div>
             <div class="topbar-main">
                 <ul class="nav navbar navbar-top-links navbar-right mbn">
                     <li class="dropdown topbar-user"><a data-hover="dropdown" href="#" class="dropdown-toggle">
-			<span class="hidden-xs">{{ Session::get('BACKEND_NAME') }}</span>&nbsp;<span class="caret"></span></a>
+			<span class="hidden-xs">{{ Session::get('ADMIN_ACCESS_FNAME') }}</span>&nbsp;<span class="caret"></span></a>
                         <ul class="dropdown-menu dropdown-user pull-right">
-                            <li><a href="{{URL::route('agent_profile')}}"><i class="fa fa-user"></i>My Profile</a></li>
-                            <li><a href="{{ URL::route('agent_logout') }}"><i class="fa fa-key"></i>Log Out</a></li>
+				<li><a href="{{URL::route('account_settings')}}"><i class="fa fa-user"></i>Account Settings</a></li>
+				<li><a href="{{URL::route('change_password')}}"><i class="fa fa-user"></i>Change Password</a></li>
+				<li><a href="{{URL::route('logout')}}"><i class="fa fa-key"></i>Log Out</a></li>
                         </ul>
                     </li>
                 </ul>
             </div>
         </nav>
-        <!--BEGIN MODAL CONFIG PORTLET-->
-        <div id="modal-config" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" data-dismiss="modal" aria-hidden="true" class="close">&times;</button>
-                        <h4 class="modal-title">Modal title</h4></div>
-                    <div class="modal-body"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eleifend et nisl eget porta. Curabitur elementum sem molestie nisl varius, eget tempus odio molestie. Nunc vehicula sem arcu, eu pulvinar neque cursus ac. Aliquam ultricies lobortis magna et aliquam. Vestibulum egestas eu urna sed ultricies. Nullam pulvinar dolor vitae quam dictum
-                        condimentum. Integer a sodales elit, eu pulvinar leo. Nunc nec aliquam nisi, a mollis neque. Ut vel felis quis tellus hendrerit placerat. Vivamus vel nisl non magna feugiat dignissim sed ut nibh. Nulla elementum, est a pretium hendrerit, arcu risus luctus augue, mattis aliquet orci ligula eget massa. Sed ut ultricies felis.</p></div>
-                    <div class="modal-footer">
-                        <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
-            </div>
         </div>
-        <!--END MODAL CONFIG PORTLET--></div>
 	<!--END TOPBAR-->
-	<div id="wrapper"><!--BEGIN SIDEBAR MENU-->
-	    <nav id="sidebar" role="navigation" class="navbar-default navbar-static-side">
-		<div class="sidebar-collapse menu-scroll">
-		    <ul id="side-menu" class="nav">
-			<li class="user-panel">
-			    
+	<div id="wrapper">
+		<!--BEGIN SIDEBAR MENU-->
+		<nav id="sidebar" role="navigation" class="navbar-default navbar-static-side">
+			<div class="sidebar-collapse menu-scroll">
+			    <ul id="side-menu" class="nav">
+				<li class="user-panel">
+				    <div class="thumb"><img src="https://s3.amazonaws.com/uifaces/faces/twitter/kolage/128.jpg" alt="" class="img-circle"/></div>
+				    <div class="info"><p>{{ Session::get('ADMIN_ACCESS_FNAME') }} {{ Session::get('ADMIN_ACCESS_LNAME') }}</p>
+					<ul class="list-inline list-unstyled">
+					    <li><a href="{{URL::route('account_settings')}}" data-hover="tooltip" title="Account Settings"><i class="fa fa-user"></i></a></li>                                
+					    <li><a href="{{URL::route('site_settings')}}" data-hover="tooltip" title="Site Settings" data-toggle="modal" data-target="#modal-config"><i class="fa fa-cog"></i></a></li>
+					    <li><a href="{{URL::route('logout')}}" data-hover="tooltip" title="Logout"><i class="fa fa-sign-out"></i></a></li>
+					</ul>
+				    </div>
+				    <div class="clearfix"></div>
+				</li>
+				<li class="active"><a href="{{URL::route('dashboard')}}"><i class="fa fa-tachometer fa-fw">
+				    <div class="icon-bg bg-orange"></div>
+				</i><span class="menu-title">Dashboard</span></a></li>
+				<li>
+				    <a href="{{URL::route('site_settings')}}"><i class="fa fa-cog fa-fw">                        
+				    </i><span class="menu-title">Site Settings</span></a>
+				</li>
+			    </ul>
+			</div>
+		</nav>
 
-			    <div class="info"><p>{{ Session::get('BACKEND_ACCESS_FNAME') }}</p>
-				<ul class="list-inline list-unstyled">
-				    <li><a href="{{URL::route('agent_profile')}}" data-hover="tooltip" title="Profile"><i class="fa fa-user"></i></a></li>				    
-				    <li><a href="{{ URL::route('agent_logout') }}" data-hover="tooltip" title="Logout"><i class="fa fa-sign-out"></i></a></li>
-
-				</ul>
-			    </div>
-			    <div class="clearfix"></div>
-			</li>
-
-		    </ul>
-		</div>
-	    </nav>
 	    <!--END SIDEBAR MENU-->
 	    <!--BEGIN PAGE WRAPPER-->
 	    <div id="page-wrapper">
@@ -109,7 +96,7 @@
 	    </div>
 	    <!--BEGIN FOOTER-->
 	    <div id="footer">
-		<div class="copyright">{{date("Y")}} &copy; Admin Panel</div>
+		<div class="copyright">{{date("Y")}} &copy; Living Adventure Administrator Panel</div>
 	    </div>
 	    <!--END FOOTER-->
 	    <!--END PAGE WRAPPER-->
@@ -140,14 +127,6 @@
 <script src="{{ asset('/backend/vendors/jquery-news-ticker/jquery.newsTicker.min.js') }}"></script>
 <script src="{{ asset('/backend/js/main.js') }}"></script>
 
-<!--<script src="{{ asset('/backend/vendors/jqvmap/jqvmap/jquery.vmap.js') }}" type="text/javascript"></script>
-<script src="{{ asset('/backend/vendors/jqvmap/jqvmap/maps/jquery.vmap.russia.js') }}" type="text/javascript"></script>
-<script src="{{ asset('/backend/vendors/jqvmap/jqvmap/maps/jquery.vmap.world.js') }}" type="text/javascript"></script>
-<script src="{{ asset('/backend/vendors/jqvmap/jqvmap/maps/jquery.vmap.europe.js') }}" type="text/javascript"></script>
-<script src="{{ asset('/backend/vendors/jqvmap/jqvmap/maps/jquery.vmap.germany.js') }}" type="text/javascript"></script>
-<script src="{{ asset('/backend/vendors/jqvmap/jqvmap/maps/jquery.vmap.usa.js') }}" type="text/javascript"></script>
-<script src="{{ asset('/backend/vendors/jqvmap/jqvmap/data/jquery.vmap.sampledata.js') }}" type="text/javascript"></script>-->
-
 <script src="{{ asset('/backend/vendors/flot/jquery.flot.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/backend/vendors/flot/jquery.flot.resize.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('/backend/vendors/flot/jquery.flot.categories.min.js') }}" type="text/javascript"></script>
@@ -176,16 +155,80 @@
 <script src="{{ asset('/backend/js/ckeditor.js') }}"></script>
 <script src="{{ asset('/backend/js/summernote.js')}}"></script>
 <script src="{{ asset('/backend/js/ui-editors.js')}}"></script>
-<script src="{{ asset('/agent_asset/js/custom_script.js')}}"></script>
-<link type="text/css" rel="stylesheet" href="{{ asset('/agent_asset/css/custom_style.css') }}">
+	
 <script>//BEGIN CHECKBOX & RADIO
 
+var baseURL = "<?php echo config('constants.BACKEND_URL');?>";
+
+//$('input[type="checkbox"]').iCheck({
+//    checkboxClass: 'icheckbox_minimal-grey',
+//    increaseArea: '20%' // optional
+//});
+//$('input[type="radio"]').iCheck({
+//    radioClass: 'iradio_minimal-grey',
+//    increaseArea: '20%' // optional
+//});
+//END CHECKBOX & RADIO
+
+   $('#back').click(function(){
+	window.location.href = baseURL + $('#back_url').val();
+   });
+   
+   $('.clear-search').click(function(){
+	$(this).parents('form').find('input[type="text"]').val('');
+   });
+
+   var nowDate 	= new Date();
+   var toDate 	= new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
+   $('#expiration_date').datetimepicker({pickTime: false, startDate:nowDate});
+   
+   
+  $(document).ready(function(){
+   
+	$('#providerins').change(function(){
+	 pi = $(this).val();
+	 if (pi=='Yes') {
+	   $("#policy_number").attr("required","required");
+	   $("#minimum_age").attr("required","required");
+	   $('#pibox').show();
+	 }else{
+	    $('#policy_number').val('');
+	    $('#minimum_age').val('');
+	    $('#policy_number').removeAttr('required');
+	    $('#minimum_age').removeAttr('required');
+	    $('#pibox').hide();
+	    
+	 }
+	})
+	
+	 pi = $('#providerins').val();
+	 
+	 if (pi=='Yes') {
+	   $('#pibox').show();
+	 }else{
+	    $('#pibox').hide();
+	 }	
+    
+  })
+   
+   
 
 </script>
 
 <script>
 jQuery(document).ready(function() {    
    Metronic.init(); // init metronic core componets
+   //Layout.init(); // init layout
+   //QuickSidebar.init(); // init quick sidebar
+  // Demo.init(); // init demo features 
+  // Index.init();   
+   //Index.initDashboardDaterange();
+   //Index.initJQVMAP(); // init index page's custom scripts
+   //Index.initCalendar(); // init index page's custom scripts
+  // Index.initCharts(); // init index page's custom scripts
+   //Index.initChat();
+  // Index.initMiniCharts();
+  // Tasks.initDashboardWidget();
    
 });
 </script>

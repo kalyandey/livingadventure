@@ -2,9 +2,17 @@
 
 @section('title', 'Welcome to Living Adventure')
 @section('content')
+
+<script>
+var ePFrame="<iframe src=\"https://staging.amadeusepower.com/xyztravel/\" width=\"100%\" height=\"580\" frameborder=\"0\"></iframe>";
+</script>
+
+    
 <div class="page-content">
+
     <h1>Flight Search</h1>
-    <div class="row">
+    <script type="text/javascript">document.write(ePFrame);</script>
+    <!--<div class="row">
         <div class="col-md-12">
             <div class="col-md-3">
                 <div class="form-group">
@@ -287,7 +295,8 @@
                 <input type="button" name="btn_search" id="btn_search" value="Search" class="btn btn-primary">
             </div>
         </div>
-    </div>
+
+    </div>-->
     <div class="row">
         <div class="col-md-6">
             <h1>Contact Us</h1>

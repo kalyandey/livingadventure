@@ -1,11 +1,11 @@
-    @extends('agent/applogin')
 
+@extends('agent/applogin')
 @section('title', 'Login')
 
 @section('content')
 
 <div class="page-form"> 
-    
+
     {!! Form::open(array('route' => 'agent_login', 'class' => 'form')) !!}	
         <div class="header-content"><h1>Agent Log In</h1></div>
 	
@@ -15,7 +15,7 @@
 				<li>{{ $error }}</li>
 			@endforeach
 	    </ul></div>
-	
+
 	@endif
         <div class="body-content">
             <div class="form-group">
