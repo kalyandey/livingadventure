@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Admin;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use \Validator, \Redirect, \Session,\Cookie;
+use \Validator, \Redirect, \Session,\Cookie, \Input;
 
 class DashboardController extends Controller
 {
@@ -47,6 +47,20 @@ class DashboardController extends Controller
                 $settings->last_name         = $last_name;
                 $settings->email             = $email;
                 $settings->phone             = $phone;
+                
+                if (Input::hasFile('image')){
+                    if(\File::exists(public_path('upload/adminprofile/' . $settings->image))){
+                        \File::delete(public_path('upload/adminprofile/' . $settings->image));
+                    }
+                    
+                    $file               = Input::file('image');
+                    $imagename          = $admin_id . '.' . $file->getClientOriginalExtension();
+                    $path               = public_path('upload/adminprofile/' . $imagename);
+                    $image              = \Image::make($file->getRealPath())->save($path);
+                    $th_path            = public_path('upload/adminprofile/thumb/' . $imagename);
+                    $image              = \Image::make($file->getRealPath())->resize(128, 128)->save($th_path);
+                    $settings->image    = $imagename;
+                }
                 
                 $settings->save();
                 return redirect::route('account_settings')->with('success', 'Settings updated successfully.');

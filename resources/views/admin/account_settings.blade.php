@@ -41,7 +41,7 @@
 	    <div class="panel panel-blue">
 		<div class="panel-heading">Account Settings</div>
 		<div class="panel-body pan">		    
-		    {!! Form::open(array('url' => 'admin/account_settings', 'class' => 'form-horizontal')) !!}
+		    {!! Form::open(array('url' => 'admin/account_settings', 'class' => 'form-horizontal', 'files' => true)) !!}
 			<div class="form-body pal">
 			    <div class="form-group">
 				{!! HTML::decode(Form::label('first_name', 'First Name <span class="require">*</span>', array('class' => 'col-md-3 control-label'))) !!}
@@ -58,6 +58,10 @@
 			    <div class="form-group">
 				{!! HTML::decode(Form::label('phone', 'phone', array('class' => 'col-md-3 control-label'))) !!}
 				<div class="col-md-9">{!! Form::text('phone', $settings->phone, array('class' => 'form-control')) !!}</div>
+			    </div>			    
+			    <div class="form-group">
+				{!! HTML::decode(Form::label('image', 'Picture', array('class' => 'col-md-3 control-label'))) !!}
+				<div class="col-md-9">{!! Form::file('image', null, array('class' => 'form-control')) !!}</div>
 			    </div>
 			</div>
 			<div class="form-actions top none-bg">
