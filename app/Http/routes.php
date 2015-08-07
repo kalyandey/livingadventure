@@ -47,7 +47,10 @@ Route::group(array('middleware' => 'supplier', 'namespace'=>'supplier', 'prefix'
     Route::any('/profile/', 			                array('as' => 'supplier_profile',		'uses' => 'AccountController@index'));
     Route::any('/createsupplier/', 		            	array('as' => 'add_supplier',		    'uses' => 'AccountController@create'));
     
-     Route::any('/supplierlist/', 	        		    array('as' => 'supplier_list',		     'uses' => 'SupplierController@index'));
+    Route::any('/supplier_list/', 	        		    array('as' => 'supplier_list',		     'uses' => 'SupplierController@index'));
+    Route::get('/supplier_create/', 	        		array('as' => 'supplier_add',		     'uses' => 'SupplierController@create'));
+    Route::post('/supplier_create/', 	        		array('as' => 'supplier_add',		     'uses' => 'SupplierController@store'));
+    Route::get('/supplier_details/{id}', 	        	array('as' => 'supplier_show',		     'uses' => 'SupplierController@show'));
     
 });
 // End For Supplier Panel
