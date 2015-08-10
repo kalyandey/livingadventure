@@ -47,11 +47,11 @@ class SupplierController extends Controller
         }
         else
         {
-            $newCar = new Supplier();                 
-            $newCar->fill($request->except('_token'));
-            $newCar->parent_id = Session::get('SUPPLIER_ACCESS_ID');
-            $newCar->password  = Hash::make($request->password);
-            
+            $newSupplier = new Supplier();                 
+            $newSupplier->fill($request->except('_token'));
+            $newSupplier->parent_id = Session::get('SUPPLIER_ACCESS_ID');
+            $newSupplier->password  = Hash::make($request->password);
+            $newSupplier->status    = 'Inactive';
             if (Input::hasFile('image')){
                
                 
@@ -64,10 +64,10 @@ class SupplierController extends Controller
                 $image              = \Image::make($file->getRealPath())->save($path);
                 $th_path            = public_path('upload/supplierprofile/thumb/' . $imagename);
                 $image              = \Image::make($file->getRealPath())->resize(128, 128)->save($th_path);
-                $newCar->image    = $imagename;
+                $newSupplier->image    = $imagename;
             }
             
-            $newCar->save();				
+            $newSupplier->save();				
             return Redirect::route('supplier_list')->with('succ_msg', 'Supplier has been created successfully!');
         }
     }
