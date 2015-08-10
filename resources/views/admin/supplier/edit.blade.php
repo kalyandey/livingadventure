@@ -1,4 +1,4 @@
-@extends('supplier/app')
+@extends('admin/app')
 
 @section('title', 'Car Type')
 
@@ -9,7 +9,7 @@
 	<div class="page-title">Car Type</div>
     </div>
     <ol class="breadcrumb page-breadcrumb pull-right">
-	<li><i class="fa fa-home"></i>&nbsp;<a href="dashboard">Dashboard</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+	<li><i class="fa fa-home"></i>&nbsp;<a href="{{URL::route('dashboard')}}">Dashboard</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
 	<li class="active">Update users</li>
     </ol>
     <div class="clearfix"></div>
@@ -33,7 +33,7 @@
 		    </div>
 		    @endif
 		    
-		   {!! Form::open(array('id'=>'supplier_update_form', 'class' => 'form-horizontal', 'files'=>true, 'route' => array('supplier_edit',$result->id))) !!}                                
+		   {!! Form::open(array('id'=>'supplier_update_form', 'class' => 'form-horizontal', 'files'=>true, 'route' => array('supplier_master_edit',$result->id))) !!}                                
 					<div class="form-body pal">
 						<div class="form-group"><label class="col-md-3 control-label">First Name <span>*</span></label>
 							<div class="col-md-9">
@@ -73,13 +73,18 @@
 							{!! Form::password('password',  array('class'=>'required form-control')) !!}
                         </div>
 					</div>
+					<div class="form-group form-pass"><label class="col-md-3 control-label">Status </label>
+						<div class="col-md-9">
+						 {!! Form::select('status', array('Active' => 'Active', 'Inactive' => 'Inactive'),$result->status,array('class'=>'required  form-control')) !!}
+						</div>
+					</div>
 
 				    </div>
 					<div class="form-actions pal">
 						<div class="form-group mbn">
 							<div class="col-md-offset-3 col-md-6">
 								<button type="submit" class="btn btn-primary" >Create</button>
-								<a href="{{URL::route('supplier_list')}}" class="btn default">Cancel</a>
+								<a href="{{URL::route('supplier_master_list')}}" class="btn default">Cancel</a>
 							</div>
 						</div>
 					</div>

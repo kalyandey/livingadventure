@@ -1,34 +1,29 @@
 <?php
 
-namespace App\Http\Controllers\supplier;
+namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
-use App\Supplier;
+
 use App\Http\Requests;
-use App\Http\Helpers;
 use App\Http\Controllers\Controller;
+use App\Supplier;
 use \Validator, \Redirect, \Session,\Cookie,\Config,\Hash, \Input;
 
-class SupplierController extends Controller
+class SupplierMasterController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
-   
-    public function index()
+  
+   public function index()
     {
         
         $data = array();      
-        $data['result'] = Supplier::where('parent_id','=',Session::get('SUPPLIER_ACCESS_ID'))->paginate(10);       
-        return view('supplier/supplier/index',$data);
+        $data['result'] = Supplier::paginate(10);       
+        return view('admin/supplier/index',$data);
     }
 
 
     public function create()
     {
-        return view('supplier/supplier/create');
+        return view('admin/supplier/create');
     }
 
     
@@ -46,15 +41,16 @@ class SupplierController extends Controller
         if ($validator->fails())
         {
             $messages = $validator->messages();
-            return Redirect::route('supplier_add')->withErrors($validator)->withInput();
+            return Redirect::back()->withErrors($validator)->withInput();
         }
         else
         {
+            \DB::statement('SET FOREIGN_KEY_CHECKS = 0');
             $newSupplier = new Supplier();                 
             $newSupplier->fill($request->except('_token'));
-            $newSupplier->parent_id = Session::get('SUPPLIER_ACCESS_ID');
+            $newSupplier->parent_id = 0;
             $newSupplier->password  = Hash::make($request->password);
-            $newSupplier->status    = 'Inactive';
+            
             if (Input::hasFile('image')){
                
                 
@@ -70,8 +66,9 @@ class SupplierController extends Controller
                 $newSupplier->image    = $imagename;
             }
             
-            $newSupplier->save();				
-            return Redirect::route('supplier_list')->with('succ_msg', 'Supplier has been created successfully!');
+            $newSupplier->save();
+            \DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+            return Redirect::route('supplier_master_list')->with('succ_msg', 'Supplier has been created successfully!');
         }
     }
 
@@ -79,13 +76,13 @@ class SupplierController extends Controller
     public function show($id)
     {
        $data['result'] = Supplier::find($id);
-       return view('supplier/supplier/view',$data);
+       return view('admin/supplier/view',$data);
     }
     
     public function edit($id)
     {
        $data['result'] = Supplier::find($id);
-       return view('supplier/supplier/edit',$data);
+       return view('admin/supplier/edit',$data);
     }
     
     public function update($id,Request $request){
@@ -104,9 +101,10 @@ class SupplierController extends Controller
         }
         else
         {
+            \DB::statement('SET FOREIGN_KEY_CHECKS = 0');
             $newSupplier = Supplier::find($id);                
             $newSupplier->fill($request->except('_token'));
-            $newSupplier->parent_id = Session::get('SUPPLIER_ACCESS_ID');
+            $newSupplier->parent_id = 0;
             if($request->password != ''){
             $newSupplier->password  = Hash::make($request->password);
             }
@@ -126,10 +124,15 @@ class SupplierController extends Controller
                 $newSupplier->image    = $imagename;
             }
             
-            $newSupplier->save();				
-            return Redirect::route('supplier_list')->with('succ_msg', 'Supplier has been created successfully!');
+            $newSupplier->save();
+             \DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+            return Redirect::route('supplier_master_list')->with('succ_msg', 'Supplier has been created successfully!');
         }
     }
-
-  
+    
+    public function destroy($id){
+         $supplier = Supplier::find($id);
+         $supplier->delete();
+         return Redirect::route('supplier_master_list')->with('succ_msg', 'Supplier has been deleted successfully!');
+    }
 }

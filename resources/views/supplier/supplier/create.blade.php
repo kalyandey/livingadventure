@@ -1,4 +1,4 @@
-@extends('admin/app')
+@extends('supplier/app')
 
 @section('title', 'Create New Supplier')
 
