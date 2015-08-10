@@ -85,6 +85,10 @@
 				    <a href="{{URL::route('site_settings')}}"><i class="fa fa-cog fa-fw">                        
 				    </i><span class="menu-title">Site Settings</span></a>
 				</li>
+				<li>
+				    <a href="{{URL::route('agent_management')}}"><i class="fa fa-user">                        
+				    </i><span class="menu-title">Agent Management</span></a>
+				</li>
 			    </ul>
 			</div>
 		</nav>
