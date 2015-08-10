@@ -1,8 +1,3 @@
-	{{--*/
-	$controller = Helpers::getRoute('controller');
-	$action = Helpers::getRoute('action');
-	$alise = Helpers::getRoute('alise');
-	/*--}}
 <!DOCTYPE html>
 <html lang="en">
 <head>	

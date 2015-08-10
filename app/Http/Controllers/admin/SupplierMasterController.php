@@ -51,14 +51,9 @@ class SupplierMasterController extends Controller
             $newSupplier->parent_id = 0;
             $newSupplier->password  = Hash::make($request->password);
             
-            if (Input::hasFile('image')){
-               
-                
-                $file               = Input::file('image');
-                $imagename          = Session::get('SUPPLIER_ACCESS_ID') . '.' . $file->getClientOriginalExtension();
-                 if(\File::exists(public_path('upload/supplierprofile/' . $imagename))){
-                    \File::delete(public_path('upload/supplierprofile/' . $imagename));
-                }
+            if (Input::hasFile('profileimage')){
+                $file               = Input::file('profileimage');
+                $imagename          = time() . '.' . $file->getClientOriginalExtension();                
                 $path               = public_path('upload/supplierprofile/' . $imagename);
                 $image              = \Image::make($file->getRealPath())->save($path);
                 $th_path            = public_path('upload/supplierprofile/thumb/' . $imagename);
@@ -102,29 +97,28 @@ class SupplierMasterController extends Controller
         else
         {
             \DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-            $newSupplier = Supplier::find($id);                
-            $newSupplier->fill($request->except('_token'));
-            $newSupplier->parent_id = 0;
+            $supplier = Supplier::find($id);                
+            $supplier->fill($request->except('_token'));
+            $supplier->parent_id = 0;
             if($request->password != ''){
-            $newSupplier->password  = Hash::make($request->password);
+            $supplier->password  = Hash::make($request->password);
             }
             
-            if (Input::hasFile('image')){
+            if (Input::hasFile('profileimage')){
                
-                
-                $file               = Input::file('image');
-                $imagename          = Session::get('SUPPLIER_ACCESS_ID') . '.' . $file->getClientOriginalExtension();
-                 if(\File::exists(public_path('upload/supplierprofile/' . $imagename))){
-                    \File::delete(public_path('upload/supplierprofile/' . $imagename));
+                $file               = Input::file('profileimage');
+                $imagename          = time() . '.' . $file->getClientOriginalExtension();
+                 if(\File::exists(public_path('upload/supplierprofile/' . $supplier->image))){
+                    \File::delete(public_path('upload/supplierprofile/' . $supplier->image));
                 }
                 $path               = public_path('upload/supplierprofile/' . $imagename);
                 $image              = \Image::make($file->getRealPath())->save($path);
                 $th_path            = public_path('upload/supplierprofile/thumb/' . $imagename);
                 $image              = \Image::make($file->getRealPath())->resize(128, 128)->save($th_path);
-                $newSupplier->image    = $imagename;
+                $supplier->image    = $imagename;
             }
             
-            $newSupplier->save();
+            $supplier->save();
              \DB::statement('SET FOREIGN_KEY_CHECKS = 1');
             return Redirect::route('supplier_master_list')->with('succ_msg', 'Supplier has been created successfully!');
         }

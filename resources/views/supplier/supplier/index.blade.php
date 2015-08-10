@@ -37,8 +37,9 @@
 		    <table class="table table-hover table-striped table-bordered table-advanced tablesorter mbn">
 			<thead>
 			<tr>
-			    <th >Name</th>			 
+			    <th>Name</th>			 
 			    <th>Email</th>
+				<th>Phone</th>
 				<th>Status</th>
 				<th>Actions</th>
 			</tr>
@@ -49,6 +50,7 @@
 				<tr>
 				    <td>{{ucwords($r->first_name).' '.ucwords($r->last_name)}}</td>				   					
 					<td>{{$r->email}}</td>
+					<td>{{$r->phone}}</td>
 					<td>{{$r->status}}</td>
 					<td>
 						<a href="{{URL::route('supplier_show',$r->id)}}" class="btn-sm btn-default">View</a>
@@ -56,6 +58,8 @@
 					</td>
 				</tr>
 			    @endforeach
+			@else				
+				<tr><td colspan="5" align="center">Record not found</td></tr>
 			@endif			
 			
 			</tbody>
