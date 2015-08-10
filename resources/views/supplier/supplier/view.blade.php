@@ -1,17 +1,17 @@
-@extends('admin/app')
+@extends('supplier/app')
 
-@section('title', 'Provider Details')
+@section('title', 'Supplier Details')
 
 @section('content')
 
 <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
     <div class="page-header pull-left">
-	<div class="page-title">Providers</div>
+	<div class="page-title">Suppliers</div>
     </div>
     <ol class="breadcrumb page-breadcrumb pull-right">
 	<li><i class="fa fa-home"></i>&nbsp;<a href="dashboard">Dashboard</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
 		<li><i class="fa fa-user"></i>&nbsp;<a href="{{URL::route('supplier_list')}}">Suppliers</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-	<li class="active">Provider Details</li>
+	<li class="active">Supplier Details</li>
     </ol>
     <div class="clearfix"></div>
 </div>
@@ -21,7 +21,7 @@
 	<div class="col-lg-12">
 	    <div class="portlet box portlet-grey">
 		<div class="portlet-header">
-		    <div class="caption">Provider Details</div>
+		    <div class="caption">Supplier Details</div>
 		</div>
 		<div class="portlet-body">
 		    @if (count($errors) > 0)
@@ -35,13 +35,22 @@
 		    @endif
 			
 			<div class="row">
-			    <label class="col-md-3 control-label">First Name </label>
+			    <label class="col-md-3 control-label">Profile Image</label>
 			    <div class="col-md-9">
+				   @if($result->image != '')
+					<image src="{{'/upload/supplierprofile/thumb/' . $result->image}}" alt="" />
+				   @endif			       
+			    </div>
+			</div>
+				
+			<div class="row">
+			    <label class="col-md-3 control-label">First Name </label>
+			    <div class="col-md-9">				  
 			       {{ucwords($result->first_name)}}
 			    </div>
 			</div>
 			<div class="row">
-			    <label class="col-md-3 control-label">First Name </label>
+			    <label class="col-md-3 control-label">Last Name </label>
 			    <div class="col-md-9">
 			       {{ucwords($result->last_name)}}
 			    </div>

@@ -1,4 +1,4 @@
-@extends('admin/app')
+@extends('supplier/app')
 
 @section('title', 'Suppliers List')
 
@@ -47,10 +47,13 @@
 			@if($result->count() > 0)
 			    @foreach($result AS $r)
 				<tr>
-				    <td>{{$r->first_name.' '.$r->last_name}}</td>				   					
+				    <td>{{ucwords($r->first_name).' '.ucwords($r->last_name)}}</td>				   					
 					<td>{{$r->email}}</td>
 					<td>{{$r->status}}</td>
-					<td><a href="{{URL::route('supplier_show',$r->id)}}" class="btn-sm btn-default">View</a></td>
+					<td>
+						<a href="{{URL::route('supplier_show',$r->id)}}" class="btn-sm btn-default">View</a>
+						<a href="{{URL::route('supplier_edit',$r->id)}}" class="btn-sm btn-default">Edit</a>
+					</td>
 				</tr>
 			    @endforeach
 			@endif			
@@ -58,7 +61,7 @@
 			</tbody>
 		    </table>
 		    <div class="pagination-panel">
-		    {{ $result->render() }}
+		    {!! $result->render() !!}
 		    </div>
 		</div>
 	    </div>

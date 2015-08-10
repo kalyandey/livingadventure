@@ -58,13 +58,18 @@
 						
                                             </div>
                                         </div>
-					<div class="form-group"><label  class="col-md-3 control-label">Phone</label>
-
-                                            <div class="col-md-9">
-					  
-											{!! Form::text('phone', '' , array('class'=>'form-control')) !!}
-                                            </div>
-                                        </div>
+					<div class="form-group">
+						<label  class="col-md-3 control-label">Phone</label>
+							<div class="col-md-9">					  
+								{!! Form::text('phone', '' , array('class'=>'form-control')) !!}
+							</div>
+					</div>
+					<div class="form-group">
+						<label  class="col-md-3 control-label">Image</label>
+							<div class="col-md-9">					  
+								{!! Form::file('image', '' , array('class'=>'form-control')) !!}
+							</div>
+					</div>
 					<div class="form-group form-pass"><label class="col-md-3 control-label">Password <span>*</span></label>
 
                                             <div class="col-md-9">

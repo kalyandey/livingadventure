@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Supplier;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use \Validator, \Redirect, \Session,\Cookie,\Config, \Hash;
+use \Validator, \Redirect, \Session,\Cookie,\Config,\Hash, \Input;
 
 class SupplierController extends Controller
 {
@@ -17,10 +17,8 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        $data = array();
-      
-        $data['result'] = Supplier::where('parent_id','=',Session::get('SUPPLIER_ACCESS_ID'))->paginate(10);
-       
+        $data = array();      
+        $data['result'] = Supplier::where('parent_id','=',Session::get('SUPPLIER_ACCESS_ID'))->paginate(10);       
         return view('supplier/supplier/index',$data);
     }
 
@@ -42,20 +40,36 @@ class SupplierController extends Controller
                                   'password'        => 'required'  
                             ]
                             );
-            if ($validator->fails())
-            {
-                $messages = $validator->messages();
-                return Redirect::route('supplier_add')->withErrors($validator)->withInput();
+        if ($validator->fails())
+        {
+            $messages = $validator->messages();
+            return Redirect::route('supplier_add')->withErrors($validator)->withInput();
+        }
+        else
+        {
+            $newCar = new Supplier();                 
+            $newCar->fill($request->except('_token'));
+            $newCar->parent_id = Session::get('SUPPLIER_ACCESS_ID');
+            $newCar->password  = Hash::make($request->password);
+            
+            if (Input::hasFile('image')){
+               
+                
+                $file               = Input::file('image');
+                $imagename          = Session::get('SUPPLIER_ACCESS_ID') . '.' . $file->getClientOriginalExtension();
+                 if(\File::exists(public_path('upload/supplierprofile/' . $imagename))){
+                    \File::delete(public_path('upload/supplierprofile/' . $imagename));
+                }
+                $path               = public_path('upload/supplierprofile/' . $imagename);
+                $image              = \Image::make($file->getRealPath())->save($path);
+                $th_path            = public_path('upload/supplierprofile/thumb/' . $imagename);
+                $image              = \Image::make($file->getRealPath())->resize(128, 128)->save($th_path);
+                $newCar->image    = $imagename;
             }
-            else
-            {
-                $newCar = new Supplier();                 
-                $newCar->fill($request->except('_token'));
-                $newCar->parent_id = Session::get('SUPPLIER_ACCESS_ID');
-                $newCar->password  = Hash::make($request->password);
-                $newCar->save();				
-                return Redirect::route('supplier_list')->with('succ_msg', 'Supplier has been created successfully!');
-            }
+            
+            $newCar->save();				
+            return Redirect::route('supplier_list')->with('succ_msg', 'Supplier has been created successfully!');
+        }
     }
 
    
@@ -64,38 +78,55 @@ class SupplierController extends Controller
        $data['result'] = Supplier::find($id);
        return view('supplier/supplier/view',$data);
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
+    
     public function edit($id)
     {
-        //
+       $data['result'] = Supplier::find($id);
+       return view('supplier/supplier/edit',$data);
+    }
+    
+    public function update($id,Request $request){
+        
+        $validator = Validator::make(
+                            $request->all(),
+                            [
+                                  'first_name'	    => 'required',                          
+                                  'last_name'	    => 'required',                                                                                              
+                            ]
+                            );
+        if ($validator->fails())
+        {
+            $messages = $validator->messages();
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
+        else
+        {
+            $newCar = Supplier::find($id);                
+            $newCar->fill($request->except('_token'));
+            $newCar->parent_id = Session::get('SUPPLIER_ACCESS_ID');
+            if($request->password != ''){
+            $newCar->password  = Hash::make($request->password);
+            }
+            
+            if (Input::hasFile('image')){
+               
+                
+                $file               = Input::file('image');
+                $imagename          = Session::get('SUPPLIER_ACCESS_ID') . '.' . $file->getClientOriginalExtension();
+                 if(\File::exists(public_path('upload/supplierprofile/' . $imagename))){
+                    \File::delete(public_path('upload/supplierprofile/' . $imagename));
+                }
+                $path               = public_path('upload/supplierprofile/' . $imagename);
+                $image              = \Image::make($file->getRealPath())->save($path);
+                $th_path            = public_path('upload/supplierprofile/thumb/' . $imagename);
+                $image              = \Image::make($file->getRealPath())->resize(128, 128)->save($th_path);
+                $newCar->image    = $imagename;
+            }
+            
+            $newCar->save();				
+            return Redirect::route('supplier_list')->with('succ_msg', 'Supplier has been created successfully!');
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  Request  $request
-     * @param  int  $id
-     * @return Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+  
 }

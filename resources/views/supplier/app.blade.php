@@ -45,7 +45,7 @@
 	
 </head>
 <body>
-<div>   
+<div>
     <!--BEGIN BACK TO TOP--><a id="totop" href="#"><i class="fa fa-angle-up"></i></a><!--END BACK TO TOP--><!--BEGIN TOPBAR-->
     <div id="header-topbar-option-demo" class="page-header-topbar">
         <nav id="topbar" role="navigation" style="margin-bottom: 0; z-index: 2;" class="navbar navbar-default navbar-static-top">
@@ -99,9 +99,9 @@
 				
 
 			<li>
-				<a  href="{{ URL::route('add_supplier') }}">
+				<a  href="{{ URL::route('supplier_list') }}">
 				<i class="fa fa-user"></i>
-				<span class="menu-title">Create Supplier</span></a>
+				<span class="menu-title">Suppliers</span></a>
 			</li>
 			
 		    </ul>
