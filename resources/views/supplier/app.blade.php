@@ -96,9 +96,14 @@
 			    </div>
 			    <div class="clearfix"></div>
 			</li>
-				
+			
+			<li class="{{Helpers::isActiveRoute('supplier_dashboard')}}">
+				<a  href="{{ URL::route('supplier_dashboard') }}">
+				<i class="fa fa-home"></i>
+				<span class="menu-title">Dashboard</span></a>
+			</li>	
 
-			<li>
+			<li class="{{Helpers::isActiveRoute('supplier_list')}}" >
 				<a  href="{{ URL::route('supplier_list') }}">
 				<i class="fa fa-user"></i>
 				<span class="menu-title">Suppliers</span></a>
@@ -114,7 +119,7 @@
 	    </div>
 	    <!--BEGIN FOOTER-->
 	    <div id="footer">
-		<div class="copyright">{{date("Y")}} &copy; Backend Panel</div>
+			<div class="copyright">{{date("Y")}} &copy; Admin Panel</div>
 	    </div>
 	    <!--END FOOTER-->
 	    <!--END PAGE WRAPPER-->

@@ -1,4 +1,4 @@
-    @extends('agent/applogin')
+    @extends('supplier/applogin')
 
 @section('title', 'Login')
 

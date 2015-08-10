@@ -122,7 +122,12 @@ use \Route, \Config;
             }
             //return Route::currentRouteName();
             //return class_basename(Route::currentRouteAction());
-        }        
+        }
+		
+		public static function  isActiveRoute($route, $output = "active")
+		{
+			if (Route::currentRouteName() == $route) return $output;
+		}
         
         
     } //Class

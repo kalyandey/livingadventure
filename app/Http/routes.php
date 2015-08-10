@@ -63,6 +63,7 @@ Route::group(array('namespace'=>'admin', 'prefix' => 'admin'), function(){
 });
 
 Route::group(array('namespace'=>'admin', 'middleware' => 'admin', 'prefix' => 'admin'), function(){
+
     Route::get('/logout',                               array('as' => 'logout',                 'uses' => 'LoginController@logout'));
     Route::any('/account_settings',                     array('as' => 'account_settings',       'uses' => 'DashboardController@account_settings'));
     Route::any('/change_password',                      array('as' => 'change_password',        'uses' => 'DashboardController@change_password'));
@@ -71,5 +72,13 @@ Route::group(array('namespace'=>'admin', 'middleware' => 'admin', 'prefix' => 'a
     Route::get('/agent_management',                     array('as' => 'agent_management',       'uses' => 'AgentMasterController@index'));
     Route::get('/agent_add',                            array('as' => 'agent_add',              'uses' => 'AgentMasterController@create'));
     Route::post('/agent_store',                         array('as' => 'agent_store',            'uses' => 'AgentMasterController@store'));
+
+    Route::any('/supplier_list/', 	        		   array('as' => 'supplier_master_list',   'uses' => 'SupplierMasterController@index'));
+    Route::get('/supplier_create/', 	        	   array('as' => 'supplier_master_add',	   'uses' => 'SupplierMasterController@create'));
+    Route::post('/supplier_create/', 	        	   array('as' => 'supplier_master_add',	   'uses' => 'SupplierMasterController@store'));
+    Route::get('/supplier_details/{id}', 	           array('as' => 'supplier_master_show',   'uses' => 'SupplierMasterController@show'));
+    Route::get('/supplier_edit/{id}', 	        	   array('as' => 'supplier_master_edit',   'uses' => 'SupplierMasterController@edit'));
+    Route::post('/supplier_edit/{id}', 	        	   array('as' => 'supplier_master_edit',   'uses' => 'SupplierMasterController@update'));
+    Route::get('/supplier_delete/{id}', 	           array('as' => 'supplier_master_delete', 'uses' => 'SupplierMasterController@destroy'));
 });
 

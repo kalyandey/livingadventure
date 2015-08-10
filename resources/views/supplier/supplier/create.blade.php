@@ -1,4 +1,4 @@
-@extends('admin/app')
+@extends('supplier/app')
 
 @section('title', 'Create New Supplier')
 
@@ -67,7 +67,7 @@
 					<div class="form-group">
 						<label  class="col-md-3 control-label">Image</label>
 							<div class="col-md-9">					  
-								{!! Form::file('image', '' , array('class'=>'form-control')) !!}
+								{!! Form::file('profileimage', '' , array('class'=>'form-control')) !!}
 							</div>
 					</div>
 					<div class="form-group form-pass"><label class="col-md-3 control-label">Password <span>*</span></label>

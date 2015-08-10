@@ -5,6 +5,7 @@ namespace App\Http\Controllers\supplier;
 use Illuminate\Http\Request;
 use App\Supplier;
 use App\Http\Requests;
+use App\Http\Helpers;
 use App\Http\Controllers\Controller;
 use \Validator, \Redirect, \Session,\Cookie,\Config,\Hash, \Input;
 
@@ -15,8 +16,10 @@ class SupplierController extends Controller
      *
      * @return Response
      */
+   
     public function index()
     {
+        
         $data = array();      
         $data['result'] = Supplier::where('parent_id','=',Session::get('SUPPLIER_ACCESS_ID'))->paginate(10);       
         return view('supplier/supplier/index',$data);
@@ -52,14 +55,9 @@ class SupplierController extends Controller
             $newSupplier->parent_id = Session::get('SUPPLIER_ACCESS_ID');
             $newSupplier->password  = Hash::make($request->password);
             $newSupplier->status    = 'Inactive';
-            if (Input::hasFile('image')){
-               
-                
-                $file               = Input::file('image');
-                $imagename          = Session::get('SUPPLIER_ACCESS_ID') . '.' . $file->getClientOriginalExtension();
-                 if(\File::exists(public_path('upload/supplierprofile/' . $imagename))){
-                    \File::delete(public_path('upload/supplierprofile/' . $imagename));
-                }
+            if (Input::hasFile('profileimage')){
+                $file               = Input::file('profileimage');
+                $imagename          = time() . '.' . $file->getClientOriginalExtension();                
                 $path               = public_path('upload/supplierprofile/' . $imagename);
                 $image              = \Image::make($file->getRealPath())->save($path);
                 $th_path            = public_path('upload/supplierprofile/thumb/' . $imagename);
@@ -101,29 +99,28 @@ class SupplierController extends Controller
         }
         else
         {
-            $newCar = Supplier::find($id);                
-            $newCar->fill($request->except('_token'));
-            $newCar->parent_id = Session::get('SUPPLIER_ACCESS_ID');
+            $supplier = Supplier::find($id);                
+            $supplier->fill($request->except('_token'));
+            $supplier->parent_id = Session::get('SUPPLIER_ACCESS_ID');
             if($request->password != ''){
-            $newCar->password  = Hash::make($request->password);
+            $supplier->password  = Hash::make($request->password);
             }
             
-            if (Input::hasFile('image')){
+            if (Input::hasFile('profileimage')){
                
-                
-                $file               = Input::file('image');
-                $imagename          = Session::get('SUPPLIER_ACCESS_ID') . '.' . $file->getClientOriginalExtension();
-                 if(\File::exists(public_path('upload/supplierprofile/' . $imagename))){
-                    \File::delete(public_path('upload/supplierprofile/' . $imagename));
+                $file               = Input::file('profileimage');
+                $imagename          = time() . '.' . $file->getClientOriginalExtension();
+                 if(\File::exists(public_path('upload/supplierprofile/' . $supplier->image))){
+                    \File::delete(public_path('upload/supplierprofile/' . $supplier->image));
                 }
                 $path               = public_path('upload/supplierprofile/' . $imagename);
                 $image              = \Image::make($file->getRealPath())->save($path);
                 $th_path            = public_path('upload/supplierprofile/thumb/' . $imagename);
                 $image              = \Image::make($file->getRealPath())->resize(128, 128)->save($th_path);
-                $newCar->image    = $imagename;
+                $supplier->image    = $imagename;
             }
             
-            $newCar->save();				
+            $supplier->save();				
             return Redirect::route('supplier_list')->with('succ_msg', 'Supplier has been created successfully!');
         }
     }
