@@ -1,0 +1,1557 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0112)https://internalcommunities.amadeus.com/sites/Amadeusepower/ePower%20Library/Detailed_search_form_sample_v21.htm -->
+<HTML xmlns:mso = "urn:schemas-microsoft-com:office:office" xmlns:msdt = 
+"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"><HEAD><TITLE></TITLE>
+<META content="text/html; charset=utf-8" http-equiv=Content-Type>
+<STYLE>.tabletitle {
+	TEXT-ALIGN: center; BACKGROUND-COLOR: silver; FONT-SIZE: 14px; FONT-WEIGHT: bold
+}
+.title {
+	FONT-SIZE: 14px; FONT-WEIGHT: bold
+}
+TABLE.qf {
+	BORDER-BOTTOM: gray 1px; BORDER-LEFT: gray 1px; BACKGROUND-COLOR: silver; WIDTH: 100%; BORDER-TOP: gray 1px; BORDER-RIGHT: gray 1px
+}
+TABLE.qh {
+	BORDER-BOTTOM: gray 1px; BORDER-LEFT: gray 1px; BACKGROUND-COLOR: silver; WIDTH: 100%; BORDER-TOP: gray 1px; BORDER-RIGHT: gray 1px
+}
+TABLE.qc {
+	BORDER-BOTTOM: gray 1px; BORDER-LEFT: gray 1px; BACKGROUND-COLOR: silver; WIDTH: 100%; BORDER-TOP: gray 1px; BORDER-RIGHT: gray 1px
+}
+TD {
+	BORDER-BOTTOM: gray 0px solid; BORDER-LEFT: gray 0px solid; PADDING-BOTTOM: 1px; BACKGROUND-COLOR: white; TEXT-INDENT: 5px; PADDING-LEFT: 1px; PADDING-RIGHT: 1px; BORDER-TOP: gray 0px solid; BORDER-RIGHT: gray 0px solid; PADDING-TOP: 1px
+}
+TR.trTitle TD {
+	BACKGROUND-COLOR: lightslategray
+}
+TABLE.formTable TD {
+	BORDER-BOTTOM: black 1px solid; BORDER-LEFT: black 1px solid; BORDER-TOP: black 1px solid; BORDER-RIGHT: black 1px solid
+}
+INPUT {
+	BORDER-BOTTOM: black 1px solid; BORDER-LEFT: black 1px solid; WIDTH: 150px; BORDER-TOP: black 1px solid; BORDER-RIGHT: black 1px solid
+}
+SELECT {
+	BORDER-BOTTOM: black 1px solid; BORDER-LEFT: black 1px solid; WIDTH: 150px; BORDER-TOP: black 1px solid; BORDER-RIGHT: black 1px solid
+}
+INPUT.checkbox {
+	WIDTH: 22px
+}
+TABLE.grid {
+	BACKGROUND-COLOR: gray
+}
+TABLE.grid1 {
+	BACKGROUND-COLOR: gray
+}
+TABLE.grid TH {
+	BACKGROUND-COLOR: silver
+}
+TABLE.grid1 TH {
+	BACKGROUND-COLOR: silver
+}
+TABLE.grid TD {
+	BACKGROUND-COLOR: #ffffff; WIDTH: 200px; WHITE-SPACE: nowrap
+}
+SELECT.grid {
+	BORDER-BOTTOM: black 1px solid; BORDER-LEFT: black 1px solid; WIDTH: 110px; BORDER-TOP: black 1px solid; BORDER-RIGHT: black 1px solid
+}
+INPUT.grid {
+	WIDTH: 90px
+}
+TABLE.grid1 TD {
+	BACKGROUND-COLOR: #ffffff
+}
+TD.hr {
+	BACKGROUND-COLOR: gray
+}
+TD.subtitle {
+	BORDER-BOTTOM: gray 3px solid; BACKGROUND-COLOR: #eaeaea; BORDER-TOP: gray 3px solid; FONT-WEIGHT: bold
+}
+</STYLE>
+
+<SCRIPT>
+var portalCode="demo";
+function createActionUrl(pageToGo)
+{	 
+	return "http://staging.amadeusepower.com/" + portalCode + "/portals/" + portalCode +"/" + pageToGo;
+}
+
+function getActionUrl(formObj,pageToGo)
+{	
+	formObj.action= createActionUrl(pageToGo);
+	formObj.target="epowerresult"
+	return true
+}
+
+var cultures= new Array("af-ZA","sq-AL","ar-SA","bs-Latn-BA","bg-BG","hr-HR","en-US","fr-FR","de-DE","el-GR","hu-HU","it-IT","kk-KZ","lv-LV","mk-MK","pl-PL","ro-RO","ru-RU","sr-Latn-CS","sl-SI","tr-TR");
+var cultureNames= new Array("AFRIKAANS","ALBANIAN","ARABIC","BOSNIAN","BULGARIAN","CROATIAN","ENGLISH","FRENCH","GERMAN","GREEK","HUNGARIAN","ITALIAN","KAZAKH","LATVIAN","MACEDONIAN","POLISH","ROMANIAN","RUSSIAN","SERBIAN","SLOVENIAN","TURKISH");
+
+function createLangUrl(pageToGo)
+{
+var tmpUrl=createActionUrl(pageToGo);
+var strToReturn="";
+tmpUrl=tmpUrl+"?culture="
+
+for(i=0;i<cultures.length;i++)
+{	var cultureName=cultureNames[i];
+	strToReturn+="<a href='"+tmpUrl +cultures[i]+"' target='epowerresult'>"+cultureName.substring(0,1)+ (cultureName.substring(1,cultureName.lenth).toLowerCase()) +"</a> | ";
+}
+document.write(strToReturn)
+}
+
+function createLangRows()
+{
+var strToReturn="";
+for(i=0;i<cultures.length;i++)
+{	var cultureName=cultureNames[i];
+    strToReturn+="<tr><td width=\"150\" valign=\"center\"><b>"+cultureName.substring(0,1)+ (cultureName.substring(1,cultureName.lenth).toLowerCase())+"</b></td><td>&lt;input type=\"hidden\" name=\"Culture\" value=\""+cultures[i]+"\"&gt;</td></tr>"
+}
+document.write(strToReturn)
+}
+
+function addTimeOptionList(p_Type)
+{
+var prefixStr='<option selected value="00:01">NoPreference</option>'+
+			'<option value="MORNING">Morning</option>'+
+			'<option value="AFTERNOON">AFTERNOON</option>'+
+			'<option value="EVENING">EVENING</option>';
+var selectedItem="";
+if(p_Type=="c")
+{prefixStr="";
+selectedItem=" selected";
+}
+
+var returnStr = prefixStr+
+			'<option value="00:00">00:00</option>'+
+			'<option value="01:00">01:00</option>'+
+			'<option value="02:00">02:00</option>'+
+			'<option value="03:00">03:00</option>'+
+			'<option value="04:00">04:00</option>'+
+			'<option value="05:00">05:00</option>'+
+			'<option value="06:00">06:00</option>'+
+			'<option value="07:00">07:00</option>'+
+			'<option value="08:00">08:00</option>'+
+			'<option value="09:00" '+ selectedItem + '>09:00</option>'+
+			'<option value="10:00">10:00</option>'+
+			'<option value="11:00">11:00</option>'+
+			'<option value="12:00">12:00</option>'+
+			'<option value="13:00">13:00</option>'+
+			'<option value="14:00">14:00</option>'+
+			'<option value="15:00">15:00</option>'+
+			'<option value="16:00">16:00</option>'+
+			'<option value="17:00">17:00</option>'+
+			'<option value="18:00">18:00</option>'+
+			'<option value="19:00">19:00</option>'+
+			'<option value="20:00">20:00</option>'+
+			'<option value="21:00">21:00</option>'+
+			'<option value="22:00">22:00</option>'+
+			'<option value="23:00">23:00</option>'
+			document.write(returnStr)
+}
+    </SCRIPT>
+
+<META name=GENERATOR content="MSHTML 8.00.6001.19088"><!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:ContentType msdt:dt="string">Document</mso:ContentType>
+<mso:Category msdt:dt="string">4</mso:Category>
+<mso:Description0 msdt:dt="string"></mso:Description0>
+</mso:CustomDocumentProperties>
+</xml><![endif]--></HEAD>
+<BODY bottomMargin=0 leftMargin=0 rightMargin=0 topMargin=0>
+<FORM onsubmit="getActionUrl(this,'flightFareSearch.aspx')" method=get name=qf 
+action="">
+<TABLE id=mainTable border=0 cellSpacing=0 cellPadding=0 name="mainTable">
+  <TBODY>
+  <TR><INPUT value=true type=hidden name=IsExternalAccess> 
+    <TD><INPUT value=tr-TR type=hidden name=Culture> 
+      <TABLE class=qf border=1 cellSpacing=1 cellPadding=0 height=210>
+        <TBODY>
+        <TR>
+          <TD class=tabletitle colSpan=5>Flight Fare External Search Form 
+            Sample</TD></TR>
+        <TR style="COLOR: #ffffff; FONT-WEIGHT: bolder" class=trTitle 
+        align=middle>
+          <TD class=title colSpan=2></TD>
+          <TD>Description</TD>
+          <TD>Mand./Opt.</TD>
+          <TD>Field Name</TD></TR>
+        <TR>
+          <TD class=title>Change Culture</TD>
+          <TD class=fname colSpan=4><STRONG>
+            <SCRIPT>createLangUrl("FlightFareResult.aspx")</SCRIPT>
+            </STRONG></TD></TR>
+        <TR>
+          <TD class=title>Form action</TD>
+          <TD></TD>
+          <TD class=fname colSpan=3><STRONG>
+            <SCRIPT>document.write(createActionUrl("flightfaresearch.aspx"))</SCRIPT>
+            </STRONG></TD></TR>
+        <TR>
+          <TD class=title>Form method</TD>
+          <TD></TD>
+          <TD></TD>
+          <TD class=ma>Mandatory</TD>
+          <TD class=fname><STRONG>GET</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Provider selection</TD>
+          <TD><SELECT style="WIDTH: 200px" 
+            name=External_FlightSearchTypeByProvider> <OPTION selected 
+              value=OnlyAmadeus>Only Amadeus Flights</OPTION> <OPTION 
+              value=AmadeusAndExtProviders>Amadeus and low cost 
+              carriers</OPTION> <OPTION value=OnlyExtProviders>Only low cost 
+              carriers</OPTION></SELECT> </TD>
+          <TD>
+            <TABLE class=grid border=1 cellSpacing=1 cellPadding=0>
+              <TBODY>
+              <TR>
+                <TH>Code</TH>
+                <TH>Description</TH></TR>
+              <TR>
+                <TD>OnlyAmadeus</TD>
+                <TD>Only Amadeus Flights</TD></TR>
+              <TR>
+                <TD>AmadeusAndExtProviders</TD>
+                <TD>Amadeus and low cost carriers</TD></TR>
+              <TR>
+                <TD>OnlyExtProviders</TD>
+                <TD>Only low cost carriers</TD></TR></TBODY></TABLE></TD>
+          <TD class=ma>Mandatory</TD>
+          <TD 
+          class=fname><STRONG>External_FlightSearchTypeByProvider</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Flight Type</TD>
+          <TD><SELECT name=External_FlightFareSearch_SearchType> <OPTION 
+              selected value=RoundTrip>Round Trip</OPTION> <OPTION 
+              value=OneWay>One Way</OPTION> <OPTION value=MultiLeg>Multi 
+              Leg</OPTION></SELECT> </TD>
+          <TD>
+            <TABLE class=grid border=1 cellSpacing=1 cellPadding=0>
+              <TBODY>
+              <TR>
+                <TH>Code</TH>
+                <TH>Description</TH></TR>
+              <TR>
+                <TD>RoundTrip</TD>
+                <TD>Round Trip</TD></TR>
+              <TR>
+                <TD>OneWay</TD>
+                <TD>One Way</TD></TR>
+              <TR>
+                <TD>MultiLeg</TD>
+                <TD>Multi Leg</TD></TR></TBODY></TABLE></TD>
+          <TD class=ma>Mandatory</TD>
+          <TD 
+          class=fname><STRONG>External_FlightFareSearch_SearchType</STRONG></TD></TR>
+        <TR>
+          <TD class=subtitle colSpan=5 align=middle>Use this part for One way 
+            &amp; Round trip flights</TD></TR>
+        <TR>
+          <TD class=title>From </TD>
+          <TD><INPUT id=External_FlightFareSearch_From 
+            name=External_FlightFareSearch_From></TD>
+          <TD>Departure point info : City-airport name or 3 letters code</TD>
+          <TD class=ma>Mandatory</TD>
+          <TD 
+class=fname><STRONG>External_FlightFareSearch_From</STRONG></TD></TR>
+        <TR>
+          <TD class=title>To </TD>
+          <TD><INPUT name=External_FlightFareSearch_To></TD>
+          <TD>Arrival&nbsp;point info : City-airport name or 3 letters code</TD>
+          <TD class=ma>Mandatory</TD>
+          <TD class=fname><STRONG>External_FlightFareSearch_To</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Departure Date </TD>
+          <TD><INPUT name=External_FlightFareSearch_DepartureDate></TD>
+          <TD>Must be formated as DD/MM/YYYY</TD>
+          <TD class=ma>Mandatory</TD>
+          <TD 
+            class=fname><STRONG>External_FlightFareSearch_DepartureDate</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Departure Time </TD>
+          <TD><SELECT name=External_FlightFareSearch_DepartureTime> 
+              <SCRIPT>addTimeOptionList('f')</SCRIPT>
+            </SELECT> </TD>
+          <TD></TD>
+          <TD class=ma>Optional</TD>
+          <TD 
+            class=fname><STRONG>External_FlightFareSearch_DepartureTime</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Departure Date Flexibility </TD>
+          <TD><SELECT name=External_FlightFareSearch_DepartureFlexibility> 
+              <OPTION selected value="">Exact Date</OPTION> <OPTION value=2M>-2 
+              Days</OPTION> <OPTION value=1M>-1 Day</OPTION> <OPTION 
+              value=1C>-1/+1 Day</OPTION> <OPTION value=1P>+1 Day</OPTION> 
+              <OPTION value=2P>+2 Days</OPTION></SELECT> </TD>
+          <TD></TD>
+          <TD class=ma>Optional</TD>
+          <TD 
+            class=fname><STRONG>External_FlightFareSearch_DepartureFlexibility</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Inbound Date </TD>
+          <TD><INPUT name=External_FlightFareSearch_ReturnDate></TD>
+          <TD>Must be formated as DD/MM/YYYY ( Must be blank in Oneway 
+          flights)</TD>
+          <TD class=ma>*Mandatory</TD>
+          <TD 
+          class=fname><STRONG>External_FlightFareSearch_ReturnDate</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Inbound Time </TD>
+          <TD><SELECT name=External_FlightFareSearch_ArrivalTime> 
+              <SCRIPT>addTimeOptionList('f')</SCRIPT>
+            </SELECT> </TD></TD>
+          <TD></TD>
+          <TD class=ma>Optional</TD>
+          <TD 
+            class=fname><STRONG>External_FlightFareSearch_ArrivalTime</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Inbound Date Flexibility </TD>
+          <TD><SELECT name=External_FlightFareSearch_ArrivalFlexibility> 
+              <OPTION selected value="">Exact Date</OPTION> <OPTION value=2M>-2 
+              Days</OPTION> <OPTION value=1M>-1 Day</OPTION> <OPTION 
+              value=1C>-1/+1 Day</OPTION> <OPTION value=1P>+1 Day</OPTION> 
+              <OPTION value=2P>+2 Days</OPTION></SELECT> </TD>
+          <TD></TD>
+          <TD class=ma>Optional</TD>
+          <TD 
+            class=fname><STRONG>External_FlightFareSearch_ArrivalFlexibility</STRONG></TD></TR>
+        <TR>
+          <TD class=title>+/- 3 Days calendar result (MP calendar)</TD>
+          <TD><INPUT class=checkbox value=on type=checkbox 
+            name=External_FlightFareSearch_Calendar></TD>
+          <TD><STRONG><FONT color=#ff0000>Value must be set as 
+            "on".</FONT></STRONG></TD>
+          <TD>Optional</TD>
+          <TD 
+          class=fname><STRONG>External_FlightFareSearch_Calendar</STRONG></TD></TR>
+        <TR>
+          <TD class=subtitle colSpan=5 align=middle>For Multi leg search, you 
+            need to re-generate the following fields by increasing the index 
+            number of each field sequantially. <BR>(Leg count is limited with 
+            minimum 2 locations and maximum 6 locations within 4 different 
+            cities.) </TD></TR>
+        <TR>
+          <TD class=title>Leg 1 - Departure point</TD>
+          <TD></TD>
+          <TD>Departure point info : City-airport name or 3 letters code</TD>
+          <TD class=ma>Mandatory</TD>
+          <TD class=fname><STRONG>EF_From1</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Leg 1 - Arrival point </TD>
+          <TD></TD>
+          <TD>Arrival&nbsp;point info : City-airport name or 3 letters code</TD>
+          <TD class=ma>Mandatory</TD>
+          <TD class=fname><STRONG>EF_To1</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Leg 1 - Departure Date</TD>
+          <TD></TD>
+          <TD>Must be formated as DD/MM/YYYY</TD>
+          <TD class=ma>Mandatory</TD>
+          <TD class=fname><STRONG>EF_DepartureDate1</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Leg 1 - Departure Time </TD>
+          <TD><SELECT> 
+              <SCRIPT>addTimeOptionList('f')</SCRIPT>
+            </SELECT> </TD>
+          <TD></TD>
+          <TD class=ma>Optional</TD>
+          <TD class=fname><STRONG>EF_DepartureTime1</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Leg 1 - Date Flexibility </TD>
+          <TD><SELECT class=grid> <OPTION selected value="">Exact 
+              Date</OPTION> <OPTION value=2M>-2 Days</OPTION> <OPTION 
+              value=1M>-1 Day</OPTION> <OPTION value=1C>-1/+1 Day</OPTION> 
+              <OPTION value=1P>+1 Day</OPTION> <OPTION value=2P>+2 
+            Days</OPTION></SELECT> </TD>
+          <TD></TD>
+          <TD class=ma>Optional</TD>
+          <TD class=fname><STRONG>EF_DepartureFlexibility1</STRONG></TD></TR>
+        <TR>
+          <TD class=title colSpan=2>SAMPLE USAGE</TD>
+          <TD colSpan=3>
+            <TABLE class=grid1 border=1 cellSpacing=1 cellPadding=0>
+              <TBODY>
+              <TR>
+                <TH></TH>
+                <TH>Dep.Point</TH>
+                <TH>Arvl.Point</TH>
+                <TH>Dep.Date/Time</TH>
+                <TH>Dep.Date Flex.</TH></TR>
+              <TR>
+                <TD>Leg&nbsp;1 </TD>
+                <TD><INPUT type=textbox name=EF_From1></TD>
+                <TD><INPUT type=textbox name=EF_To1></TD>
+                <TD><INPUT class=grid type=textbox 
+                  name=EF_DepartureDate1>/<SELECT class=grid 
+                  name=EF_DepartureTime1>
+                    <SCRIPT>addTimeOptionList('f')</SCRIPT>
+                  </SELECT></TD>
+                <TD><SELECT class=grid name=EF_DepartureFlexibility1> 
+                    <OPTION selected value="">Exact Date</OPTION> <OPTION 
+                    value=2M>-2 Days</OPTION> <OPTION value=1M>-1 Day</OPTION> 
+                    <OPTION value=1C>-1/+1 Day</OPTION> <OPTION value=1P>+1 
+                    Day</OPTION> <OPTION value=2P>+2 Days</OPTION></SELECT> </TD></TR>
+              <TR>
+                <TD>Leg&nbsp;2 </TD>
+                <TD><INPUT type=textbox name=EF_From2></TD>
+                <TD><INPUT type=textbox name=EF_To2></TD>
+                <TD><INPUT class=grid type=textbox 
+                  name=EF_DepartureDate2>/<SELECT class=grid 
+                  name=EF_DepartureTime2>
+                    <SCRIPT>addTimeOptionList('f')</SCRIPT>
+                  </SELECT></TD>
+                <TD><SELECT class=grid name=EF_DepartureFlexibility2> 
+                    <OPTION selected value="">Exact Date</OPTION> <OPTION 
+                    value=2M>-2 Days</OPTION> <OPTION value=1M>-1 Day</OPTION> 
+                    <OPTION value=1C>-1/+1 Day</OPTION> <OPTION value=1P>+1 
+                    Day</OPTION> <OPTION value=2P>+2 Days</OPTION></SELECT> </TD></TR>
+              <TR>
+                <TD>Leg&nbsp;3 </TD>
+                <TD><INPUT type=textbox name=EF_From3></TD>
+                <TD><INPUT type=textbox name=EF_To3></TD>
+                <TD><INPUT class=grid type=textbox 
+                  name=EF_DepartureDate3>/<SELECT class=grid 
+                  name=EF_DepartureTime3>
+                    <SCRIPT>addTimeOptionList('f')</SCRIPT>
+                  </SELECT></TD>
+                <TD><SELECT class=grid name=EF_DepartureFlexibility3> 
+                    <OPTION selected value="">Exact Date</OPTION> <OPTION 
+                    value=2M>-2 Days</OPTION> <OPTION value=1M>-1 Day</OPTION> 
+                    <OPTION value=1C>-1/+1 Day</OPTION> <OPTION value=1P>+1 
+                    Day</OPTION> <OPTION value=2P>+2 Days</OPTION></SELECT> </TD></TR>
+              <TR>
+                <TD>Leg&nbsp;4 </TD>
+                <TD><INPUT type=textbox name=EF_From4></TD>
+                <TD><INPUT type=textbox name=EF_To4></TD>
+                <TD><INPUT class=grid type=textbox 
+                  name=EF_DepartureDate4>/<SELECT class=grid 
+                  name=EF_DepartureTime4>
+                    <SCRIPT>addTimeOptionList('f')</SCRIPT>
+                  </SELECT></TD>
+                <TD><SELECT class=grid name=EF_DepartureFlexibility4> 
+                    <OPTION selected value="">Exact Date</OPTION> <OPTION 
+                    value=2M>-2 Days</OPTION> <OPTION value=1M>-1 Day</OPTION> 
+                    <OPTION value=1C>-1/+1 Day</OPTION> <OPTION value=1P>+1 
+                    Day</OPTION> <OPTION value=2P>+2 Days</OPTION></SELECT> </TD></TR>
+              <TR>
+                <TD>Leg&nbsp;5 </TD>
+                <TD><INPUT type=textbox name=EF_From5></TD>
+                <TD><INPUT type=textbox name=EF_To5></TD>
+                <TD><INPUT class=grid type=textbox 
+                  name=EF_DepartureDate5>/<SELECT class=grid 
+                  name=EF_DepartureTime5>
+                    <SCRIPT>addTimeOptionList('f')</SCRIPT>
+                  </SELECT></TD>
+                <TD><SELECT class=grid name=EF_DepartureFlexibility5> 
+                    <OPTION selected value="">Exact Date</OPTION> <OPTION 
+                    value=2M>-2 Days</OPTION> <OPTION value=1M>-1 Day</OPTION> 
+                    <OPTION value=1C>-1/+1 Day</OPTION> <OPTION value=1P>+1 
+                    Day</OPTION> <OPTION value=2P>+2 Days</OPTION></SELECT> </TD></TR>
+              <TR>
+                <TD>Leg&nbsp;6 </TD>
+                <TD><INPUT type=textbox name=EF_From6></TD>
+                <TD><INPUT type=textbox name=EF_To6></TD>
+                <TD><INPUT class=grid type=textbox 
+                  name=EF_DepartureDate6>/<SELECT class=grid 
+                  name=EF_DepartureTime6>
+                    <SCRIPT>addTimeOptionList('f')</SCRIPT>
+                  </SELECT></TD>
+                <TD><SELECT class=grid name=EF_DepartureFlexibility6> 
+                    <OPTION selected value="">Exact Date</OPTION> <OPTION 
+                    value=2M>-2 Days</OPTION> <OPTION value=1M>-1 Day</OPTION> 
+                    <OPTION value=1C>-1/+1 Day</OPTION> <OPTION value=1P>+1 
+                    Day</OPTION> <OPTION value=2P>+2 Days</OPTION></SELECT> 
+              </TD></TR></TBODY></TABLE></TD></TR>
+        <TR>
+          <TD class=subtitle colSpan=5 align=middle>&nbsp;</TD></TR>
+        <TR>
+          <TD class=title>Adult </TD>
+          <TD><SELECT name=External_FlightFareSearch_NumberOfAdults> <OPTION 
+              selected value=0>0</OPTION> <OPTION value=1>1</OPTION> <OPTION 
+              value=2>2</OPTION> <OPTION value=3>3</OPTION></SELECT> </TD>
+          <TD>Can not be more than 6</TD>
+          <TD class=ma>**Mandatory</TD>
+          <TD 
+            class=fname><STRONG>External_FlightFareSearch_NumberOfAdults</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Infant </TD>
+          <TD><SELECT name=External_FlightFareSearch_NumberOfInfants> 
+              <OPTION selected value=0>0</OPTION> <OPTION value=1>1</OPTION> 
+              <OPTION value=2>2</OPTION> <OPTION value=3>3</OPTION></SELECT> </TD>
+          <TD>Can not be more than Adult count</TD>
+          <TD class=ma>Optional</TD>
+          <TD 
+            class=fname><STRONG>External_FlightFareSearch_NumberOfInfants</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Child </TD>
+          <TD><SELECT name=External_FlightFareSearch_NumberOfChilds> <OPTION 
+              selected value=0>0</OPTION> <OPTION value=1>1</OPTION> <OPTION 
+              value=2>2</OPTION> <OPTION value=3>3</OPTION></SELECT> </TD>
+          <TD>Can not be more than 6</TD>
+          <TD class=ma>**Optional</TD>
+          <TD 
+            class=fname><STRONG>External_FlightFareSearch_NumberOfChilds</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Youth </TD>
+          <TD><SELECT name=External_FlightFareSearch_NumberOfYouths> <OPTION 
+              selected value=0>0</OPTION> <OPTION value=1>1</OPTION> <OPTION 
+              value=2>2</OPTION> <OPTION value=3>3</OPTION></SELECT> </TD>
+          <TD>Can not be more than 6 and not allowed to combine with any other 
+            passenger types.</TD>
+          <TD class=ma>**Optional</TD>
+          <TD 
+            class=fname><STRONG>External_FlightFareSearch_NumberOfYouths</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Senior </TD>
+          <TD><SELECT name=External_FlightFareSearch_NumberOfSeniors> 
+              <OPTION selected value=0>0</OPTION> <OPTION value=1>1</OPTION> 
+              <OPTION value=2>2</OPTION> <OPTION value=3>3</OPTION></SELECT> </TD>
+          <TD>Can not be more than 6 and not allowed to combine with any other 
+            passenger types.</TD>
+          <TD class=ma>**Optional</TD>
+          <TD 
+            class=fname><STRONG>External_FlightFareSearch_NumberOfSeniors</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Student </TD>
+          <TD><SELECT name=External_FlightFareSearch_NumberOfStudents> 
+              <OPTION selected value=0>0</OPTION> <OPTION value=1>1</OPTION> 
+              <OPTION value=2>2</OPTION> <OPTION value=3>3</OPTION></SELECT> </TD>
+          <TD>Can not be more than 6 and not allowed to combine with any other 
+            passenger types.</TD>
+          <TD class=ma>**Optional</TD>
+          <TD 
+            class=fname><STRONG>External_FlightFareSearch_NumberOfStudents</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Seaman</TD>
+          <TD><SELECT name=External_FlightFareSearch_NumberOfSeamans> 
+              <OPTION selected value=0>0</OPTION> <OPTION value=1>1</OPTION> 
+              <OPTION value=2>2</OPTION> <OPTION value=3>3</OPTION></SELECT> </TD>
+          <TD>Can not be more than 6 and not allowed to combine with any other 
+            passenger types.</TD>
+          <TD class=ma>**Optional</TD>
+          <TD 
+            class=fname><STRONG>External_FlightFareSearch_NumberOfSeamans</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Max Price </TD>
+          <TD><INPUT name=External_FlightFareSearch_MaxPrice></TD>
+          <TD>The value in Site Currency.</TD>
+          <TD class=ma>Optional</TD>
+          <TD 
+          class=fname><STRONG>External_FlightFareSearch_MaxPrice</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Cabin Class </TD>
+          <TD><SELECT name=External_FlightFareSearch_FlightClass> <OPTION 
+              selected value="">No Preference</OPTION> <OPTION 
+              value=Y>Economy</OPTION> <OPTION value=C>Business</OPTION> <OPTION 
+              value=F>First</OPTION></SELECT> </TD>
+          <TD></TD>
+          <TD class=op>Optional</TD>
+          <TD 
+            class=fname><STRONG>External_FlightFareSearch_FlightClass</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Show Only Direct Flights </TD>
+          <TD><INPUT class=checkbox value=on type=checkbox 
+            name=External_FlightFareSearch_OnlyDirectFlights></TD>
+          <TD><STRONG><FONT color=#ff0000>Value must be set as 
+            "on".</FONT></STRONG> </TD>
+          <TD class=ma>Optional</TD>
+          <TD 
+            class=fname><STRONG>External_FlightFareSearch_OnlyDirectFlights</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Prefered Airlines </TD>
+          <TD><INPUT type=textbox 
+            name=External_FlightFareSearch_PrefferedAirlines></TD>
+          <TD>2 Letters Airline Code. Multiple selection is possible by 
+            seperating the codes with comma&nbsp;or semicolon.</TD>
+          <TD class=ma>Optional</TD>
+          <TD 
+            class=fname><STRONG>External_FlightFareSearch_PrefferedAirlines</STRONG></TD></TR>
+        <TR>
+          <TD colSpan=5 
+        align=right><INPUT value=Search type=submit></TD></TR></TBODY></TABLE></FORM>
+      <HR>
+
+      <FORM onsubmit="getActionUrl(this,'flightScheduleSearch.aspx')" method=get 
+      name=qfs action=""><INPUT value=true type=hidden name=IsExternalAccess> 
+      <TABLE class=qf border=1 cellSpacing=1 cellPadding=0 height=210>
+        <TBODY>
+        <TR>
+          <TD class=tabletitle colSpan=5>Flight Schedule External Search Form 
+            Sample</TD></TR>
+        <TR>
+        <TR style="COLOR: #ffffff; FONT-WEIGHT: bolder" class=trTitle 
+        align=middle>
+          <TD class=title colSpan=2></TD>
+          <TD>Description</TD>
+          <TD>Mand./Opt.</TD>
+          <TD>Field Name</TD></TR>
+        <TR>
+          <TD class=title>Change Culture</TD>
+          <TD class=fname colSpan=4><STRONG>
+            <SCRIPT>createLangUrl("FlightScheduleResult.aspx")</SCRIPT>
+            </STRONG></TD></TR>
+        <TR>
+          <TD class=title>Form action</TD>
+          <TD></TD>
+          <TD class=fname colSpan=3><STRONG>
+            <SCRIPT>document.write(createActionUrl("flightschedulesearch.aspx"))</SCRIPT>
+            </STRONG></TD></TR>
+        <TR>
+          <TD class=title>Form method</TD>
+          <TD></TD>
+          <TD></TD>
+          <TD class=ma>Mandatory</TD>
+          <TD class=fname><STRONG>GET</STRONG></TD></TR>
+        <TR>
+          <TD class=title>From </TD>
+          <TD><INPUT id=Text1 name=External_FlightScheduleSearch_From></TD>
+          <TD>Departure point info : City-airport name or 3 letters code</TD>
+          <TD class=ma>Mandatory</TD>
+          <TD 
+          class=fname><STRONG>External_FlightScheduleSearch_From</STRONG></TD></TR>
+        <TR>
+          <TD class=title>To </TD>
+          <TD><INPUT name=External_FlightScheduleSearch_To></TD>
+          <TD>Arrival point info : City-airport name or 3 letters code</TD>
+          <TD class=ma>Mandatory</TD>
+          <TD 
+        class=fname><STRONG>External_FlightScheduleSearch_To</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Departure Date </TD>
+          <TD><INPUT name=External_FlightScheduleSearch_DepartureDate></TD>
+          <TD>Must be formated as DD/MM/YYYY</TD>
+          <TD class=ma>Mandatory</TD>
+          <TD 
+            class=fname><STRONG>External_FlightFareSearch_DepartureDate</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Departure Time </TD>
+          <TD><SELECT name=External_FlightScheduleSearch_DepartureTime> 
+              <SCRIPT>addTimeOptionList('f')</SCRIPT>
+            </SELECT> </TD>
+          <TD></TD>
+          <TD class=ma>Optional</TD>
+          <TD 
+            class=fname><STRONG>External_FlightScheduleSearch_DepartureTime</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Inbound Date </TD>
+          <TD><INPUT name=External_FlightScheduleSearch_ReturnDate></TD>
+          <TD>Must be formated as DD/MM/YYYY ( Must be blank in Oneway 
+          flights)</TD>
+          <TD class=ma>*Mandatory</TD>
+          <TD 
+            class=fname><STRONG>External_FlightScheduleSearch_ReturnDate</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Inbound Time </TD>
+          <TD><SELECT name=External_FlightScheduleSearch_ArrivalTime> 
+              <SCRIPT>addTimeOptionList('f')</SCRIPT>
+            </SELECT> </TD>
+          <TD></TD>
+          <TD class=ma>Optional</TD>
+          <TD 
+            class=fname><STRONG>External_FlightScheduleSearch_ArrivalTime</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Flight Type</TD>
+          <TD><SELECT name=External_FlightScheduleSearch_SearchType> <OPTION 
+              selected value=RoundTrip>Round Trip</OPTION> <OPTION 
+              value=OneWay>One Way</OPTION> <OPTION value=MultiLeg>Multi 
+              Leg</OPTION></SELECT> </TD>
+          <TD>&nbsp;</TD>
+          <TD class=ma>Mandatory</TD>
+          <TD 
+            class=fname><STRONG>External_FlightScheduleSearch_SearchType</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Adult </TD>
+          <TD><SELECT name=External_FlightScheduleSearch_NumberOfAdults> 
+              <OPTION selected value=0>0</OPTION> <OPTION value=1>1</OPTION> 
+              <OPTION value=2>2</OPTION> <OPTION value=3>3</OPTION></SELECT> </TD>
+          <TD>Can not be more than 6</TD>
+          <TD class=ma>**Mandatory</TD>
+          <TD 
+            class=fname><STRONG>External_FlightScheduleSearch_NumberOfAdults</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Infant </TD>
+          <TD><SELECT name=External_FlightScheduleSearch_NumberOfInfants> 
+              <OPTION selected value=0>0</OPTION> <OPTION value=1>1</OPTION> 
+              <OPTION value=2>2</OPTION> <OPTION value=3>3</OPTION></SELECT> </TD>
+          <TD>Can not be more than Adult count</TD>
+          <TD class=ma>Optional</TD>
+          <TD 
+            class=fname><STRONG>External_FlightScheduleSearch_NumberOfInfants</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Child </TD>
+          <TD><SELECT name=External_FlightScheduleSearch_NumberOfChilds> 
+              <OPTION selected value=0>0</OPTION> <OPTION value=1>1</OPTION> 
+              <OPTION value=2>2</OPTION> <OPTION value=3>3</OPTION></SELECT> </TD>
+          <TD>Can not be more than 6</TD>
+          <TD class=ma>**Optional</TD>
+          <TD 
+            class=fname><STRONG>External_FlightScheduleSearch_NumberOfChilds</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Youth </TD>
+          <TD><SELECT name=External_FlightScheduleSearch_NumberOfYouths> 
+              <OPTION selected value=0>0</OPTION> <OPTION value=1>1</OPTION> 
+              <OPTION value=2>2</OPTION> <OPTION value=3>3</OPTION></SELECT> </TD>
+          <TD>Can not be more than 6 and not allowed to combine with any other 
+            passenger types</TD>
+          <TD class=ma>**Optional</TD>
+          <TD 
+            class=fname><STRONG>External_FlightScheduleSearch_NumberOfYouths</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Senior </TD>
+          <TD><SELECT name=External_FlightScheduleSearch_NumberOfSeniors> 
+              <OPTION selected value=0>0</OPTION> <OPTION value=1>1</OPTION> 
+              <OPTION value=2>2</OPTION> <OPTION value=3>3</OPTION></SELECT> </TD>
+          <TD>Can not be more than 6 and not allowed to combine with any other 
+            passenger types</TD>
+          <TD class=ma>**Optional</TD>
+          <TD 
+            class=fname><STRONG>External_FlightScheduleSearch_NumberOfSeniors</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Student </TD>
+          <TD><SELECT name=External_FlightScheduleSearch_NumberOfStudents> 
+              <OPTION selected value=0>0</OPTION> <OPTION value=1>1</OPTION> 
+              <OPTION value=2>2</OPTION> <OPTION value=3>3</OPTION></SELECT> </TD>
+          <TD>Can not be more than 6 and not allowed to combine with any other 
+            passenger types</TD>
+          <TD class=ma>**Optional</TD>
+          <TD 
+            class=fname><STRONG>External_FlightScheduleSearch_NumberOfStudents</STRONG></TD></TR></TR>
+        <TR>
+          <TD class=title>Seaman </TD>
+          <TD><SELECT name=External_FlightScheduleSearch_NumberOfSeamans> 
+              <OPTION selected value=0>0</OPTION> <OPTION value=1>1</OPTION> 
+              <OPTION value=2>2</OPTION> <OPTION value=3>3</OPTION></SELECT> </TD>
+          <TD>Can not be more than 6 and not allowed to combine with any other 
+            passenger types</TD>
+          <TD class=ma>**Optional</TD>
+          <TD 
+            class=fname><STRONG>External_FlightScheduleSearch_NumberOfSeamans</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Cabin Class </TD>
+          <TD><SELECT name=External_FlightScheduleSearch_FlightClass> 
+              <OPTION selected value="">No Preference</OPTION> <OPTION 
+              value=Y>Economy</OPTION> <OPTION value=C>Business</OPTION> <OPTION 
+              value=F>First</OPTION></SELECT> </TD>
+          <TD></TD>
+          <TD class=ma>Optional</TD>
+          <TD 
+            class=fname><STRONG>External_FlightScheduleSearch_FlightClass</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Airline Code </TD>
+          <TD><SELECT name=External_FlightScheduleSearch_AirlineCode> 
+              <OPTION selected value="">Select</OPTION> <OPTION value=9G>9G RAIL 
+              LTD</OPTION> <OPTION value=9B>ACCESRAIL</OPTION> <OPTION 
+              value=JP>ADRIA AIRWAYS</OPTION> <OPTION value=A3>AEGEAN 
+              AIRLINES</OPTION> <OPTION value=RE>Aer Arann</OPTION> <OPTION 
+              value=EI>AER LINGUS</OPTION> <OPTION value=EE>AERO 
+              AIRLINES</OPTION> <OPTION value=JR>AERO CALIFORNIA</OPTION> 
+              <OPTION value=GV>Aero Flight</OPTION> <OPTION 
+              value=AJ>Aerocontractors</OPTION> <OPTION 
+              value=SU>Aeroflot</OPTION> <OPTION value=5N>Aeroflot-Nord</OPTION> 
+              <OPTION value=4S>Aerohonduras</OPTION> <OPTION value=3I>AEROLINEAS 
+              DEL SUR</OPTION> <OPTION value=AR>Aerolineas Argentinas</OPTION> 
+              <OPTION value=VW>Aeromar</OPTION> <OPTION 
+              value=AM>AEROMEXICO</OPTION> <OPTION 
+              value=HT>AEROMIST-KHARKOV</OPTION> <OPTION value=OT>Aeropelican 
+              Air Services</OPTION> <OPTION value=VH>Aeropostal</OPTION> <OPTION 
+              value=P5>AEROREPUBLICA</OPTION> <OPTION value=5L>Aerosur</OPTION> 
+              <OPTION value=VV>AEROSVIT AIRLINES</OPTION> <OPTION 
+              value=8U>AFRIQIYAH AIRWAYS</OPTION> <OPTION value=ZI>AIGLE 
+              AZUR</OPTION> <OPTION value=AH>AIR ALGERIE</OPTION> <OPTION 
+              value=A6>AIR ALPS AVIATION</OPTION> <OPTION value=4L>AIR 
+              ASTANA</OPTION> <OPTION value=UU>AIR AUSTRAL</OPTION> <OPTION 
+              value=BT>AIR BALTIC</OPTION> <OPTION value=AB>AIR BERLIN</OPTION> 
+              <OPTION value=BP>AIR BOTSWANA</OPTION> <OPTION value=2J>AIR 
+              BURKINA</OPTION> <OPTION value=AC>AIR CANADA</OPTION> <OPTION 
+              value=TX>AIR CARAIBES</OPTION> <OPTION value=CA>AIR CHINA</OPTION> 
+              <OPTION value=QC>AIR CORRIDOR</OPTION> <OPTION value=EN>AIR 
+              DOLOMITI</OPTION> <OPTION value=UX>AIR EUROPA</OPTION> <OPTION 
+              value=PE>AIR EUROPE</OPTION> <OPTION value=PC>AIR FIJI</OPTION> 
+              <OPTION value=AF>AIR FRANCE</OPTION> <OPTION value=GN>AIR 
+              GABON</OPTION> <OPTION value=GL>AIR GREENLAND</OPTION> <OPTION 
+              value=LQ>AIR GUINEA</OPTION> <OPTION value=AI>AIR INDIA</OPTION> 
+              <OPTION value=VU>AIR IVOIRE</OPTION> <OPTION value=JM>AIR 
+              JAMAICA</OPTION> <OPTION value=WJ>AIR LABRADOR</OPTION> <OPTION 
+              value=DR>AIR LINK</OPTION> <OPTION value=LK>AIR LUXOR</OPTION> 
+              <OPTION value=L8>AIR LUXOR GB</OPTION> <OPTION value=C2>AIR LUXOR 
+              STP</OPTION> <OPTION value=NX>AIR MACAU</OPTION> <OPTION 
+              value=MD>AIR MADAGASCAR</OPTION> <OPTION value=NM>AIR 
+              MADRID</OPTION> <OPTION value=QM>AIR MALAWI</OPTION> <OPTION 
+              value=KM>AIR MALTA</OPTION> <OPTION value=MR>AIR 
+              MAURITANIE</OPTION> <OPTION value=MK>AIR MAURITIUS</OPTION> 
+              <OPTION value=9U>AIR MOLDOVA</OPTION> <OPTION value=SW>AIR 
+              NAMIBIA</OPTION> <OPTION value=ON>AIR NAURU</OPTION> <OPTION 
+              value=NZ>AIR NEW ZEALAND</OPTION> <OPTION value=EL>AIR 
+              NIPPON</OPTION> <OPTION value=PX>AIR NIUGINI</OPTION> <OPTION 
+              value=AP>AIR ONE</OPTION> <OPTION value=FJ>AIR PACIFIC</OPTION> 
+              <OPTION value=2P>AIR PHILIPPINES</OPTION> <OPTION value=A7>AIR 
+              PLUS COMET</OPTION> <OPTION value=S2>AIR SAHARA</OPTION> <OPTION 
+              value=PJ>AIR SAINT PIERRE</OPTION> <OPTION value=V7>AIR SENEGAL 
+              INTL</OPTION> <OPTION value=X7>AIR SERVICE</OPTION> <OPTION 
+              value=HM>AIR SEYCHELLES</OPTION> <OPTION value=VT>AIR 
+              TAHITI</OPTION> <OPTION value=TN>AIR TAHITI NUI</OPTION> <OPTION 
+              value=TC>AIR TANZANIA</OPTION> <OPTION value=TS>AIR 
+              TRANSAT</OPTION> <OPTION value=DO>AIR VALLEE</OPTION> <OPTION 
+              value=NF>AIR VANUATU</OPTION> <OPTION value=UM>AIR 
+              ZIMBABWE</OPTION> <OPTION value=ED>AIRBLUE</OPTION> <OPTION 
+              value=SB>AIRCALIN</OPTION> <OPTION value=QP>AIRKENYA 
+              AVIATION</OPTION> <OPTION value=A5>AIRLINAIR</OPTION> <OPTION 
+              value=CG>AIRLINES PNG</OPTION> <OPTION value=TL>AIRNORTH 
+              REGIONAL</OPTION> <OPTION value=FL>AIRTRAN AIRWAYS</OPTION> 
+              <OPTION value=3S>Air Antilles Express</OPTION> <OPTION 
+              value=TT>Air Lithuania</OPTION> <OPTION value=CW>Air Marshall 
+              Islands</OPTION> <OPTION value=AD>Air Paradise Intl</OPTION> 
+              <OPTION value=7D>Aircompany Donbassaero</OPTION> <OPTION 
+              value=4C>Aires</OPTION> <OPTION value=AS>ALASKA AIRLINES</OPTION> 
+              <OPTION value=LV>Albanian Airlines Mak</OPTION> <OPTION 
+              value=AZ>ALITALIA</OPTION> <OPTION value=XM>ALITALIA 
+              EXPRESS</OPTION> <OPTION value=NH>ALL NIPPON AIRWAYS</OPTION> 
+              <OPTION value=AQ>ALOHA AIRLINES</OPTION> <OPTION value=E8>ALPI 
+              EAGLES</OPTION> <OPTION value=QH>ALTYN AIR AIRLINES</OPTION> 
+              <OPTION value=8X>AMADEUS EIGHT</OPTION> <OPTION value=7X>Amadeus 
+              Seven</OPTION> <OPTION value=6X>AMADEUS SIX</OPTION> <OPTION 
+              value=2X>Amadeus Two</OPTION> <OPTION value=0A>AMBER AIR</OPTION> 
+              <OPTION value=AA>AMERICAN AIRLINES</OPTION> <OPTION 
+              value=AX>AMERICAN CONNECTION</OPTION> <OPTION value=WK>AMERICAN 
+              FALCON</OPTION> <OPTION value=HP>America West Airlines</OPTION> 
+              <OPTION value=OR>Arkefly</OPTION> <OPTION value=IZ>ARKIA</OPTION> 
+              <OPTION value=U8>ARMAVIA</OPTION> <OPTION value=MV>Armenian Intl 
+              Airways</OPTION> <OPTION value=R7>Aserca</OPTION> <OPTION 
+              value=OZ>ASIANA AIRLINES</OPTION> <OPTION value=2B>Ata Aerocondor 
+              Transport</OPTION> <OPTION value=TZ>ATA AIRLINES INC</OPTION> 
+              <OPTION value=RC>ATLANTIC AIRWAYS</OPTION> <OPTION 
+              value=TD>Atlantis European Airway</OPTION> <OPTION 
+              value=KK>ATLASJET AIRLINES</OPTION> <OPTION value=GR>Aurigny Air 
+              Services</OPTION> <OPTION value=AU>Austral Lineas Aereas</OPTION> 
+              <OPTION value=AO>AUSTRALIAN AIRLINES</OPTION> <OPTION 
+              value=OS>AUSTRIAN</OPTION> <OPTION value=6A>AVIACSA</OPTION> 
+              <OPTION value=AV>AVIANCA</OPTION> <OPTION 
+              value=GU>AVIATECA</OPTION> <OPTION value=G2>AVIREX GABON</OPTION> 
+              <OPTION value=J2>AZERBAIJAN AIRLINES</OPTION> <OPTION value=JA>BH 
+              AIRLINES</OPTION> <OPTION value=UP>BAHAMASAIR</OPTION> <OPTION 
+              value=PG>BANGKOK AIRWAYS</OPTION> <OPTION value=V9>BASHKIRIAN 
+              AIRLINES</OPTION> <OPTION value=JV>BEARSKIN AIRLINES</OPTION> 
+              <OPTION value=B2>BELAVIA</OPTION> <OPTION value=B3>BELLVIEW 
+              AIRLINES</OPTION> <OPTION value=A8>BENIN GOLF AIR</OPTION> <OPTION 
+              value=J8>BERJAYA AIR</OPTION> <OPTION value=GQ>BIG SKY 
+              AIRLINES</OPTION> <OPTION value=NT>BINTER CANARIAS</OPTION> 
+              <OPTION value=BG>Biman Bangladesh Airline</OPTION> <OPTION 
+              value=0B>BLUE AIR</OPTION> <OPTION value=BV>Blue Panorama 
+              Airlines</OPTION> <OPTION value=KF>Blue1</OPTION> <OPTION 
+              value=KJ>Bmed</OPTION> <OPTION value=BD>BMI</OPTION> <OPTION 
+              value=DB>BRIT AIR</OPTION> <OPTION value=BA>BRITISH 
+              AIRWAYS</OPTION> <OPTION value=FQ>Brindabella Airlines</OPTION> 
+              <OPTION value=FB>BULGARIA AIR</OPTION> <OPTION value=BW>Bwia West 
+              Indies Airways</OPTION> <OPTION value=MO>Calm Air 
+              International</OPTION> <OPTION value=UY>CAMEROON AIRLINES</OPTION> 
+              <OPTION value=5T>CANADIAN NORTH</OPTION> <OPTION value=9K>CAPE 
+              AIR</OPTION> <OPTION value=8B>Caribbean Star Airlines</OPTION> 
+              <OPTION value=ZQ>Caribbean Sun Airlines</OPTION> <OPTION 
+              value=V3>CARPATAIR</OPTION> <OPTION value=CC>CARRIER NAME</OPTION> 
+              <OPTION value=CX>CATHAY PACIFIC</OPTION> <OPTION 
+              value=0C>CATOVAIR</OPTION> <OPTION value=KX>CAYMAN 
+              AIRWAYS</OPTION> <OPTION value=XK>CCM AIRLINES</OPTION> <OPTION 
+              value=5J>CEBU AIR</OPTION> <OPTION value=9M>Central Mountain 
+              Air</OPTION> <OPTION value=J7>Centre-Avia Airlines</OPTION> 
+              <OPTION value=OP>CHALK OCEAN AIRWAYS</OPTION> <OPTION 
+              value=CI>CHINA AIRLINES</OPTION> <OPTION value=MU>China Eastern 
+              Airlines</OPTION> <OPTION value=CZ>China Southern 
+              Airlines</OPTION> <OPTION value=QI>CIMBER AIR</OPTION> <OPTION 
+              value=C9>CIRRUS AIRLINES</OPTION> <OPTION value=CF>CITY 
+              AIRLINE</OPTION> <OPTION value=X9>CITY STAR AIRLINES</OPTION> 
+              <OPTION value=WX>CITYJET</OPTION> <OPTION 
+              value=6P>CLUBAIR</OPTION> <OPTION value=BX>COAST AIR</OPTION> 
+              <OPTION value=MN>COMAIR</OPTION> <OPTION value=I5>Compagnie 
+              Aerienne Mali</OPTION> <OPTION value=DE>Condor</OPTION> <OPTION 
+              value=CO>Continental Airlines</OPTION> <OPTION 
+              value=V0>CONVIASA</OPTION> <OPTION value=CM>COPA AIR</OPTION> 
+              <OPTION value=SS>CORSAIR</OPTION> <OPTION value=OU>CROATIA 
+              AIRLINES</OPTION> <OPTION value=QE>CROSSAIR EUROPE</OPTION> 
+              <OPTION value=CU>CUBANA DE AVIACION</OPTION> <OPTION 
+              value=CY>CYPRUS AIRWAYS</OPTION> <OPTION value=YK>Cyprus Turkish 
+              Airlines</OPTION> <OPTION value=OK>CZECH AIRLINES CSA</OPTION> 
+              <OPTION value=D3>DAALLO AIRLINES</OPTION> <OPTION 
+              value=H8>DALAVIA</OPTION> <OPTION value=DX>Danish Air 
+              Transport</OPTION> <OPTION value=0D>DARWIN AIRLINE</OPTION> 
+              <OPTION value=D5>DAUAIR</OPTION> <OPTION value=DI>Dba</OPTION> 
+              <OPTION value=DL>DELTA AIR LINES</OPTION> <OPTION value=3D>Denim 
+              Air</OPTION> <OPTION value=Z6>DNIEPROAVIA</OPTION> <OPTION 
+              value=E3>DOMODEDOVO AIRLINES</OPTION> <OPTION 
+              value=KA>DRAGONAIR</OPTION> <OPTION value=9H>Dutch Antilles 
+              Express</OPTION> <OPTION value=B5>EAST AFRICAN SAFARI</OPTION> 
+              <OPTION value=QU>East African Airlines</OPTION> <OPTION 
+              value=T3>EASTERN AIRWAYS</OPTION> <OPTION 
+              value=MS>EGYPTAIR</OPTION> <OPTION value=LY>El Al Israel 
+              Airlines</OPTION> <OPTION value=EK>EMIRATES</OPTION> <OPTION 
+              value=E0>EOS AIRLINES</OPTION> <OPTION value=B8>ERITREAN 
+              AIRLINES</OPTION> <OPTION value=OV>ESTONIAN AIR</OPTION> <OPTION 
+              value=ET>ETHIOPIAN AIRLINES</OPTION> <OPTION value=EY>ETIHAD 
+              AIRWAYS</OPTION> <OPTION value=GJ>Eurofly Spa</OPTION> <OPTION 
+              value=3W>Euromanx</OPTION> <OPTION value=EA>European Air 
+              Express</OPTION> <OPTION value=RY>European Exec Express</OPTION> 
+              <OPTION value=9F>Eurostar</OPTION> <OPTION value=BR>EVA 
+              AIR</OPTION> <OPTION value=IH>FALCON AIR</OPTION> <OPTION 
+              value=AY>FINNAIR</OPTION> <OPTION value=FC>FINNCOMM 
+              AIRLINES</OPTION> <OPTION value=7F>FIRST AIR</OPTION> <OPTION 
+              value=DP>First Choice Airways</OPTION> <OPTION value=PA>Florida 
+              Coastal Airlines</OPTION> <OPTION value=F7>Fly Baboo</OPTION> 
+              <OPTION value=SH>Fly Me</OPTION> <OPTION value=BE>Flybe</OPTION> 
+              <OPTION value=TE>Flylal</OPTION> <OPTION 
+              value=LF>FLYNORDIC</OPTION> <OPTION value=F9>FRONTIER 
+              AIRLINES</OPTION> <OPTION value=GA>GARUDA INDONESIA</OPTION> 
+              <OPTION value=GT>GB AIRWAYS</OPTION> <OPTION value=A9>GEORGIAN 
+              AIRWAYS</OPTION> <OPTION value=QB>Georgian National Air</OPTION> 
+              <OPTION value=ST>Germania</OPTION> <OPTION 
+              value=4U>GERMANWINGS</OPTION> <OPTION value=G0>GHANA INTL 
+              AIRLINES</OPTION> <OPTION value=Z5>GMG AIRLINES</OPTION> <OPTION 
+              value=G3>Gol Transportes Aereos</OPTION> <OPTION value=DC>GOLDEN 
+              AIR</OPTION> <OPTION value=ZK>Great Lakes Aviation</OPTION> 
+              <OPTION value=GF>GULF AIR</OPTION> <OPTION value=3M>Gulfstream 
+              International</OPTION> <OPTION value=HR>HAHN AIR</OPTION> <OPTION 
+              value=HU>HAINAN AIRLINES</OPTION> <OPTION value=4R>Hamburg 
+              International</OPTION> <OPTION value=HF>Hapagfly</OPTION> <OPTION 
+              value=X3>Hapag-Lloyd Express</OPTION> <OPTION value=H3>Harbour Air 
+              Seaplanes</OPTION> <OPTION value=HQ>HARMONY AIRWAYS</OPTION> 
+              <OPTION value=HA>HAWAIIAN AIRLINES</OPTION> <OPTION 
+              value=BH>HAWKAIR</OPTION> <OPTION value=YO>HELI AIR 
+              MONACO</OPTION> <OPTION value=H4>HELI SECURITE</OPTION> <OPTION 
+              value=ZU>HELIOS AIRWAYS</OPTION> <OPTION value=UV>Helicopteros Del 
+              Sureste</OPTION> <OPTION value=JB>Helijet International</OPTION> 
+              <OPTION value=2L>HELVETIC AIRWAYS</OPTION> <OPTION value=DU>HEMUS 
+              AIR</OPTION> <OPTION value=EO>HEWA BORA AIRWAYS</OPTION> <OPTION 
+              value=UD>HEX AIR</OPTION> <OPTION value=UO>Hong Kong Express 
+              Airways</OPTION> <OPTION value=IB>IBERIA</OPTION> <OPTION 
+              value=FI>ICELANDAIR</OPTION> <OPTION value=IK>IMAIR 
+              AIRLINE</OPTION> <OPTION value=DH>Independence Air</OPTION> 
+              <OPTION value=IC>INDIAN AIRLINES</OPTION> <OPTION value=D6>INTER 
+              AIR</OPTION> <OPTION value=ID>Interlink Airlines</OPTION> <OPTION 
+              value=3L>Intersky Luftfahrt</OPTION> <OPTION value=IR>IRAN 
+              AIR</OPTION> <OPTION value=WP>ISLAND AIR</OPTION> <OPTION 
+              value=IF>ISLAS AIRWAYS</OPTION> <OPTION value=6H>ISRAIR 
+              AIRLINES</OPTION> <OPTION value=GI>ITEK AIR</OPTION> <OPTION 
+              value=JO>Jalways</OPTION> <OPTION value=JL>JAPAN AIRLINES 
+              INTL</OPTION> <OPTION value=EG>JAPAN ASIA AIRWAYS</OPTION> <OPTION 
+              value=JU>JAT AIRWAYS</OPTION> <OPTION value=9W>JET 
+              AIRWAYS</OPTION> <OPTION value=J0>JETLINK EXPRESS</OPTION> <OPTION 
+              value=10>JETLINK EXPRESS</OPTION> <OPTION 
+              value=JQ>Jetstar</OPTION> <OPTION value=3K>JETSTAR ASIA</OPTION> 
+              <OPTION value=3B>JOB AIR</OPTION> <OPTION value=XC>K D 
+              AIR</OPTION> <OPTION value=V2>Karat Jsc</OPTION> <OPTION 
+              value=6S>KATO AIRLINE</OPTION> <OPTION value=KD>KD AVIA</OPTION> 
+              <OPTION value=M5>KENMORE AIR</OPTION> <OPTION value=KQ>KENYA 
+              AIRWAYS</OPTION> <OPTION value=WA>KLM CITYHOPPER</OPTION> <OPTION 
+              value=KL>Klm Royal Dutch Airlines</OPTION> <OPTION 
+              value=7K>Kogalymavia Airlines</OPTION> <OPTION value=KE>KOREAN 
+              AIR</OPTION> <OPTION value=7B>KRAS AIR</OPTION> <OPTION 
+              value=KU>KUWAIT AIRWAYS</OPTION> <OPTION value=R8>KYRGYZSTAN 
+              AIRLINES</OPTION> <OPTION value=LR>Lacsa</OPTION> <OPTION 
+              value=N7>LAGUN AIR</OPTION> <OPTION value=TM>LAM 
+              MOZAMBIQUE</OPTION> <OPTION value=LA>LAN AIRLINES</OPTION> <OPTION 
+              value=4M>LANARGENTINA</OPTION> <OPTION value=XL>Lanecuador 
+              Aerolane</OPTION> <OPTION value=LP>Lanperu</OPTION> <OPTION 
+              value=QV>LAO AIRLINES</OPTION> <OPTION value=NG>LAUDA AIR</OPTION> 
+              <OPTION value=HE>Lgw Luftfahrtges Walter</OPTION> <OPTION 
+              value=LI>LIAT</OPTION> <OPTION value=LM>LIVINGSTON</OPTION> 
+              <OPTION value=LN>Libyan Arab Airlines</OPTION> <OPTION 
+              value=ZE>Lineas Aereas Azteca</OPTION> <OPTION value=5U>Lineas 
+              Aereas Del Estado</OPTION> <OPTION value=LB>Lloyd Aereo 
+              Boliviano</OPTION> <OPTION value=LO>LOT POLISH AIRLINES</OPTION> 
+              <OPTION value=L3>Ltu Billa Lufttransport</OPTION> <OPTION 
+              value=LT>LTU INTL AIRWAYS</OPTION> <OPTION 
+              value=LH>Lufthansa</OPTION> <OPTION value=L5>LUFTTRANSPORT 
+              AS</OPTION> <OPTION value=LG>LUXAIR</OPTION> <OPTION value=5V>LVIV 
+              AIRLINES</OPTION> <OPTION value=IN>MACEDONIAN AIRLINES</OPTION> 
+              <OPTION value=W5>MAHAN AIRLINES</OPTION> <OPTION value=MH>MALAYSIA 
+              AIRLINES</OPTION> <OPTION value=MA>Malev Hungarian 
+              Airlines</OPTION> <OPTION value=TF>MALMO AVIATION</OPTION> <OPTION 
+              value=AE>MANDARIN AIRLINES</OPTION> <OPTION 
+              value=MP>MARTINAIR</OPTION> <OPTION value=MY>MAXJET 
+              AIRWAYS</OPTION> <OPTION value=IG>MERIDIANA</OPTION> <OPTION 
+              value=YV>MESA AIRLINES</OPTION> <OPTION value=MX>MEXICANA</OPTION> 
+              <OPTION value=YX>MIDWEST AIRLINES</OPTION> <OPTION value=OM>Miat 
+              Mongolian Airlines</OPTION> <OPTION value=ME>Middle East 
+              Airlines</OPTION> <OPTION value=2M>MOLDAVIAN AIRLINES</OPTION> 
+              <OPTION value=ZB>MONARCH AIRLINES</OPTION> <OPTION 
+              value=YM>MONTENEGRO AIRLINES</OPTION> <OPTION value=M9>MOTOR-SICH 
+              JSC</OPTION> <OPTION value=I2>MUNICH AIRLINES</OPTION> <OPTION 
+              value=8M>Myanmar Airways Intl</OPTION> <OPTION value=CE>NATIONWIDE 
+              AIR</OPTION> <OPTION value=NC>National Jet Systems</OPTION> 
+              <OPTION value=2N>NEXTJET</OPTION> <OPTION value=JX>NICE 
+              HELICOPTERES</OPTION> <OPTION value=HG>NIKI</OPTION> <OPTION 
+              value=JH>Nordeste Linhas Aereas</OPTION> <OPTION 
+              value=8N>Nordkalottflyg</OPTION> <OPTION value=NA>North American 
+              Airlines</OPTION> <OPTION value=M3>NORTH FLYING AS</OPTION> 
+              <OPTION value=NW>NORTHWEST AIRLINES</OPTION> <OPTION 
+              value=J3>Northwestern Air Lease</OPTION> <OPTION 
+              value=DY>Norwegian Air Shuttle</OPTION> <OPTION 
+              value=BJ>NOUVELAIR</OPTION> <OPTION value=UQ>O CONNOR 
+              AIRLINES</OPTION> <OPTION value=5K>ODESSA AIRLINES</OPTION> 
+              <OPTION value=OL>Olt Ostfriesische Lufttr</OPTION> <OPTION 
+              value=OA>OLYMPIC AIRLINES</OPTION> <OPTION value=WY>OMAN 
+              AIR</OPTION> <OPTION value=N3>OMSKAVIA</OPTION> <OPTION 
+              value=O7>Ozjet</OPTION> <OPTION value=LW>PACIFIC WINGS</OPTION> 
+              <OPTION value=8P>Pacific Coastal Airlines</OPTION> <OPTION 
+              value=E9>PAN AM CLIPPER CONX</OPTION> <OPTION value=P8>Pantanal 
+              Linhas Aereas</OPTION> <OPTION value=KS>PENAIR</OPTION> <OPTION 
+              value=P9>PERM AIRLINES</OPTION> <OPTION value=PR>PHILIPPINE 
+              AIRLINES</OPTION> <OPTION value=PU>Pluna</OPTION> <OPTION 
+              value=YQ>POLET AIRLINES</OPTION> <OPTION value=PH>POLYNESIAN 
+              AIRLINES</OPTION> <OPTION value=NI>PORTUGALIA</OPTION> <OPTION 
+              value=PW>PRECISION AIR</OPTION> <OPTION value=8W>PRIVATE 
+              WINGS</OPTION> <OPTION value=FV>Pulkovo Aviation Enterpr</OPTION> 
+              <OPTION value=EB>PULLMANTUR AIR</OPTION> <OPTION value=QF>QANTAS 
+              AIRWAYS</OPTION> <OPTION value=QR>QATAR AIRWAYS</OPTION> <OPTION 
+              value=YS>REGIONAL</OPTION> <OPTION value=FN>REGIONAL AIR 
+              LINES</OPTION> <OPTION value=ZL>REGIONAL EXPRESS</OPTION> <OPTION 
+              value=3C>REGIONSAIR</OPTION> <OPTION value=SL>RIO SUL</OPTION> 
+              <OPTION value=AT>ROYAL AIR MAROC</OPTION> <OPTION value=BI>ROYAL 
+              BRUNEI</OPTION> <OPTION value=RJ>ROYAL JORDANIAN</OPTION> <OPTION 
+              value=RA>Royal Nepal Airlines</OPTION> <OPTION value=WB>RWANDAIR 
+              EXPRESS</OPTION> <OPTION value=E5>SAMARA AIRLINES</OPTION> <OPTION 
+              value=S3>Santa Barbara Airlines</OPTION> <OPTION value=BU>Sas 
+              Braathens</OPTION> <OPTION value=HZ>SAT AIRLINES</OPTION> <OPTION 
+              value=SP>SATA AIR ACORES</OPTION> <OPTION value=S4>SATA 
+              INTERNATIONAL</OPTION> <OPTION value=SV>Saudi Arabian 
+              Airlines</OPTION> <OPTION value=SK>Scandinavian Airlines</OPTION> 
+              <OPTION value=YR>SCENIC AIRLINES</OPTION> <OPTION 
+              value=CB>SCOTAIRWAYS</OPTION> <OPTION value=D2>Severstal 
+              Aircompany</OPTION> <OPTION value=FM>SHANGHAI AIRLINES</OPTION> 
+              <OPTION value=ZH>SHENZHEN AIRLINES</OPTION> <OPTION 
+              value=S5>SHUTTLE AMERICA</OPTION> <OPTION value=S7>SIBERIA 
+              AIRLINES</OPTION> <OPTION value=MI>SILKAIR</OPTION> <OPTION 
+              value=SQ>SINGAPORE AIRLINES</OPTION> <OPTION value=FT>Siem Reap 
+              Airways Intl</OPTION> <OPTION value=H2>SKY AIRLINE</OPTION> 
+              <OPTION value=NE>SKYEUROPE AIRLINES</OPTION> <OPTION 
+              value=5G>SKYSERVICE AIRLINES</OPTION> <OPTION value=JZ>Skyways 
+              Ab</OPTION> <OPTION value=XR>SKYWEST AIRLINES</OPTION> <OPTION 
+              value=6Q>SLOVAK AIRLINES</OPTION> <OPTION value=QS>SMART 
+              WINGS</OPTION> <OPTION value=SN>Sn Brussels Airlines</OPTION> 
+              <OPTION value=MM>Soc Aero De Medellin</OPTION> <OPTION 
+              value=IE>SOLOMON AIRLINES</OPTION> <OPTION value=SA>South African 
+              Airways</OPTION> <OPTION value=YG>SOUTH AIRLINES</OPTION> <OPTION 
+              value=JK>SPANAIR</OPTION> <OPTION value=NK>SPIRIT 
+              AIRLINES</OPTION> <OPTION value=UL>SRILANKAN AIRLINES</OPTION> 
+              <OPTION value=SE>STAR AIRLINES</OPTION> <OPTION value=R4>STC 
+              RUSSIA</OPTION> <OPTION value=NB>Sterling</OPTION> <OPTION 
+              value=DM>Sterling Blue</OPTION> <OPTION 
+              value=2Q>Stockholmsplanet</OPTION> <OPTION value=Z2>Styrian 
+              Airways</OPTION> <OPTION value=SD>SUDAN AIRWAYS</OPTION> <OPTION 
+              value=SY>Sun Country</OPTION> <OPTION value=XQ>Sun 
+              Express</OPTION> <OPTION value=CQ>SUNSHINE EXPRESS</OPTION> 
+              <OPTION value=PY>SURINAM AIRWAYS</OPTION> <OPTION value=HS>Svenska 
+              Direktflyg Ab</OPTION> <OPTION value=SM>SWEDLINE</OPTION> <OPTION 
+              value=LX>SWISS</OPTION> <OPTION value=7E>SYLT AIR</OPTION> <OPTION 
+              value=RB>Syrian Arab Airlines</OPTION> <OPTION 
+              value=DT>Taag</OPTION> <OPTION value=TA>TACA INTL 
+              AIRLINES</OPTION> <OPTION value=VR>Tacv Cabo Verde 
+              Airlines</OPTION> <OPTION value=JJ>TAM LINHAS AEREAS</OPTION> 
+              <OPTION value=PZ>Tam Mercosur</OPTION> <OPTION 
+              value=TJ>Tans</OPTION> <OPTION value=TP>Tap Portugal</OPTION> 
+              <OPTION value=RO>Tarom</OPTION> <OPTION value=T6>TAVREY 
+              AIRCOMPANY</OPTION> <OPTION value=L6>TBILAVIAMSHENI</OPTION> 
+              <OPTION value=RU>TCI SKYKING LTD</OPTION> <OPTION value=TG>THAI 
+              AIRWAYS INTL</OPTION> <OPTION value=9D>TOUMAI AIR TCHAD</OPTION> 
+              <OPTION value=T8>Trans African Airlines</OPTION> <OPTION 
+              value=Q8>TRANS AIR CONGO</OPTION> <OPTION value=UN>TRANSAERO 
+              AIRLINES</OPTION> <OPTION value=GE>TRANSASIA AIRWAYS</OPTION> 
+              <OPTION value=UG>TUNINTER</OPTION> <OPTION 
+              value=TU>TUNISAIR</OPTION> <OPTION value=TK>TURKISH 
+              AIRLINES</OPTION> <OPTION value=T7>TWIN JET</OPTION> <OPTION 
+              value=VO>TYROLEAN AIRWAYS</OPTION> <OPTION value=PS>Ukraine Intl 
+              Airlines</OPTION> <OPTION value=UF>UM AIR</OPTION> <OPTION 
+              value=UA>UNITED AIRLINES</OPTION> <OPTION value=U6>URAL 
+              AIRLINES</OPTION> <OPTION value=US>US AIRWAYS</OPTION> <OPTION 
+              value=U5>Usa 3000</OPTION> <OPTION value=P2>UTAIR AVIATION 
+              JSC</OPTION> <OPTION value=HY>UZBEKISTAN AIRWAYS</OPTION> <OPTION 
+              value=X4>Vanair Ltd</OPTION> <OPTION value=RG>VARIG</OPTION> 
+              <OPTION value=VM>VIAGGIO AIR</OPTION> <OPTION value=VN>VIETNAM 
+              AIRLINES</OPTION> <OPTION value=VS>VIRGIN ATLANTIC</OPTION> 
+              <OPTION value=DJ>VIRGIN BLUE</OPTION> <OPTION value=TV>VIRGIN 
+              EXPRESS</OPTION> <OPTION value=VK>Virgin Nigeria Airways</OPTION> 
+              <OPTION value=XF>VLADIVOSTOK AIR</OPTION> <OPTION value=VG>VLM 
+              AIRLINES</OPTION> <OPTION value=VA>VOLARE AIRLINES</OPTION> 
+              <OPTION value=VY>VUELING AIRLINES</OPTION> <OPTION 
+              value=2W>WELCOME AIR</OPTION> <OPTION value=8O>WEST COAST 
+              AIR</OPTION> <OPTION value=WS>Westjet</OPTION> <OPTION 
+              value=WF>WIDEROE</OPTION> <OPTION value=WM>Windward Island 
+              Airways</OPTION> <OPTION value=XP>XTRA AIRWAYS</OPTION> <OPTION 
+              value=R3>YAKUTIA AIR COMPANY</OPTION> <OPTION value=Y8>Yakutia Air 
+              Company</OPTION> <OPTION value=IY>Yemenia Yemen 
+            Airways</OPTION></SELECT> </TD>
+          <TD></TD>
+          <TD class=ma>Optional</TD>
+          <TD 
+            class=fname><STRONG>External_FlightScheduleSearch_AirlineCode</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Show Only Direct Flights </TD>
+          <TD><INPUT class=checkbox value=on type=checkbox 
+            name=External_FlightScheduleSearch_OnlyDirectFlights></TD>
+          <TD><STRONG><FONT color=#ff0000>Value must be set as 
+            "on".</FONT></STRONG> </TD>
+          <TD class=ma>Optional</TD>
+          <TD 
+            class=fname><STRONG>External_FlightScheduleSearch_OnlyDirectFlights</STRONG></TD></TR>
+        <TR>
+          <TD colSpan=5 align=right><INPUT value=Search type=submit></TD></TR>
+        <TR>
+          <TD colSpan=5 align=right>&nbsp;</TD></TR></TBODY></TABLE></FORM>
+      <HR>
+
+      <FORM onsubmit="getActionUrl(this,'hotelSearch.aspx')" method=get name=qh 
+      action=""><INPUT value=true type=hidden name=IsExternalAccess> 
+      <TABLE class=qf border=1 cellSpacing=1 cellPadding=0 height=210>
+        <TBODY>
+        <TR>
+          <TD class=tabletitle colSpan=5>Hotel External Search Form 
+        Sample</TD></TR>
+        <TR style="COLOR: #ffffff; FONT-WEIGHT: bolder" class=trTitle 
+        align=middle>
+          <TD class=title colSpan=2></TD>
+          <TD>Description</TD>
+          <TD>Mand./Opt.</TD>
+          <TD>Field Name</TD></TR>
+        <TR>
+          <TD class=title>Change Culture</TD>
+          <TD class=fname colSpan=4><STRONG>
+            <SCRIPT>createLangUrl("HotelSearchResult.aspx")</SCRIPT>
+            </STRONG></TD></TR>
+        <TR>
+          <TD class=title>Form action</TD>
+          <TD></TD>
+          <TD class=fname colSpan=3><STRONG>
+            <SCRIPT>document.write(createActionUrl("hotelsearch.aspx"))</SCRIPT>
+            </STRONG></TD></TR>
+        <TR>
+          <TD class=title>Form method</TD>
+          <TD></TD>
+          <TD></TD>
+          <TD class=ma>Mandatory</TD>
+          <TD class=fname><STRONG>GET</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Provider selection</TD>
+          <TD><SELECT style="WIDTH: 200px" 
+            name=External_HotelSearchTypeByProvider> <OPTION selected 
+              value=OnlyAmadeus>Only Amadeus Hotels</OPTION> <OPTION 
+              value=AmadeusAndExtProviders>Amadeus and other providers</OPTION> 
+              <OPTION value=OnlyExtProviders>Only Non Amadeus 
+            content</OPTION></SELECT> </TD>
+          <TD>
+            <TABLE class=grid border=1 cellSpacing=1 cellPadding=0>
+              <TBODY>
+              <TR>
+                <TH>Code</TH>
+                <TH>Description</TH></TR>
+              <TR>
+                <TD>OnlyAmadeus</TD>
+                <TD>Only Amadeus Hotels</TD></TR>
+              <TR>
+                <TD>AmadeusAndExtProviders</TD>
+                <TD>Amadeus and other providers</TD></TR>
+              <TR>
+                <TD>OnlyExtProviders</TD>
+                <TD>Only Non Amadeus content</TD></TR></TBODY></TABLE></TD>
+          <TD class=ma>Mandatory</TD>
+          <TD 
+          class=fname><STRONG>External_HotelSearchTypeByProvider</STRONG></TD></TR>
+        <TR>
+          <TD class=title>City</TD>
+          <TD><INPUT id=External_HotelSearch_City 
+            name=External_HotelSearch_City></TD>
+          <TD>City-airport name or 3 letters code</TD>
+          <TD class=ma>Mandatory</TD>
+          <TD class=fname><STRONG>External_HotelSearch_City</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Checkin Date</TD>
+          <TD><INPUT name=External_HotelSearch_CheckInDate></TD>
+          <TD>Must be formated as DD/MM/YYYY</TD>
+          <TD class=ma>Mandatory</TD>
+          <TD 
+        class=fname><STRONG>External_HotelSearch_CheckInDate</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Checkout Date </TD>
+          <TD><INPUT name=External_HotelSearch_CheckOutDate></TD>
+          <TD>Must be formated as DD/MM/YYYY</TD>
+          <TD class=ma>Mandatory</TD>
+          <TD 
+        class=fname><STRONG>External_HotelSearch_CheckOutDate</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Occupancy</TD>
+          <TD><SELECT name=External_HotelSearch_Occupancy> <OPTION selected 
+              value=1>Single</OPTION> <OPTION value=2>Double</OPTION></SELECT> </TD>
+          <TD></TD>
+          <TD class=ma>Mandatory</TD>
+          <TD 
+class=fname><STRONG>External_HotelSearch_Occupancy</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Number of Nights </TD>
+          <TD><INPUT name=External_HotelSearch_NumberofNights></TD>
+          <TD>(If Check Out Date indicated, this field must be empty)</TD>
+          <TD class=ma>Optional</TD>
+          <TD 
+          class=fname><STRONG>External_HotelSearch_NumberofNights</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Hotel Name </TD>
+          <TD><INPUT name=External_HotelSearch_HotelName></TD>
+          <TD></TD>
+          <TD class=ma>Optional</TD>
+          <TD 
+class=fname><STRONG>External_HotelSearch_HotelName</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Area Location</TD>
+          <TD><SELECT name=External_HotelSearch_AreaLocation> <OPTION 
+              selected value="">Select</OPTION> <OPTION value=A>Airport</OPTION> 
+              <OPTION value=D>Downtown</OPTION> <OPTION value=E>East</OPTION> 
+              <OPTION value=N>North</OPTION> <OPTION value=R>Resort</OPTION> 
+              <OPTION value=S>South</OPTION> <OPTION 
+            value=W>West</OPTION></SELECT> </TD>
+          <TD></TD>
+          <TD class=ma>Optional</TD>
+          <TD 
+        class=fname><STRONG>External_HotelSearch_AreaLocation</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Category</TD>
+          <TD><SELECT name=External_HotelSearch_Category> <OPTION selected 
+              value="">Select</OPTION> <OPTION value=F>FirstClass Hotel</OPTION> 
+              <OPTION value=L>Luxury Hotel</OPTION> <OPTION value=S>Standard 
+              Hotel</OPTION> <OPTION value=T>Tourist Hotel</OPTION></SELECT> </TD>
+          <TD></TD>
+          <TD class=ma>Optional</TD>
+          <TD class=fname><STRONG>External_HotelSearch_Category</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Minimum Price</TD>
+          <TD><INPUT name=External_HotelSearch_MinPrice></TD>
+          <TD>The value in Site Currency.</TD>
+          <TD class=ma>Optional</TD>
+          <TD class=fname><STRONG>External_HotelSearch_MinPrice</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Maximum Price</TD>
+          <TD><INPUT name=External_HotelSearch_MaxPrice></TD>
+          <TD>The value in Site Currency.</TD>
+          <TD class=ma>Optional</TD>
+          <TD class=fname><STRONG>External_HotelSearch_MaxPrice</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Fire Safety</TD>
+          <TD><SELECT name=External_HotelSearch_FireSafety> <OPTION selected 
+              value="">Select</OPTION> <OPTION value=0>No Matter</OPTION> 
+              <OPTION value=1>Exist</OPTION> <OPTION value=2>Not 
+            Exist</OPTION></SELECT> </TD>
+          <TD></TD>
+          <TD class=ma>Optional</TD>
+          <TD 
+        class=fname><STRONG>External_HotelSearch_FireSafety</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Alternate City</TD>
+          <TD><SELECT name=External_HotelSearch_AlternateCity> <OPTION 
+              selected value="">Select</OPTION> <OPTION value=0>No 
+              Matter</OPTION> <OPTION value=1>Exist</OPTION> <OPTION value=2>Not 
+              Exist</OPTION></SELECT> </TD>
+          <TD></TD>
+          <TD class=ma>Optional</TD>
+          <TD 
+          class=fname><STRONG>External_HotelSearch_AlternateCity</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Facilities</TD>
+          <TD><SELECT multiple name=External_HotelSearch_FacilityCodeList 
+            rows="5"> <OPTION value=AIR>Air Condition</OPTION> <OPTION 
+              value=BAB>Baby Sitting</OPTION> <OPTION value=BAR>Bar</OPTION> 
+              <OPTION value=BEA>Beach</OPTION> <OPTION value=BTY>Beauty 
+              Parlor</OPTION> <OPTION value=BUS>BUsineessCTR</OPTION> <OPTION 
+              value=CAR>Car Rental</OPTION> <OPTION value=CAS>Casino</OPTION> 
+              <OPTION value=COF>Coffe Shop</OPTION> <OPTION 
+              value=CON>Convention</OPTION> <OPTION value=DIS>Disco</OPTION> 
+              <OPTION value=ELE>Elevator</OPTION> <OPTION 
+              value=EXC>ExchangeFAC</OPTION> <OPTION 
+              value=EXE>Executive</OPTION> <OPTION value=FAX>Fax</OPTION> 
+              <OPTION value=GIF>Gift Shop</OPTION> <OPTION 
+              value=GOL>Golf</OPTION> <OPTION value=HAI>Hairdresser</OPTION> 
+              <OPTION value=HAD>Hairdryer</OPTION> <OPTION 
+              value=HAN>Handicap</OPTION> <OPTION value=HEA>Health Club</OPTION> 
+              <OPTION value=ICE>Ice Machines</OPTION> <OPTION 
+              value="JAC ">Jacussi</OPTION> <OPTION value=KIT>Kitchen</OPTION> 
+              <OPTION value=LAU>Laundry</OPTION> <OPTION 
+              value=LOU>Lounge</OPTION> <OPTION value=MAS>Massage</OPTION> 
+              <OPTION value=MEE>Meeting Rooms</OPTION> <OPTION 
+              value=MIN>MiniBar</OPTION> <OPTION value=MOV>Movie 
+              Channels</OPTION> <OPTION value=NON>NonSmoking</OPTION> <OPTION 
+              value=PAR>Parking</OPTION> <OPTION value=PHC>PC</OPTION> <OPTION 
+              value=PET>Pets Acccepted</OPTION> <OPTION 
+              value=PHA>Pharmacy</OPTION> <OPTION 
+              value=PHO>PhoneDirDial</OPTION> <OPTION 
+              value=RES>Restaurants</OPTION> <OPTION value=ROO>Room 
+              Service</OPTION> <OPTION value=SAF>SafwDepBox</OPTION> <OPTION 
+              value=SAU>Sauna</OPTION> <OPTION value=SIG>Sightseeing</OPTION> 
+              <OPTION value=SNO>Snow Skiing</OPTION> <OPTION 
+              value=SOL>Solarium</OPTION> <OPTION value=SPA>SPA</OPTION> <OPTION 
+              value=SWI>Swimming Pool</OPTION> <OPTION value=TEN>Tennis</OPTION> 
+              <OPTION value=TEL>TV</OPTION> <OPTION value=VAL>Valet 
+              Parking</OPTION> <OPTION value=WAT>Water Sports</OPTION> <OPTION 
+              value=WOM>WomenSRestRoom</OPTION></SELECT> </TD>
+          <TD></TD>
+          <TD class=ma>Optional</TD>
+          <TD 
+          class=fname><STRONG>External_HotelSearch_AlternateCity</STRONG></TD></TR>
+        <TR>
+          <TD colSpan=5 
+        align=right><INPUT value=Search type=submit></TD></TR></TBODY></TABLE>
+      <HR>
+      </FORM>
+      <FORM onsubmit="getActionUrl(this,'carSearch.aspx')" method=get 
+      name=qc><INPUT value=true type=hidden name=IsExternalAccess> 
+      <TABLE class=qf border=1 cellSpacing=1 cellPadding=0 height=210>
+        <TBODY>
+        <TR>
+          <TD class=tabletitle colSpan=5>Car External Search Form Sample</TD></TR>
+        <TR style="COLOR: #ffffff; FONT-WEIGHT: bolder" class=trTitle>
+          <TD class=title colSpan=2></TD>
+          <TD>Description</TD>
+          <TD>Mand./Opt.</TD>
+          <TD>Field Name</TD></TR>
+        <TR>
+          <TD class=title>Change Culture</TD>
+          <TD class=fname colSpan=4><STRONG>
+            <SCRIPT>createLangUrl("CarSearchResult.aspx")</SCRIPT>
+            </STRONG></TD></TR>
+        <TR>
+          <TD class=title>Form action</TD>
+          <TD></TD>
+          <TD class=fname colSpan=3><STRONG>
+            <SCRIPT>document.write(createActionUrl("carsearch.aspx"))</SCRIPT>
+            </STRONG></TD></TR>
+        <TR>
+          <TD class=title>Form method</TD>
+          <TD></TD>
+          <TD></TD>
+          <TD class=ma>Mandatory</TD>
+          <TD class=fname><STRONG>GET</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Pickup Location</TD>
+          <TD><INPUT id=External_CarSearch_PickUpLocation 
+            name=External_CarSearch_PickUpLocation></TD>
+          <TD>City-airport name or 3 letters code</TD>
+          <TD class=ma>Mandatory</TD>
+          <TD 
+        class=fname><STRONG>External_CarSearch_PickUpLocation</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Drop-Off Location</TD>
+          <TD><INPUT name=External_CarSearch_DropOffLocation></TD>
+          <TD>City-airport name or 3 letters code ( may be blank if the 
+            drop-off location is same with pickup location)</TD>
+          <TD class=ma>***Optional</TD>
+          <TD 
+          class=fname><STRONG>External_CarSearch_DropOffLocation</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Pickup Date</TD>
+          <TD><INPUT name=External_CarSearch_PickupDate></TD>
+          <TD>Must be formated as DD/MM/YYYY</TD>
+          <TD class=ma>Mandatory</TD>
+          <TD class=fname><STRONG>External_CarSearch_PickupDate</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Pickup Time</TD>
+          <TD><SELECT name=External_CarSearch_PickupTime> 
+              <SCRIPT>addTimeOptionList('c')</SCRIPT>
+            </SELECT> </TD>
+          <TD>Must be formated as HH:mm&nbsp;(18:00)</TD>
+          <TD class=ma>Mandatory</TD>
+          <TD class=fname><STRONG>External_CarSearch_PickupTime</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Drop-Off Date</TD>
+          <TD><INPUT name=External_CarSearch_DropOffDate></TD>
+          <TD>Must be formated as DD/MM/YYYY</TD>
+          <TD class=ma>Mandatory</TD>
+          <TD 
+class=fname><STRONG>External_CarSearch_DropOffDate</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Drop-Off Time</TD>
+          <TD><SELECT name=External_CarSearch_DropOffTime> 
+              <SCRIPT>addTimeOptionList('c')</SCRIPT>
+            </SELECT> </TD>
+          <TD>Must be formated as HH:mm (18:00)</TD>
+          <TD class=ma>Mandatory</TD>
+          <TD 
+class=fname><STRONG>External_CarSearch_DropOffTime</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Vehicle Type</TD>
+          <TD><SELECT name=External_CarSearch_VehicleType> <OPTION selected 
+              value="">Select</OPTION> <OPTION value=J>ALL Terrain</OPTION> 
+              <OPTION value=T>Convertible</OPTION> <OPTION value=D>Four Door 
+              Car</OPTION> <OPTION value=F>Four Wheel Drive</OPTION> <OPTION 
+              value=L>Limousine</OPTION> <OPTION value=P>PickUp</OPTION> <OPTION 
+              value=R>Recreational</OPTION> <OPTION value=X>Special</OPTION> 
+              <OPTION value=S>Sport</OPTION> <OPTION value=K>Truck</OPTION> 
+              <OPTION value=B>Two Door Car</OPTION> <OPTION value=C>Two Or Four 
+              Door Car</OPTION> <OPTION value=V>Van</OPTION> <OPTION 
+              value=W>Wagon</OPTION></SELECT> </TD>
+          <TD></TD>
+          <TD class=ma>Optional</TD>
+          <TD 
+class=fname><STRONG>External_CarSearch_VehicleType</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Vehicle Class Type</TD>
+          <TD><SELECT name=External_CarSearch_VehicleClassType> <OPTION 
+              selected value="">Select</OPTION> <OPTION value=C>Compact</OPTION> 
+              <OPTION value=E>Economy</OPTION> <OPTION value=F>FullSize</OPTION> 
+              <OPTION value=I>Intermediate</OPTION> <OPTION 
+              value=L>Luxury</OPTION> <OPTION value=M>Mini</OPTION> <OPTION 
+              value=P>Premium</OPTION> <OPTION value=X>Special</OPTION> <OPTION 
+              value=S>Standard</OPTION></SELECT> </TD>
+          <TD></TD>
+          <TD class=ma>Optional</TD>
+          <TD 
+          class=fname><STRONG>External_CarSearch_VehicleClassType</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Transmission Type</TD>
+          <TD><SELECT name=External_CarSearch_TransmissiomType> <OPTION 
+              selected value="">Select</OPTION> <OPTION 
+              value=A>Automatic</OPTION> <OPTION value=M>Manual</OPTION></SELECT> 
+          </TD>
+          <TD></TD>
+          <TD class=ma>Optional</TD>
+          <TD 
+          class=fname><STRONG>External_CarSearch_TransmissiomType</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Has Air Condition</TD>
+          <TD><SELECT name=External_CarSearch_HasAirCondition> <OPTION 
+              selected value="">Select</OPTION> <OPTION value=false>NO</OPTION> 
+              <OPTION value=true>Yes</OPTION></SELECT> </TD>
+          <TD></TD>
+          <TD class=ma>Optional</TD>
+          <TD 
+          class=fname><STRONG>External_CarSearch_HasAirCondition</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Mileage Charge Type</TD>
+          <TD><SELECT name=External_CarSearch_MileageChargeType> <OPTION 
+              selected value="">Select</OPTION> <OPTION value=9>Free 
+              Kilometers</OPTION> <OPTION value=7>PerKilometer</OPTION></SELECT> 
+          </TD>
+          <TD></TD>
+          <TD class=ma>Optional</TD>
+          <TD 
+          class=fname><STRONG>External_CarSearch_MileageChargeType</STRONG></TD></TR>
+        <TR>
+          <TD colSpan=5 
+        align=right><INPUT value=Search type=submit></TD></TR></TBODY></TABLE>
+      <HR>
+      </FORM>
+      <FORM onsubmit="getActionUrl(this,'InsuranceSearch.aspx')" method=get 
+      name=qi><INPUT value=true type=hidden name=IsExternalAccess> 
+      <TABLE class=qf border=1 cellSpacing=1 cellPadding=0 height=210>
+        <TBODY>
+        <TR>
+          <TD class=tabletitle colSpan=5>Insurance External Search Form 
+          Sample</TD></TR>
+        <TR style="COLOR: #ffffff; FONT-WEIGHT: bolder" class=trTitle>
+          <TD class=title colSpan=2></TD>
+          <TD>Description</TD>
+          <TD>Mand./Opt.</TD>
+          <TD>Field Name</TD></TR>
+        <TR>
+          <TD class=title>Change Culture</TD>
+          <TD class=fname colSpan=4><STRONG>
+            <SCRIPT>createLangUrl("basket.aspx")</SCRIPT>
+            </STRONG></TD></TR>
+        <TR>
+          <TD class=title>Form action</TD>
+          <TD></TD>
+          <TD class=fname colSpan=3><STRONG>
+            <SCRIPT>document.write(createActionUrl("Insurancesearch.aspx"))</SCRIPT>
+            </STRONG></TD></TR>
+        <TR>
+          <TD class=title>Form method</TD>
+          <TD></TD>
+          <TD></TD>
+          <TD class=ma>Mandatory</TD>
+          <TD class=fname><STRONG>GET</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Departure Country</TD>
+          <TD><INPUT name=EI_DepartureCountry></TD>
+          <TD>Country Code - 2 letters code</TD>
+          <TD class=ma>Mandatory</TD>
+          <TD class=fname><STRONG>EI_DepartureCountry</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Arrival Location</TD>
+          <TD><INPUT name=EI_ArrivalCountry></TD>
+          <TD>Country Code - 2 letters code ( may be blank if the arrival 
+            location is same with departure location)</TD>
+          <TD class=ma>Optional</TD>
+          <TD class=fname><STRONG>EI_ArrivalCountry</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Start Date</TD>
+          <TD><INPUT name=EI_StartDate></TD>
+          <TD>Must be formated as DD/MM/YYYY</TD>
+          <TD class=ma>Mandatory</TD>
+          <TD class=fname><STRONG>EI_StartDate</STRONG></TD></TR>
+        <TR>
+          <TD class=title>End Date</TD>
+          <TD><INPUT name=EI_EndDate></TD>
+          <TD>Must be formated as DD/MM/YYYY</TD>
+          <TD class=ma>Mandatory</TD>
+          <TD class=fname><STRONG>EI_EndDate</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Birth of Adults</TD>
+          <TD><INPUT name=EI_AdultBirthDates></TD>
+          <TD>Must be formated as DD/MM/YYYY,DD/MM/YYYY,DD/MM/YYYY</TD>
+          <TD class=ma>Mandatory</TD>
+          <TD class=fname><STRONG>EI_AdultBirthDates</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Birth of Childs</TD>
+          <TD><INPUT name=EI_ChildBirthDates></TD>
+          <TD>Must be formated as DD/MM/YYYY,DD/MM/YYYY,DD/MM/YYYY</TD>
+          <TD class=ma>Optional</TD>
+          <TD class=fname><STRONG>EI_ChildBirthDates</STRONG></TD></TR>
+        <TR>
+          <TD colSpan=5 
+        align=right><INPUT value=Search type=submit></TD></TR></TBODY></TABLE>
+      <HR>
+      </FORM>
+      <FORM onsubmit="getActionUrl(this,'login.aspx')" method=get name=qc 
+      action=""><INPUT value=true type=hidden name=IsExternalAccess> 
+      <TABLE class=qf border=1 cellSpacing=1 cellPadding=0 height=210>
+        <TBODY>
+        <TR>
+          <TD class=tabletitle colSpan=5>External Login Form Sample</TD></TR>
+        <TR style="COLOR: #ffffff; FONT-WEIGHT: bolder" class=trTitle 
+        align=middle>
+          <TD class=title colSpan=2></TD>
+          <TD>Description</TD>
+          <TD>Mand./Opt.</TD>
+          <TD>Field Name</TD></TR>
+        <TR>
+          <TD class=title>Form action</TD>
+          <TD></TD>
+          <TD class=fname colSpan=3><STRONG><!--<script>//document.write(createActionUrl("login.aspx"))</script>--></STRONG></TD></TR>
+        <TR>
+          <TD class=title>Form method</TD>
+          <TD></TD>
+          <TD></TD>
+          <TD class=ma>Mandatory</TD>
+          <TD class=fname><STRONG>GET</STRONG></TD></TR>
+        <TR>
+          <TD class=title>User Name</TD>
+          <TD><INPUT id=Text2 name=External_Login_UserName></TD>
+          <TD>User Name</TD>
+          <TD class=ma>Mandatory</TD>
+          <TD class=fname><STRONG>External_Login_UserName</STRONG></TD></TR>
+        <TR>
+          <TD class=title>Password</TD>
+          <TD><INPUT name=External_Login_Password></TD>
+          <TD>Password</TD>
+          <TD class=ma>Mandatory</TD>
+          <TD class=fname><STRONG>External_Login_Password</STRONG></TD></TR>
+        <TR>
+          <TD colSpan=5 
+        align=right><INPUT value=Search type=submit></TD></TR></TBODY></TABLE>
+      <HR>
+      </FORM>
+      <P>&nbsp;</P>
+      <P><STRONG>PS1 : IsExternalAccess</STRONG> Field should included into each 
+      form as a hidden item and value must be set as <STRONG>true.</STRONG> </P>
+      <P><STRONG>PS2 : If you wish to view the results in a specific language 
+      you need to add the following form field pairs to each form of yours. 
+      </STRONG></P>
+      <TABLE class=formTable border=0 width="100%">
+        <SCRIPT>createLangRows()</SCRIPT>
+
+        <TBODY></TBODY></TABLE>
+      <P>* : Mandatory in round trip flights. <BR>** : At least one passenger 
+      type must be provided. <BR>*** : If this field left blank, the pickup city 
+      will be considered as also drop-off point. 
+</P></TR></TBODY></TABLE></BODY></HTML>
+=

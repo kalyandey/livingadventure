@@ -2,6 +2,7 @@
 
 @section('title', 'Welcome to Living Adventure')
 @section('content')
+
 <script>
 var ePFrame="<iframe src=\"https://staging.amadeusepower.com/xyztravel/\" width=\"100%\" height=\"580\" frameborder=\"0\"></iframe>";
 </script>
@@ -294,6 +295,7 @@ var ePFrame="<iframe src=\"https://staging.amadeusepower.com/xyztravel/\" width=
                 <input type="button" name="btn_search" id="btn_search" value="Search" class="btn btn-primary">
             </div>
         </div>
+
     </div>-->
     <div class="row">
         <div class="col-md-6">

@@ -1,4 +1,6 @@
-@extends('admin/app')
+
+@extends('agent/app')
+
 
 @section('title', 'Login')
 

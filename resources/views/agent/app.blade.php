@@ -1,8 +1,3 @@
-	{{--*/
-	$controller = Helpers::getRoute('controller');
-	$action = Helpers::getRoute('action');
-	$alise = Helpers::getRoute('alise');
-	/*--}}
 <!DOCTYPE html>
 <html lang="en">
 <head>	
@@ -51,14 +46,14 @@
         <nav id="topbar" role="navigation" style="margin-bottom: 0; z-index: 2;" class="navbar navbar-default navbar-static-top">
             <div class="navbar-header">
                 <button type="button" data-toggle="collapse" data-target=".sidebar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                <a id="logo" href="ja" class="navbar-brand"><span class="fa fa-rocket">vascript:;</span><span class="logo-text">ForeignHub.com</span><span style="display: none" class="logo-text-icon">µ</span></a></div>
+                <a id="logo" href="/agent/index" class="navbar-brand"><span class="fa fa-rocket">vascript:;</span><span class="logo-text">Living Adventure</span><span style="display: none" class="logo-text-icon">µ</span></a></div>
             <div class="topbar-main">
                 <ul class="nav navbar navbar-top-links navbar-right mbn">
                     <li class="dropdown topbar-user"><a data-hover="dropdown" href="#" class="dropdown-toggle">
-			<span class="hidden-xs">{{ Session::get('ADMIN_NAME') }}</span>&nbsp;<span class="caret"></span></a>
+			<span class="hidden-xs">{{ Session::get('BACKEND_NAME') }}</span>&nbsp;<span class="caret"></span></a>
                         <ul class="dropdown-menu dropdown-user pull-right">
-                            <li><a href="{{URL::route('profile')}}"><i class="fa fa-user"></i>My Profile</a></li>
-                            <li><a href="{{ action('admin\LoginController@logout') }}"><i class="fa fa-key"></i>Log Out</a></li>
+                            <li><a href="{{URL::route('agent_profile')}}"><i class="fa fa-user"></i>My Profile</a></li>
+                            <li><a href="{{ URL::route('agent_logout') }}"><i class="fa fa-key"></i>Log Out</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -88,66 +83,17 @@
 		    <ul id="side-menu" class="nav">
 			<li class="user-panel">
 			    
-			    <div class="info"><p>{{ Session::get('ADMIN_NAME') }}</p>
+
+			    <div class="info"><p>{{ Session::get('BACKEND_ACCESS_FNAME') }}</p>
 				<ul class="list-inline list-unstyled">
-				    <li><a href="{{URL::route('profile')}}" data-hover="tooltip" title="Profile"><i class="fa fa-user"></i></a></li>				    
-				    <li><a href="{{ action('admin\LoginController@logout') }}" data-hover="tooltip" title="Logout"><i class="fa fa-sign-out"></i></a></li>
+				    <li><a href="{{URL::route('agent_profile')}}" data-hover="tooltip" title="Profile"><i class="fa fa-user"></i></a></li>				    
+				    <li><a href="{{ URL::route('agent_logout') }}" data-hover="tooltip" title="Logout"><i class="fa fa-sign-out"></i></a></li>
+
 				</ul>
 			    </div>
 			    <div class="clearfix"></div>
 			</li>
-				{{ Helpers::getRoute('controller') }} <br/>
-				{{ Helpers::getRoute('alise') }}
 
-				
-			<li><a href="{{URL::route('admin_root')}}"><i class="fa fa-tachometer fa-fw">
-			    <div class="icon-bg bg-orange"></div>
-			</i><span class="menu-title">Dashboard</span></a></li>
-			
-			
-			<li class="@if(($controller=='CustomerController' || $controller=='ProviderController') && ($alise=='customer_list' || $alise=='provider_index' || $alise=='customer_create' )) active @endif"><a href="/admin/users"><i class="fa fa-laptop fa-fw">
-				<div class="icon-bg bg-pink"></div>
-				</i><span class="menu-title">Users</span><span class="fa arrow"></span></a>
-				<ul class="nav nav-second-level">
-					<li class="@if(($alise=='customer_list')) active @endif"><a href="{{ action('admin\CustomerController@index') }}"><i class="fa fa-rocket"></i><span class="submenu-title">Customers Management</span></a></li>
-					<li class="@if(($alise=='provider_index')) active @endif"><a href="{{ action('admin\ProviderController@index') }}"><i class="fa fa-rocket"></i><span class="submenu-title">Providers Management</span></a></li>
-				</ul>
-			</li>
-			
-			<li class="@if(($controller=='TestimonialController' || $controller=='CmsController') && ($alise=='testimonials' || $alise=='cms' )) active @endif"><a ><i class="fa fa-laptop fa-fw">
-				<div class="icon-bg bg-pink"></div>
-				</i><span class="menu-title">Content Management</span><span class="fa arrow"></span></a>
-				<ul class="nav nav-second-level">
-					<li class="@if(($alise=='testimonials')) active @endif"><a href="{{ action('admin\TestimonialController@index') }}"><i class="fa fa-rocket"></i><span class="submenu-title">Testimonial</span></a></li>
-					<li class="@if(($alise=='cms')) active @endif"><a href="{{ action('admin\CmsController@index') }}"><i class="fa fa-rocket"></i><span class="submenu-title">CMS</span></a></li>
-
-				</ul>
-			</li>
-				
-			<li class="@if(($controller=='ContactusController') && ($alise=='contactus')) active @endif"><a href="{{URL::route('contactus')}}"><i class="fa fa-money fa-fw">
-			    <div class="icon-bg bg-orange"></div>
-			</i><span class="menu-title">Contact us Management</span></a></li>
-				
-			<li class="@if(($controller=='OrdersController') && ($alise=='orders')) active @endif"><a href="{{URL::route('orders')}}"><i class="fa fa-money fa-fw">
-			    <div class="icon-bg bg-orange"></div>
-			</i><span class="menu-title">Order Management</span></a></li>
-				
-			<li class="@if(($controller=='CarController') && ($alise=='cars')) active @endif"><a href="{{URL::route('cars')}}"><i class="fa fa-car fa-fw">
-			    <div class="icon-bg bg-orange"></div>
-			</i><span class="menu-title">Car Management</span></a></li>	
-				
-			<li class="@if(($controller=='DriverpriceController') && ($alise=='driver_price')) active @endif"><a href="{{URL::route('driver_price')}}"><i class="fa fa-usd fa-fw">
-			    <div class="icon-bg bg-orange"></div>
-			</i><span class="menu-title">Driver Price Management</span></a></li>
-				
-<!--			<li ><a href="{{URL::route('make')}}"><i class="fa fa-usd fa-fw">
-			    <div class="icon-bg bg-orange"></div>
-			</i><span class="menu-title">Make Management</span></a></li>
-				
-			<li><a href="{{URL::route('model')}}"><i class="fa fa-usd fa-fw">
-			    <div class="icon-bg bg-orange"></div>
-			</i><span class="menu-title">Model Management</span></a></li>-->
-				
 		    </ul>
 		</div>
 	    </nav>
@@ -225,80 +171,16 @@
 <script src="{{ asset('/backend/js/ckeditor.js') }}"></script>
 <script src="{{ asset('/backend/js/summernote.js')}}"></script>
 <script src="{{ asset('/backend/js/ui-editors.js')}}"></script>
-	
+<script src="{{ asset('/agent_asset/js/custom_script.js')}}"></script>
+<link type="text/css" rel="stylesheet" href="{{ asset('/agent_asset/css/custom_style.css') }}">
 <script>//BEGIN CHECKBOX & RADIO
 
-var baseURL = "<?php echo config('constants.BACKEND_URL');?>";
-
-//$('input[type="checkbox"]').iCheck({
-//    checkboxClass: 'icheckbox_minimal-grey',
-//    increaseArea: '20%' // optional
-//});
-//$('input[type="radio"]').iCheck({
-//    radioClass: 'iradio_minimal-grey',
-//    increaseArea: '20%' // optional
-//});
-//END CHECKBOX & RADIO
-
-   $('#back').click(function(){
-	window.location.href = baseURL + $('#back_url').val();
-   });
-   
-   $('.clear-search').click(function(){
-	$(this).parents('form').find('input[type="text"]').val('');
-   });
-
-   var nowDate 	= new Date();
-   var toDate 	= new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
-   $('#expiration_date').datetimepicker({pickTime: false, startDate:nowDate});
-   
-   
-  $(document).ready(function(){
-   
-	$('#providerins').change(function(){
-	 pi = $(this).val();
-	 if (pi=='Yes') {
-	   $("#policy_number").attr("required","required");
-	   $("#minimum_age").attr("required","required");
-	   $('#pibox').show();
-	 }else{
-	    $('#policy_number').val('');
-	    $('#minimum_age').val('');
-	    $('#policy_number').removeAttr('required');
-	    $('#minimum_age').removeAttr('required');
-	    $('#pibox').hide();
-	    
-	 }
-	})
-	
-	 pi = $('#providerins').val();
-	 
-	 if (pi=='Yes') {
-	   $('#pibox').show();
-	 }else{
-	    $('#pibox').hide();
-	 }	
-    
-  })
-   
-   
 
 </script>
 
 <script>
 jQuery(document).ready(function() {    
    Metronic.init(); // init metronic core componets
-   //Layout.init(); // init layout
-   //QuickSidebar.init(); // init quick sidebar
-  // Demo.init(); // init demo features 
-  // Index.init();   
-   //Index.initDashboardDaterange();
-   //Index.initJQVMAP(); // init index page's custom scripts
-   //Index.initCalendar(); // init index page's custom scripts
-  // Index.initCharts(); // init index page's custom scripts
-   //Index.initChat();
-  // Index.initMiniCharts();
-  // Tasks.initDashboardWidget();
    
 });
 </script>

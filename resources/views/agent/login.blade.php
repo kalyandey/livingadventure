@@ -1,24 +1,21 @@
-@extends('agent/applogin')
 
+@extends('agent/applogin')
 @section('title', 'Login')
 
 @section('content')
 
 <div class="page-form"> 
-    
-    {!! Form::open(array('url' => 'agent', 'class' => 'form')) !!}	
+
+    {!! Form::open(array('route' => 'agent_login', 'class' => 'form')) !!}	
         <div class="header-content"><h1>Agent Log In</h1></div>
-	<?php print_r($errors);?>
-	@if (count($errors) > 0)
-            
-	<div class="alert alert-danger">
-		<!--<strong>Whoops!</strong> There were some problems with your input.<br><br>-->
-		<ul>
-			@foreach ($errors as $error)
+	
+	@if(Session::has('message'))
+	    <div class="alert alert-danger"><ul>
+	    @foreach (Session::get('message') as $error)
 				<li>{{ $error }}</li>
 			@endforeach
-		</ul>
-	</div>
+	    </ul></div>
+
 	@endif
         <div class="body-content">
             <div class="form-group">
