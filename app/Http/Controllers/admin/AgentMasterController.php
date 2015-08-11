@@ -19,7 +19,7 @@ class AgentMasterController extends Controller
      */
     public function index()
     {
-        $agentlList	=Agent::paginate(2);
+        $agentlList	=Agent::paginate(10);
         return view('admin/agent',array("agentlList" => $agentlList));
     }
 
@@ -47,8 +47,8 @@ class AgentMasterController extends Controller
                     $request->all(),
                      ['first_name'	=> 'required',
                       'last_name'        => 'required',
-                      'email_address' => 'required|email',
-                      'password' => 'required|min:8'
+                      'email' => 'required|email|unique:agents',
+                      'password' => 'required'
                       ]
                   );
        
@@ -62,15 +62,18 @@ class AgentMasterController extends Controller
         else{
                 $first_name    = $request->input('first_name');
                 $last_name     = $request->input('last_name');
-                $email_address = $request->input('email_address');
+                $email_address = $request->input('email');
                 $password      = $request->input('password');
                 $phone         = $request->file('phone');
-                
+                if($phone)
+				{
+					$agent->phone = $phone;
+				}
                 $agent->first_name = $first_name;
                 $agent->last_name = $last_name;
                 $agent->email = $email_address;
                 $agent->password = $password;
-                $agent->phone = $phone;
+                
                
                 
                  if($request->file('user_image')){                
@@ -98,7 +101,9 @@ class AgentMasterController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = array();
+        $data['agent_data'] = Agent::find($id);
+        return view('admin/agent_show',$data);
     }
 
     /**
@@ -109,7 +114,9 @@ class AgentMasterController extends Controller
      */
     public function edit($id)
     {
-        //
+		$data = array();
+        $data['agent_data'] = Agent::find($id);
+        return view('admin/agent_edit',$data);
     }
 
     /**
@@ -121,7 +128,58 @@ class AgentMasterController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       
+        $validator = Validator::make(
+                    $request->all(),
+                     ['first_name'	=> 'required',
+                      'last_name'   => 'required',
+                      ]
+                  );
+       
+        if ($validator->fails())
+        {
+            $messages = $validator->messages();
+            return redirect::route('agent_edit',$id)->withErrors($validator)->withInput();
+        }
+        else{
+			    $agent         = Agent::find($id);
+                $first_name    = $request->input('first_name');
+                $last_name     = $request->input('last_name');
+                $password      = $request->input('password');
+                $phone         = $request->input('phone');
+				
+				$agent->first_name	= $first_name;
+				$agent->last_name	= $last_name;
+                if($phone)
+				{
+					$agent->phone	= $phone;
+				}                
+                
+				if($password != '')
+				{
+					$agent->password	= $password;
+				}
+				
+                 if($request->file('user_image')){                
+                            $file               = Input::file('user_image');
+                            $imagename          = time() . '.' . $file->getClientOriginalExtension();
+							if(file_exists(public_path('upload/agentprofile/'.$agent->image)) && $agent->image!=''){
+								$image_path         = public_path('upload/agentprofile/'.$agent->image);
+								$image_thumb_path   = public_path('upload/agentprofile/thumb/'.$agent->image);
+                            
+                            \File::Delete($image_path);
+                            \File::Delete($image_thumb_path);
+							}
+                            $path               = public_path('upload/agentprofile/' . $imagename);
+                            $image              = \Image::make($file->getRealPath())->save($path);
+                            $th_path            = public_path('upload/agentprofile/thumb/' . $imagename);
+                            $image              = \Image::make($file->getRealPath())->resize(128, 128)->save($th_path);
+							$agent->image		= $imagename;
+                           
+			     }                
+                $agent->save();
+                return redirect::route('agent_management')->with('success', 'Agent updated successfully.');
+            }
     }
 
     /**
@@ -132,6 +190,8 @@ class AgentMasterController extends Controller
      */
     public function destroy($id)
     {
-        //
+         $agent = Agent::find($id);
+         $agent->delete();
+         return Redirect::route('agent_management')->with('success', 'Agent has been deleted successfully!');
     }
 }
