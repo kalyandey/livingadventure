@@ -63,5 +63,6 @@ Route::group(array('namespace'=>'admin', 'middleware' => 'admin', 'prefix' => 'a
     Route::any('/change_password',                      array('as' => 'change_password',        'uses' => 'DashboardController@change_password'));
     Route::get('/dashboard',                            array('as' => 'dashboard',              'uses' => 'DashboardController@index'));
     Route::any('/site_settings',                        array('as' => 'site_settings',          'uses' => 'SitesettingsController@index'));
+    Route::get('/suppliers',                            array('as' => 'suppliers',              'uses' => 'SupplierController@index'));
 });
 

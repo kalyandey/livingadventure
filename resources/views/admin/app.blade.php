@@ -68,7 +68,7 @@
 			<div class="sidebar-collapse menu-scroll">
 			    <ul id="side-menu" class="nav">
 				<li class="user-panel">
-				    <div class="thumb"><img src="https://s3.amazonaws.com/uifaces/faces/twitter/kolage/128.jpg" alt="" class="img-circle"/></div>
+				    <div class="thumb"><img src="{{ \Config::get('constants.ADMIN_PROFILE_PICTURE') }}" alt="" class="img-circle"/></div>
 				    <div class="info"><p>{{ Session::get('ADMIN_ACCESS_FNAME') }} {{ Session::get('ADMIN_ACCESS_LNAME') }}</p>
 					<ul class="list-inline list-unstyled">
 					    <li><a href="{{URL::route('account_settings')}}" data-hover="tooltip" title="Account Settings"><i class="fa fa-user"></i></a></li>                                
@@ -78,12 +78,29 @@
 				    </div>
 				    <div class="clearfix"></div>
 				</li>
-				<li class="active"><a href="{{URL::route('dashboard')}}"><i class="fa fa-tachometer fa-fw">
-				    <div class="icon-bg bg-orange"></div>
-				</i><span class="menu-title">Dashboard</span></a></li>
 				<li>
-				    <a href="{{URL::route('site_settings')}}"><i class="fa fa-cog fa-fw">                        
-				    </i><span class="menu-title">Site Settings</span></a>
+					<a href="{{URL::route('dashboard')}}"><i class="fa fa-tachometer fa-fw">
+					<div class="icon-bg bg-orange"></div>
+					</i><span class="menu-title">Dashboard</span></a></li>
+				<li>
+					<a href="{{URL::route('site_settings')}}"><i class="fa fa-cog fa-fw">                        
+					</i><span class="menu-title">Site Settings</span></a>
+				</li>
+				<li>
+					<a href="#"><i class="fa fa-cog fa-fw">                        
+					</i><span class="menu-title">Suppliers</span></a>
+					<ul class="nav nav-second-level">
+						<li><a href="#"><i class="fa fa-th-large"></i><span class="submenu-title">List</span></a></li>
+						<li><a href="#"><i class="fa fa-edit"></i><span class="submenu-title">Add</span></a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#"><i class="fa fa-cog fa-fw">                        
+					</i><span class="menu-title">Agents</span></a>
+					<ul class="nav nav-second-level">
+						<li><a href="#"><i class="fa fa-th-large"></i><span class="submenu-title">List</span></a></li>
+						<li><a href="#"><i class="fa fa-edit"></i><span class="submenu-title">Add</span></a></li>
+					</ul>
 				</li>
 			    </ul>
 			</div>

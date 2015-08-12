@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 use \Session;
 use Closure;
+use App\Admin;
 
 class AdminMiddleware
 {
@@ -15,8 +16,17 @@ class AdminMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $admin_id = Session::get('ADMIN_ACCESS_ID');
-        if ($admin_id == '') {
+        
+        if(Session::has('ADMIN_ACCESS_ID')){
+            $admin_id   = Session::get('ADMIN_ACCESS_ID');
+            $adminList  = Admin::where("id","=",$admin_id)->get();
+            if($adminList[0]->image != ''){
+                $adminProfileImg    = \Config::get('constants.ADMIN_PROFILE_TH_IMG_PATH') . $adminList[0]->image;
+            }else{
+                $adminProfileImg    = \Config::get('constants.ADMIN_DEFAULT_PICTURE');
+            }
+            \Config::set('constants.ADMIN_PROFILE_PICTURE', $adminProfileImg);
+        }else{
             return redirect('/admin');
         }
         return $next($request);
