@@ -78,31 +78,7 @@
 				    </div>
 				    <div class="clearfix"></div>
 				</li>
-<<<<<<< HEAD
-				<li>
-					<a href="{{URL::route('dashboard')}}"><i class="fa fa-tachometer fa-fw">
-					<div class="icon-bg bg-orange"></div>
-					</i><span class="menu-title">Dashboard</span></a></li>
-				<li>
-					<a href="{{URL::route('site_settings')}}"><i class="fa fa-cog fa-fw">                        
-					</i><span class="menu-title">Site Settings</span></a>
-				</li>
-				<li>
-					<a href="#"><i class="fa fa-cog fa-fw">                        
-					</i><span class="menu-title">Suppliers</span></a>
-					<ul class="nav nav-second-level">
-						<li><a href="#"><i class="fa fa-th-large"></i><span class="submenu-title">List</span></a></li>
-						<li><a href="#"><i class="fa fa-edit"></i><span class="submenu-title">Add</span></a></li>
-					</ul>
-				</li>
-				<li>
-					<a href="#"><i class="fa fa-cog fa-fw">                        
-					</i><span class="menu-title">Agents</span></a>
-					<ul class="nav nav-second-level">
-						<li><a href="#"><i class="fa fa-th-large"></i><span class="submenu-title">List</span></a></li>
-						<li><a href="#"><i class="fa fa-edit"></i><span class="submenu-title">Add</span></a></li>
-					</ul>
-=======
+
 				<li class="{{Helpers::isActiveRoute('dashboard')}}">
 					<a href="{{URL::route('dashboard')}}"><i class="fa fa-tachometer fa-fw">
 				    <div class="icon-bg bg-orange"></div>
@@ -110,7 +86,6 @@
 				<li class="{{Helpers::isActiveRoute('site_settings')}}">
 				    <a href="{{URL::route('site_settings')}}"><i class="fa fa-cog fa-fw">                        
 				    </i><span class="menu-title">Site Settings</span></a>
->>>>>>> 060ede4879cdc57e61bbb88d0fd1dd7369d59c22
 				</li>
 				<li class="{{Helpers::isActiveRoute('agent_management')}}">
 				    <a href="{{URL::route('agent_management')}}"><i class="fa fa-user">                        
