@@ -16,10 +16,8 @@ class LoginController extends Controller
 		// Checking for agent login
 		// if logged in redirect to dashboard
 		if (Session::has('SUPPLIER_ACCESS_ID')){
-			//return redirect('supplier/dashboard');
+			return redirect('supplier/dashboard');
 		}
-		
-		
 		
 		$data				= array();
 		$data['supplier_email'] 		= '';
@@ -52,6 +50,7 @@ class LoginController extends Controller
 	 */
 	public function store(CookieJar $cookieJar,  Request $request)
 	{
+	  
 	    if ($request->isMethod('post')){			
 			$agent_email		= $request->get('supplier_email');
 			$agent_password		= $request->get('supplier_password');

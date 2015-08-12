@@ -45,7 +45,7 @@
 	
 </head>
 <body>
-<div>   
+<div>
     <!--BEGIN BACK TO TOP--><a id="totop" href="#"><i class="fa fa-angle-up"></i></a><!--END BACK TO TOP--><!--BEGIN TOPBAR-->
     <div id="header-topbar-option-demo" class="page-header-topbar">
         <nav id="topbar" role="navigation" style="margin-bottom: 0; z-index: 2;" class="navbar navbar-default navbar-static-top">
@@ -96,12 +96,17 @@
 			    </div>
 			    <div class="clearfix"></div>
 			</li>
-				
+			
+			<li class="{{Helpers::isActiveRoute('supplier_dashboard')}}">
+				<a  href="{{ URL::route('supplier_dashboard') }}">
+				<i class="fa fa-home"></i>
+				<span class="menu-title">Dashboard</span></a>
+			</li>	
 
-			<li>
-				<a  href="{{ URL::route('add_supplier') }}">
+			<li class="{{Helpers::isActiveRoute('supplier_list')}}" >
+				<a  href="{{ URL::route('supplier_list') }}">
 				<i class="fa fa-user"></i>
-				<span class="menu-title">Create Supplier</span></a>
+				<span class="menu-title">Suppliers</span></a>
 			</li>
 			
 		    </ul>
@@ -114,7 +119,7 @@
 	    </div>
 	    <!--BEGIN FOOTER-->
 	    <div id="footer">
-		<div class="copyright">{{date("Y")}} &copy; Backend Panel</div>
+			<div class="copyright">{{date("Y")}} &copy; Admin Panel</div>
 	    </div>
 	    <!--END FOOTER-->
 	    <!--END PAGE WRAPPER-->

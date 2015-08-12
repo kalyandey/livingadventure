@@ -47,7 +47,12 @@ Route::group(array('middleware' => 'supplier', 'namespace'=>'supplier', 'prefix'
     Route::any('/profile/', 			                array('as' => 'supplier_profile',		'uses' => 'AccountController@index'));
     Route::any('/createsupplier/', 		            	array('as' => 'add_supplier',		    'uses' => 'AccountController@create'));
     
-     Route::any('/supplierlist/', 	        		    array('as' => 'supplier_list',		     'uses' => 'SupplierController@index'));
+    Route::any('/supplier_list/', 	        		    array('as' => 'supplier_list',		     'uses' => 'SupplierController@index'));
+    Route::get('/supplier_create/', 	        		array('as' => 'supplier_add',		     'uses' => 'SupplierController@create'));
+    Route::post('/supplier_create/', 	        		array('as' => 'supplier_add',		     'uses' => 'SupplierController@store'));
+    Route::get('/supplier_details/{id}', 	        	array('as' => 'supplier_show',		     'uses' => 'SupplierController@show'));
+    Route::get('/supplier_edit/{id}', 	        	    array('as' => 'supplier_edit',		     'uses' => 'SupplierController@edit'));
+    Route::post('/supplier_edit/{id}', 	        	    array('as' => 'supplier_edit',		     'uses' => 'SupplierController@update'));
     
 });
 // End For Supplier Panel
@@ -58,11 +63,30 @@ Route::group(array('namespace'=>'admin', 'prefix' => 'admin'), function(){
 });
 
 Route::group(array('namespace'=>'admin', 'middleware' => 'admin', 'prefix' => 'admin'), function(){
+
     Route::get('/logout',                               array('as' => 'logout',                 'uses' => 'LoginController@logout'));
     Route::any('/account_settings',                     array('as' => 'account_settings',       'uses' => 'DashboardController@account_settings'));
     Route::any('/change_password',                      array('as' => 'change_password',        'uses' => 'DashboardController@change_password'));
     Route::get('/dashboard',                            array('as' => 'dashboard',              'uses' => 'DashboardController@index'));
     Route::any('/site_settings',                        array('as' => 'site_settings',          'uses' => 'SitesettingsController@index'));
+<<<<<<< HEAD
     Route::get('/suppliers',                            array('as' => 'suppliers',              'uses' => 'SupplierController@index'));
+=======
+    Route::get('/agent_management',                     array('as' => 'agent_management',       'uses' => 'AgentMasterController@index'));
+    Route::get('/agent_add',                            array('as' => 'agent_add',              'uses' => 'AgentMasterController@create'));
+    Route::post('/agent_store',                         array('as' => 'agent_store',            'uses' => 'AgentMasterController@store'));
+    Route::get('/agent_edit/{id}', 	        	       array('as' => 'agent_edit',              'uses' => 'AgentMasterController@edit'));
+    Route::post('/agent_update/{id}', 	        	   array('as' => 'agent_update',            'uses' => 'AgentMasterController@update'));
+    Route::get('/agent_delete/{id}', 	               array('as' => 'agent_delete',            'uses' => 'AgentMasterController@destroy'));
+    Route::get('/agent_show/{id}', 	                   array('as' => 'agent_show',              'uses' => 'AgentMasterController@show'));
+
+    Route::any('/supplier_list/', 	        		   array('as' => 'supplier_master_list',   'uses' => 'SupplierMasterController@index'));
+    Route::get('/supplier_create/', 	        	   array('as' => 'supplier_master_add',	   'uses' => 'SupplierMasterController@create'));
+    Route::post('/supplier_create/', 	        	   array('as' => 'supplier_master_add',	   'uses' => 'SupplierMasterController@store'));
+    Route::get('/supplier_details/{id}', 	           array('as' => 'supplier_master_show',   'uses' => 'SupplierMasterController@show'));
+    Route::get('/supplier_edit/{id}', 	        	   array('as' => 'supplier_master_edit',   'uses' => 'SupplierMasterController@edit'));
+    Route::post('/supplier_edit/{id}', 	        	   array('as' => 'supplier_master_edit',   'uses' => 'SupplierMasterController@update'));
+    Route::get('/supplier_delete/{id}', 	           array('as' => 'supplier_master_delete', 'uses' => 'SupplierMasterController@destroy'));
+>>>>>>> 060ede4879cdc57e61bbb88d0fd1dd7369d59c22
 });
 

@@ -15,6 +15,8 @@ class SupplierMiddleware
      */
     public function handle($request, Closure $next)
     {
+        \Config::set('constants.SUPPLIER_PROFILE_IMAGE','123');
+        
         $agent_id = Session::get('SUPPLIER_ACCESS_ID');
         if ($agent_id == '') {
             return redirect('/supplier');

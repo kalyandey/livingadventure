@@ -30,7 +30,7 @@
 			    {!! Form::open(array('id'=>'createsupplierfrm', 'class' => 'form-horizontal', 'files'=>true, 'route' => array('add_supplier'))) !!}
                                 
                                     <div class="form-body pal">
-                                        <div class="form-group"><label class="col-md-3 control-label">First Name</label>
+                                        <div class="form-group"><label class="col-md-3 control-label">First Name <span>*</span></label>
 
                                             <div class="col-md-9">
 					   

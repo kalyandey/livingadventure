@@ -1,4 +1,4 @@
-@extends('admin/app')
+@extends('supplier/app')
 
 @section('title', 'Car Type')
 
@@ -33,27 +33,57 @@
 		    </div>
 		    @endif
 		    
-		    {!! Form::open(array('class' => 'form-horizontal form-separated', 'route' => array('car_type_edit',$result->id))) !!}
-		      
-		    
-			<input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
-			<input type="hidden" name="uid" value="{{{ $result->id }}}" />
-			<div class="form-body">
-			    <div class="form-group">
-				<label class="col-md-3 control-label">Car Type Name <span class="require">*</span></label>
-				<div class="col-md-9">
-				    <input type="text" class="form-control" name="type" id="type" value="{{$result->type}}">				     
-				</div>
-			    </div>
-			    
-			    <div class="form-actions">
-				<div class="col-md-offset-3 col-md-9">
-				{!! Form::submit('Submit', array('class' => 'btn btn-primary')) !!}
-				<a href="{{URL::route('car_types')}}" class="btn btn-default">Cancel</a>
-				</div
-			    </div>
-			</div>
-			{!! Form::close() !!}
+		   {!! Form::open(array('id'=>'supplier_update_form', 'class' => 'form-horizontal', 'files'=>true, 'route' => array('supplier_edit',$result->id))) !!}                                
+					<div class="form-body pal">
+						<div class="form-group"><label class="col-md-3 control-label">First Name <span>*</span></label>
+							<div class="col-md-9">
+								{!! Form::text('first_name', $result->first_name, array('class'=>'required form-control')) !!}
+							</div>
+						</div>
+						<div class="form-group"><label  class="col-md-3 control-label">Last Name <span>*</span></label>
+
+							<div class="col-md-9">
+		
+								{!! Form::text('last_name',  $result->last_name, array('class'=>'required form-control')) !!}
+							</div>
+					</div>
+					 <div class="form-group">
+						<label  class="col-md-3 control-label">Email </label>
+							<div class="col-md-9">					   
+								{{$result->email}}
+							</div>
+						</div>
+					<div class="form-group">
+						<label  class="col-md-3 control-label">Phone</label>
+							<div class="col-md-9">					  
+								{!! Form::text('phone', $result->phone , array('class'=>'form-control')) !!}
+							</div>
+					</div>
+					<div class="form-group">
+						<label  class="col-md-3 control-label">Image</label>
+							<div class="col-md-9">
+							    @if($result->image != '')
+								<image src="{{'/upload/supplierprofile/thumb/' . $result->image}}" alt="" />
+							   @endif	
+								{!! Form::file('profileimage',  '' , array('class'=>'form-control')) !!}
+							</div>
+					</div>
+					<div class="form-group form-pass"><label class="col-md-3 control-label">Password <span>*</span></label>
+                         <div class="col-md-9">
+							{!! Form::password('password',  array('class'=>'required form-control')) !!}
+                        </div>
+					</div>
+
+				    </div>
+					<div class="form-actions pal">
+						<div class="form-group mbn">
+							<div class="col-md-offset-3 col-md-6">
+								<button type="submit" class="btn btn-primary" >Create</button>
+								<a href="{{URL::route('supplier_list')}}" class="btn default">Cancel</a>
+							</div>
+						</div>
+					</div>
+            {!! Form::close() !!}
 		  
 		</div>
 	    </div>

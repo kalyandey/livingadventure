@@ -15,7 +15,7 @@
 	<!--Loading bootstrap css-->
 	<link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700">
 	<link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald:400,700,300">
-<<<<<<< HEAD
+
 	<link type="text/css" rel="stylesheet" href="{{ asset('/backend/vendors/jquery-ui-1.10.4.custom/css/ui-lightness/jquery-ui-1.10.4.custom.min.css') }}">
 	<link type="text/css" rel="stylesheet" href="{{ asset('/backend/vendors/font-awesome/css/font-awesome.min.css') }}">
 	<link type="text/css" rel="stylesheet" href="{{ asset('/backend/vendors/bootstrap/css/bootstrap.min.css') }}">
