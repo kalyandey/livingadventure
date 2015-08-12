@@ -61,7 +61,13 @@
 			    </div>			    
 			    <div class="form-group">
 				{!! HTML::decode(Form::label('image', 'Picture', array('class' => 'col-md-3 control-label'))) !!}
-				<div class="col-md-9">{!! Form::file('image', null, array('class' => 'form-control')) !!}</div>
+				<div class="col-md-9">
+				    <div class="col-md-4">{!! Form::file('image', null, array('class' => 'form-control')) !!}</div>
+				    <div class="col-md-8">
+					<div class="thumb"><img src="{{ \Config::get('constants.ADMIN_PROFILE_PICTURE') }}" alt="" class="img-circle"/></div>
+				    </div>
+				</div>
+				    
 			    </div>
 			</div>
 			<div class="form-actions top none-bg">

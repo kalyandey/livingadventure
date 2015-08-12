@@ -53,9 +53,28 @@
 					<td>{{$r->phone}}</td>
 					<td>{{$r->status}}</td>
 					<td>
-						<a href="{{URL::route('supplier_master_show',$r->id)}}" class="btn-sm btn-default">View</a>
+					
+					<a href="{{URL::route('supplier_master_show',$r->id)}}" class="tablectrl_small bDefault tipS" title="Edit">
+						<button type="button" class="btn btn-info"><i class="fa fa-list-alt"></i>
+						</button>
+					</a>
+						 &nbsp;
+					<a href="{{URL::route('supplier_master_edit',$r->id)}}" class="tablectrl_small bDefault tipS" title="Edit">
+						<button type="button" class="btn btn-info"><i class="fa fa-edit"></i>
+						</button>
+					</a>
+						 &nbsp;
+					
+						<a href="{{URL::route('supplier_master_delete',$r->id)}}" class="tablectrl_small bDefault tipS" title="Remove" onclick="return confirm('Are you sure?');">
+						<button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i>
+						</button>
+						</a>
+                                                        
+					
+					
+						<!--<a href="{{URL::route('supplier_master_show',$r->id)}}" class="btn-sm btn-default">View</a>
 						<a href="{{URL::route('supplier_master_edit',$r->id)}}" class="btn-sm btn-default">Edit</a>
-						<a href="{{URL::route('supplier_master_delete',$r->id)}}" onclick="return confirm('Are you sure!');" class="btn-sm btn-default">Delete</a>
+						<a href="{{URL::route('supplier_master_delete',$r->id)}}" onclick="return confirm('Are you sure!');" class="btn-sm btn-default">Delete</a>-->
 					</td>
 				</tr>
 			    @endforeach

@@ -35,46 +35,53 @@
 		    @endif
 			
 			<div class="row">
-			    <label class="col-md-3 control-label">Profile Image</label>
+			    <label class="col-md-3 control-label"><b>Profile Image</b></label>
 			    <div class="col-md-9">
 				   @if($result->image != '')
 					<image src="{{'/upload/supplierprofile/thumb/' . $result->image}}" alt="" />
 				   @endif			       
 			    </div>
 			</div>
-				
+				<br/>
 			<div class="row">
-			    <label class="col-md-3 control-label">First Name </label>
+			    <label class="col-md-3 control-label"><b>First Name</b> </label>
 			    <div class="col-md-9">				  
 			       {{ucwords($result->first_name)}}
 			    </div>
 			</div>
+				<br/>
 			<div class="row">
-			    <label class="col-md-3 control-label">Last Name </label>
+			    <label class="col-md-3 control-label"><b>Last Name</b> </label>
 			    <div class="col-md-9">
 			       {{ucwords($result->last_name)}}
 			    </div>
 			</div>
+				<br/>
 			<div class="row">
-			    <label class="col-md-3 control-label">Email</label>
+			    <label class="col-md-3 control-label"><b>Email</b></label>
 			    <div class="col-md-9">
 			       {{$result->email}}
 			    </div>
 			</div>
+				<br/>
 			<div class="row">
-			    <label class="col-md-3 control-label">Phone </label>
+			    <label class="col-md-3 control-label"><b>Phone</b> </label>
 			    <div class="col-md-9">
 			       {{$result->phone}}
 			    </div>
 			</div>
-		
-			<div class="form-actions pal">
+				<br/>
+			<div class="form-actions text-right pal">
+                           
+                <a href="{{URL::route('supplier_master_list')}}"><button type="button" class="btn btn-green">Return</button></a>
+            </div>
+			<!--<div class="form-actions pal">
 				<div class="form-group mbn">
 					<div class="col-md-offset-3 col-md-6">						
 						<a href="{{URL::route('supplier_master_list')}}" class="btn default">Back</a>
 					</div>
 				</div>
-			</div>
+			</div>-->
 			
 	    </div>
 	</div>

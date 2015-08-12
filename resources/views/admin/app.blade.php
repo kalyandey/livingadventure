@@ -68,7 +68,7 @@
 			<div class="sidebar-collapse menu-scroll">
 			    <ul id="side-menu" class="nav">
 				<li class="user-panel">
-				    <div class="thumb"><img src="https://s3.amazonaws.com/uifaces/faces/twitter/kolage/128.jpg" alt="" class="img-circle"/></div>
+				    <div class="thumb"><img src="{{ \Config::get('constants.ADMIN_PROFILE_PICTURE') }}" alt="" class="img-circle"/></div>
 				    <div class="info"><p>{{ Session::get('ADMIN_ACCESS_FNAME') }} {{ Session::get('ADMIN_ACCESS_LNAME') }}</p>
 					<ul class="list-inline list-unstyled">
 					    <li><a href="{{URL::route('account_settings')}}" data-hover="tooltip" title="Account Settings"><i class="fa fa-user"></i></a></li>                                
@@ -78,6 +78,7 @@
 				    </div>
 				    <div class="clearfix"></div>
 				</li>
+
 				<li class="{{Helpers::isActiveRoute('dashboard')}}">
 					<a href="{{URL::route('dashboard')}}"><i class="fa fa-tachometer fa-fw">
 				    <div class="icon-bg bg-orange"></div>
@@ -86,7 +87,7 @@
 				    <a href="{{URL::route('site_settings')}}"><i class="fa fa-cog fa-fw">                        
 				    </i><span class="menu-title">Site Settings</span></a>
 				</li>
-				<li>
+				<li class="{{Helpers::isActiveRoute('agent_management')}}">
 				    <a href="{{URL::route('agent_management')}}"><i class="fa fa-user">                        
 				    </i><span class="menu-title">Agent Management</span></a>
 

@@ -1,19 +1,26 @@
 @extends('admin/app')
-
+@section('title', 'Agent Management')
 @section('content')
     
 <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
     <div class="page-header pull-left">
         <div class="page-title">Agent Users Listing</div>
     </div>
+		
  <!--For breadcrump-->    
-  <ol class="breadcrumb page-breadcrumb pull-right">
+    <ol class="breadcrumb page-breadcrumb pull-right">
+   
+      <li><i class="">&nbsp;&nbsp;</i><a href="javascript:void(0);"><i class="fa fa-user">                        
+				    </i>Agent</a>
+	
+      </li>&nbsp;&nbsp; > 
     
-      <li><i class="">&nbsp;&nbsp;</i><a href=""></a>
+      <li><i class="">&nbsp;&nbsp;</i><a href="{{ url('/admin/agent_management') }}"><i class="fa fa-user">                        
+				    </i>Agent Listing</a>
 	
       </li>
    
-  </ol>  
+  </ol> 
 
     <div class="clearfix"></div>
 </div>
@@ -22,7 +29,13 @@
             <div class="page-content">
                 <div id="table-action" class="row">
                     <div class="col-lg-12">
-                        
+						
+						@if(Session::has('success'))
+						<div class="note note-success">
+						   <h3>Success!</h3>
+							<p>{{ Session::get('success') }}</p>
+						</div>	    
+						@endif
                         <div id="tableactionTabContent" class="tab-content">
                             <div id="table-table-tab" class="tab-pane fade in active">
     
@@ -74,7 +87,7 @@
                                                 <div class="col-lg-8 text-right">
                                                     <div class="pagination-panel">
                                                         
-                                                           
+                                                         {!! $agentlList->render(); !!}
                                                         
                                                     </div>
                                                 </div>
@@ -98,7 +111,7 @@
                                                     <th width="10%">Last Name</th>
                                                     <th width="7%">Email</th>
                                                     <th width="5%" align="center">Phone</th>
-                                                    <!--<th width="12%">Actions</th>-->
+                                                   <th width="12%">Actions</th>
                                                 </tr>
                                                 <tbody>
                                                 @if($agentlList->count() > 0)
@@ -126,19 +139,24 @@
                                                     <td>{{ $r->email}}</td>
                                                     <td>{{ $r->phone}}</td>
                                                     
-                                                    <!--<td>
-                                                    <a href="" class="tablectrl_small bDefault tipS" title="Edit">
+                                                    <td>
+													<a href="{{URL::route('agent_show',$r->id)}}" class="tablectrl_small bDefault tipS" title="Edit">
+                                                        <button type="button" class="btn btn-info"><i class="fa fa-list-alt"></i>
+                                                        </button>
+                                                    </a>
+                                                         &nbsp;
+                                                    <a href="{{URL::route('agent_edit',$r->id)}}" class="tablectrl_small bDefault tipS" title="Edit">
                                                         <button type="button" class="btn btn-info"><i class="fa fa-edit"></i>
                                                         </button>
                                                     </a>
                                                          &nbsp;
                                                     
-                                                        <a href="" class="tablectrl_small bDefault tipS" title="Remove" onclick="return confirm('Are you sure?');">
+                                                        <a href="{{URL::route('agent_delete',$r->id)}}" class="tablectrl_small bDefault tipS" title="Remove" onclick="return confirm('Are you sure?');">
                                                         <button type="button" class="btn btn-danger"><i class="fa fa-trash-o"></i>
                                                         </button>
                                                         </a>
                                                         
-                                                    </td>-->
+                                                    </td>
                                                 </tr>
                                                 @endforeach
                                                 @else
@@ -159,7 +177,7 @@
                                                 <div class="col-lg-6 text-right">
                                                     <div class="pagination-panel">
                                                         
-                                                         <?php echo $agentlList->render(); ?>
+                                                         {!! $agentlList->render(); !!}
                                                         
                                                     </div>
                                                 </div>
