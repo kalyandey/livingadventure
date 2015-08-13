@@ -39,6 +39,11 @@ class CreateCitiesTable extends Migration
             $table->string('provider')->nullable();
             $table->enum('active', ['1', '0']);
             $table->timestamps();
+            
+            $table->index('country_code');
+            $table->index('city_code');
+            $table->index('city_name');
+            $table->index('active');
         });
     }
 

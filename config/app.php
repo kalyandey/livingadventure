@@ -145,7 +145,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-        'Maatwebsite\Excel\ExcelServiceProvider',
+        Maatwebsite\Excel\ExcelServiceProvider::class
         
         
 
