@@ -74,7 +74,7 @@ class LoginController extends Controller
 			$agent_password		= $request->get('agent_password');
 			$checkAgentExists	= Agent::where("email","=",$agent_email);
 			
-			$checkAgentExists	= $checkAgentExists->where("password", "=", md5($agent_password.Config::get('constants.SITENAME')));
+			//$checkAgentExists	= $checkAgentExists->where("password", "=", md5($agent_password.\Config::get('constants.SITENAME')));
 			$checkAgentExists	= $checkAgentExists->get();
             
 			
@@ -86,14 +86,27 @@ class LoginController extends Controller
 				$cookieJar->queue(Cookie::forget('agent_password'));
 			}
 			
-			if(count($checkAgentExists) > 0){
-				Session::put('AGENT_ACCESS_ID', $checkAgentExists[0]->id);
-				Session::put('ADMIN_ACCESS_FNAME', $checkAgentExists[0]->first_name);
-				Session::put('ADMIN_ACCESS_LNAME', $checkAgentExists[0]->last_name);
-				return redirect('agent/dashboard');					
+			if(count($checkAgentExists) > 0){   
+				if (Hash::check($agent_password, $checkAgentExists[0]->password)){
+				    Session::put('AGENT_ACCESS_ID', $checkAgentExists[0]->id);
+				    Session::put('ADMIN_ACCESS_FNAME', $checkAgentExists[0]->first_name);
+				    Session::put('ADMIN_ACCESS_LNAME', $checkAgentExists[0]->last_name);
+				    return redirect::to('agent/dashboard');
+				}else{
+				    return redirect::route('agent')->with('errorMessage', 'Invalid password provided.');
+				}
 			}else{
-				return redirect('agent')->with('message', 'Invalid email address or/and password.');
+				return redirect::route('agent')->with('errorMessage', 'Invalid email address or/and password provided.');
 			}
+			
+			//if(count($checkAgentExists) > 0){
+			//	Session::put('AGENT_ACCESS_ID', $checkAgentExists[0]->id);
+			//	Session::put('ADMIN_ACCESS_FNAME', $checkAgentExists[0]->first_name);
+			//	Session::put('ADMIN_ACCESS_LNAME', $checkAgentExists[0]->last_name);
+			//	return redirect('agent/dashboard');					
+			//}else{
+			//	return redirect('agent')->with('message', 'Invalid email address or/and password.');
+			//}
 		}
 	}
     

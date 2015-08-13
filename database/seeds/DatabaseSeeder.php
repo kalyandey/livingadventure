@@ -34,7 +34,7 @@ class AgentTableSeeder extends Seeder {
     {
         DB::table('agents')->delete();
         
-        Agent::create(['email' => 'agent@livingadventure.com', 'first_name' => 'Kalyan', 'last_name' => 'Dey', 'password' => md5('123456livingadventure')]);
+        Agent::create(['email' => 'agent@livingadventure.net', 'first_name' => 'Kalyan', 'last_name' => 'Dey', 'password' => '123456']);
     }
 
 }
@@ -43,8 +43,7 @@ class SupplierTableSeeder extends Seeder {
     public function run()
     {
         DB::table('suppliers')->delete();
-
-        Supplier::create(['email' => 'supplier@livingadventure.com', 'first_name' => 'Samim', 'last_name' => 'Almamun', 'password' => md5('123456livingadventure'),'status' => 'Active']);
+        Supplier::create(['email' => 'supplier@livingadventure.net', 'first_name' => 'Samim', 'last_name' => 'Almamun', 'password' => md5('123456livingadventure'),'status' => 'Active']);
 
     }
 
