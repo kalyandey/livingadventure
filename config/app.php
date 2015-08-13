@@ -145,6 +145,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        'Maatwebsite\Excel\ExcelServiceProvider',
         
         
 
@@ -199,9 +200,7 @@ return [
         'HTML'      => Collective\Html\HtmlFacade::class,
         'Helpers'   => App\Http\Helpers::class,
         'Image'     => Intervention\Image\Facades\Image::class,
-        
-        
-
+        'Excel' => 'Maatwebsite\Excel\Facades\Excel',
     ],
 
 ];

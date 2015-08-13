@@ -9,7 +9,8 @@
         "laravel/framework": "5.1.*",
 	"illuminate/html": "5.*",
         "laravelcollective/html": "^5.1",
-	"intervention/image": "dev-master"
+	"intervention/image": "dev-master",
+	"maatwebsite/excel": "~2.0.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

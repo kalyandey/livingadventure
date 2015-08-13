@@ -22,7 +22,7 @@ Route::post('/create_contact', 'splashsController@store');
 Route::group(array( 'namespace'=>'agent', 'prefix' => 'agent'), function(){
     Route::any('/', 				                    array('as' => 'agent_land',		    'uses' => 'LoginController@index'));
     Route::any('/index',                                'LoginController@index');
-    Route::post('/login/', 				                array('as' => 'agent_login',		'uses' => 'LoginController@store'));
+    Route::post('/login/', 				            array('as' => 'agent_login',		'uses' => 'LoginController@store'));
 });
 
 Route::group(array('middleware' => 'agent', 'namespace'=>'agent', 'prefix' => 'agent'), function(){ 
@@ -73,12 +73,15 @@ Route::group(array('namespace'=>'admin', 'middleware' => 'admin', 'prefix' => 'a
     Route::get('/agent_add',                            array('as' => 'agent_add',              'uses' => 'AgentMasterController@create'));
     Route::post('/agent_store',                         array('as' => 'agent_store',            'uses' => 'AgentMasterController@store'));
 
-    Route::any('/supplier_list/', 	        		   array('as' => 'supplier_master_list',   'uses' => 'SupplierMasterController@index'));
+    Route::any('/supplier_list/', 	                array('as' => 'supplier_master_list',   'uses' => 'SupplierMasterController@index'));
     Route::get('/supplier_create/', 	        	   array('as' => 'supplier_master_add',	   'uses' => 'SupplierMasterController@create'));
     Route::post('/supplier_create/', 	        	   array('as' => 'supplier_master_add',	   'uses' => 'SupplierMasterController@store'));
     Route::get('/supplier_details/{id}', 	           array('as' => 'supplier_master_show',   'uses' => 'SupplierMasterController@show'));
     Route::get('/supplier_edit/{id}', 	        	   array('as' => 'supplier_master_edit',   'uses' => 'SupplierMasterController@edit'));
     Route::post('/supplier_edit/{id}', 	        	   array('as' => 'supplier_master_edit',   'uses' => 'SupplierMasterController@update'));
     Route::get('/supplier_delete/{id}', 	           array('as' => 'supplier_master_delete', 'uses' => 'SupplierMasterController@destroy'));
+    
+    Route::any('/export/countries', 	                   array('as' => 'index',   'uses' => 'ImportexcelController@countries'));
+    Route::any('/export/airlines', 	                   array('as' => 'index',   'uses' => 'ImportexcelController@airlines'));
 });
 
