@@ -1,12 +1,7 @@
-	{{--*/
-	$controller = Helpers::getRoute('controller');
-	$action = Helpers::getRoute('action');
-	$alise = Helpers::getRoute('alise');
-	/*--}}
 <!DOCTYPE html>
 <html lang="en">
 <head>	
-	<title>Backendistrator Panel  - @yield('title') </title>
+	<title>Administrator Panel | Supplier  - @yield('title') </title>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">

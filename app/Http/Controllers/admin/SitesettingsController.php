@@ -51,7 +51,8 @@ class SitesettingsController extends Controller
             }
         }
         
-        $settings	    = Sitesetting::find(1);
+        $settings	    = Sitesetting::all()->first();
+       
         $data['settings']   = $settings;
         return view('admin/sitesettings',$data);
     }

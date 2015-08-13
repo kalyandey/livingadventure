@@ -10,12 +10,9 @@
         <div class="header-content"><h1>Agent Log In</h1></div>
 	
 	@if(Session::has('message'))
-	    <div class="alert alert-danger"><ul>
-	    @foreach (Session::get('message') as $error)
-				<li>{{ $error }}</li>
-			@endforeach
+	    <div class="alert alert-danger"><ul>	    
+		<li>{{ Session::get('message') }}</li>
 	    </ul></div>
-
 	@endif
         <div class="body-content">
             <div class="form-group">
