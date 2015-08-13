@@ -4,7 +4,7 @@
      <!--BEGIN TITLE & BREADCRUMB PAGE-->
 <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
     <div class="page-header pull-left">
-        <div class="page-title">Add Agent User</div>
+        <div class="page-title">Edit Agent</div>
     </div>
  <!--For breadcrump-->    
   <ol class="breadcrumb page-breadcrumb pull-right">
@@ -14,8 +14,8 @@
 	
       </li>&nbsp;&nbsp; > 
     
-      <li><i class="">&nbsp;&nbsp;</i><a href="{{ url('/admin/agent_add') }}"><i class="fa fa-user">                        
-				    </i>Agent Add</a>
+      <li><i class="">&nbsp;&nbsp;</i><a href="{{ url('/admin/agent_edit',$agent_data->id) }}"><i class="fa fa-user">                        
+				    </i>Agent Edit</a>
 	
       </li>
    
@@ -53,7 +53,7 @@
                                     </div>
                             </div>
                         <div class="portlet-body panel-body pan">
-                        {!! Form::open(array('url' => 'admin/agent_store','files'=>true, 'class' => 'form-horizontal form-seperated')) !!}
+                        {!! Form::open(array('route' => array('agent_update',$agent_data->id),'files'=>true, 'class' => 'form-horizontal form-seperated')) !!}
 						<input type="hidden" name="action" value="Process">
                         <div class="form-body">
                         
@@ -62,7 +62,7 @@
                         {!! HTML::decode(Form::label('first_name', 'First Name <span class="require">*</span>', array('class' => 'col-md-3 control-label'))) !!}
 
                         <div class="col-md-4">
-                        {!! Form::text('first_name', '' , array('class' => 'form-control required first_name','placeholder' => 'First Name')) !!}
+                        {!! Form::text('first_name', $agent_data->first_name , array('class' => 'form-control required first_name','placeholder' => 'First Name')) !!}
                                                         
                         </div>
                         </div>
@@ -71,21 +71,19 @@
 
                         <div class="col-md-4">
                                 
-                            {!! Form::text('last_name', '' , array('class' => 'form-control required last_name','placeholder' => 'Last Name')) !!}
+                            {!! Form::text('last_name', $agent_data->last_name , array('class' => 'form-control required last_name','placeholder' => 'Last Name')) !!}
                         </div>
                         </div>
                         <div class="form-group">
                         
-                        {!! HTML::decode(Form::label('email', 'Email Address <span class="require">*</span>', array('class' => 'col-md-3 control-label'))) !!}
+                        {!! HTML::decode(Form::label('email', 'Email Address', array('class' => 'col-md-3 control-label'))) !!}
                             <div class="col-md-4">
-                                <div class="input-icon"><i class="fa fa-envelope"></i>
-                                    {!! Form::text('email', '' , array('class' => 'form-control required email_address','placeholder' => 'Email Address','data-type'=>'email')) !!}
-                                </div>
+                                 <span>{!! $agent_data->email !!}</span> 
                             </div>
                         </div>
                         <div class="form-group">
                         
-                        {!! HTML::decode(Form::label('password', 'Password <span class="require">*</span>', array('class' => 'col-md-3 control-label'))) !!}
+                        {!! HTML::decode(Form::label('password', 'Password', array('class' => 'col-md-3 control-label'))) !!}
                             <div class="col-md-4">
                                 {!! Form::password('password' , array('class' => 'form-control required password','placeholder' => 'Password')) !!}
                                 
@@ -101,20 +99,30 @@
                                <!--&nbsp;<strong>[image size maximum 1200x800 | extension must be .jpg or .jpeg or .gif or .png]</strong>-->
                             </div>
                         </div>
-                        
+                        <div class="form-group">
+                            <label  class="col-md-3 control-label">Image Preview </label>
+                            <div class="col-md-4">
+							    @if($agent_data->image != '' && file_exists(public_path('upload/agentprofile/' .$agent_data->image)))
+								<image src="{{'/upload/agentprofile/thumb/' . $agent_data->image}}" alt="" />
+                           @else
+                                    <img src="{{ asset('backend/images/no_img.jpg') }}" height="60" />
+							   
+							@endif
+							</div>
+                        </div>
                         <div class="form-group">
                         
                         {!! HTML::decode(Form::label('phone', 'Phone ', array('class' => 'col-md-3 control-label'))) !!}
 
                             <div class="col-md-4">
-                               {!! Form::text('phone', '' , array('class' => 'form-control')) !!}
+                               {!! Form::text('phone', $agent_data->phone , array('class' => 'form-control')) !!}
                                
                             </div>
                         </div>
                         
                                                         
                         <div class="form-actions text-right pal">
-                            <button type="submit" class="btn btn-primary">Add Agent User</button>
+                            <button type="submit" class="btn btn-primary">Edit Agent User</button>
                             &nbsp;
                             <a href="{{ url('/admin/agent_management') }}"><button type="button" class="btn btn-green">Return</button></a>
                         </div>

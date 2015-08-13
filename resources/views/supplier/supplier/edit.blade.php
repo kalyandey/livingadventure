@@ -35,12 +35,12 @@
 		    
 		   {!! Form::open(array('id'=>'supplier_update_form', 'class' => 'form-horizontal', 'files'=>true, 'route' => array('supplier_edit',$result->id))) !!}                                
 					<div class="form-body pal">
-						<div class="form-group"><label class="col-md-3 control-label">First Name <span>*</span></label>
+						<div class="form-group"><label class="col-md-3 control-label">First Name <span class="required">*</span></label>
 							<div class="col-md-9">
 								{!! Form::text('first_name', $result->first_name, array('class'=>'required form-control')) !!}
 							</div>
 						</div>
-						<div class="form-group"><label  class="col-md-3 control-label">Last Name <span>*</span></label>
+						<div class="form-group"><label  class="col-md-3 control-label">Last Name <span class="required">*</span></label>
 
 							<div class="col-md-9">
 		
@@ -68,7 +68,7 @@
 								{!! Form::file('profileimage',  '' , array('class'=>'form-control')) !!}
 							</div>
 					</div>
-					<div class="form-group form-pass"><label class="col-md-3 control-label">Password <span>*</span></label>
+					<div class="form-group form-pass"><label class="col-md-3 control-label">Password <span class="required">*</span></label>
                          <div class="col-md-9">
 							{!! Form::password('password',  array('class'=>'required form-control')) !!}
                         </div>

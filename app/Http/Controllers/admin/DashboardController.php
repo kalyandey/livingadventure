@@ -49,8 +49,11 @@ class DashboardController extends Controller
                 $settings->phone             = $phone;
                 
                 if (Input::hasFile('image')){
-                    if(\File::exists(public_path('upload/adminprofile/' . $settings->image))){
-                        \File::delete(public_path('upload/adminprofile/' . $settings->image));
+                    if(\File::exists('upload/adminprofile/' . $settings->image)){
+                        \File::delete('upload/adminprofile/' . $settings->image);
+                    }
+                    if(\File::exists('upload/adminprofile/thumb/' . $settings->image)){
+                        \File::delete('upload/adminprofile/thumb/' . $settings->image);
                     }
                     
                     $file               = Input::file('image');
