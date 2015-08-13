@@ -14,6 +14,7 @@ class AlterSupplier extends Migration
     {
        Schema::table('suppliers', function(Blueprint $table)
 		{			
+			
 			$table->integer('parent_id')->unsigned()->after('id')->default(0);			
 			$table->foreign('parent_id')->references('id')->on('suppliers');
 			

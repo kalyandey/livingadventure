@@ -1,11 +1,11 @@
 APP_ENV=local
 APP_DEBUG=true
-APP_KEY=SomeRandomString
+APP_KEY=MY2qVx450GzPuIyFPxUJkhmJrAFulUeZ
 
 DB_HOST=localhost
-DB_DATABASE=homestead
-DB_USERNAME=homestead
-DB_PASSWORD=secret
+DB_DATABASE=livingadventure
+DB_USERNAME=laravel
+DB_PASSWORD=l1nux
 
 CACHE_DRIVER=file
 SESSION_DRIVER=file
