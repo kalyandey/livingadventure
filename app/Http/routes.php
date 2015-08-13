@@ -86,7 +86,9 @@ Route::group(array('namespace'=>'admin', 'middleware' => 'admin', 'prefix' => 'a
     Route::post('/supplier_edit/{id}', 	        	   array('as' => 'supplier_master_edit',   'uses' => 'SupplierMasterController@update'));
     Route::get('/supplier_delete/{id}', 	           array('as' => 'supplier_master_delete', 'uses' => 'SupplierMasterController@destroy'));
     
-    Route::any('/export/countries', 	                   array('as' => 'index',   'uses' => 'ImportexcelController@countries'));
-    Route::any('/export/airlines', 	                   array('as' => 'index',   'uses' => 'ImportexcelController@airlines'));
+    Route::any('/export/countries', 	                   array('as' => 'countries',   'uses' => 'ImportexcelController@countries'));
+    Route::any('/export/airlines', 	                   array('as' => 'airlines',   'uses' => 'ImportexcelController@airlines'));
+    Route::any('/export/airports', 	                   array('as' => 'airports',   'uses' => 'ImportexcelController@airports'));
+    Route::any('/export/cities', 	                   array('as' => 'cities',   'uses' => 'ImportexcelController@cities'));
 });
 
