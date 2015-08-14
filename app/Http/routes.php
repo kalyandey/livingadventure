@@ -15,6 +15,8 @@
 //    return view('welcome');
 //});
 Route::get('/', 'splashsController@index');
+Route::any('/splashs/get_airport_list', 'splashsController@get_airport_list');
+Route::any('/splashs/search_flight', 'splashsController@search_flight');
 Route::post('/create_contact', 'splashsController@store');
 
 // For Agents Panel

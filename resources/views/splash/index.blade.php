@@ -11,39 +11,34 @@ var ePFrame="<iframe src=\"https://staging.amadeusepower.com/xyztravel/\" width=
 <div class="page-content">
 
     <h1>Flight Search</h1>
-    <script type="text/javascript">document.write(ePFrame);</script>
-    <!--<div class="row">
-        <div class="col-md-12">
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label>Provider Selection</label>
-                    <select name="External_FlightSearchTypeByProvider" id="External_FlightSearchTypeByProvider" class="form-control">
-                        <option selected value=OnlyAmadeus>Only Amadeus Flights</option>
-                        <option value=AmadeusAndExtProviders>Amadeus and low cost carriers</option>
-                        <option value=OnlyExtProviders>Only low cost carriers</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
+<!--    <script type="text/javascript">document.write(ePFrame);</script>-->
+    
+    <div class="row">
+        <div class="col-md-12" style="">
+            <div class="col-md-3">    
+            <div class="form-group">
                     <label>Flight Type</label>
-                    <select name="External_FlightFareSearch_SearchType" id="External_FlightFareSearch_SearchType" class="form-control">
+                    <select name="flight_type" id="flight_type" class="form-control">
                         <option selected value="RoundTrip">Round Trip</option>
                         <option value="OneWay">One Way</option>
                         <option value=MultiLeg>Multi Leg</option>
                     </select>
                 </div>
-            </div>
+            </div> 
+          </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
             <div class="col-md-3">
                 <div class="form-group">
                     <label>From</label>
-                    <input type="text" name="External_FlightFareSearch_From" id="External_FlightFareSearch_From" class="form-control">
+                    <input type="text" name="form_date" id="form_airport" class="form-control airportForm">
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
                     <label>To</label>
-                    <input type="text" name="External_FlightFareSearch_To" id="External_FlightFareSearch_To" class="form-control">
+                    <input type="text" name="to_date" id="to_airport" class="form-control airportTo">
                 </div>
             </div>
         </div>
@@ -53,250 +48,75 @@ var ePFrame="<iframe src=\"https://staging.amadeusepower.com/xyztravel/\" width=
             <div class="col-md-3">
                 <div class="form-group">
                     <label>Departure Date</label>
-                    <input type="text" name="External_FlightFareSearch_DepartureDate" id="External_FlightFareSearch_DepartureDate" class="form-control">
+                    <input type="text" name="form_airport" id="form_date" class="form-control">
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
-                    <label>Departure Time</label>
-                    <select name="External_FlightFareSearch_DepartureTime" id="External_FlightFareSearch_DepartureTime" class="form-control">
-                        <option value="00:01" selected>NoPreference</option>
-                        <option value="MORNING">Morning</option>
-                        <option value="AFTERNOON">Afternoon</option>
-                        <option value="EVENING">Evening</option>
-                        <option value="00:00">00:00</option>
-                        <option value="01:00">01:00</option>
-                        <option value="02:00">02:00</option>
-                        <option value="03:00">03:00</option>
-                        <option value="04:00">04:00</option>
-                        <option value="05:00">05:00</option>
-                        <option value="06:00">06:00</option>
-                        <option value="07:00">07:00</option>
-                        <option value="08:00">08:00</option>
-                        <option value="09:00">09:00</option>
-                        <option value="10:00">10:00</option>
-                        <option value="11:00">11:00</option>
-                        <option value="12:00">12:00</option>
-                        <option value="13:00">13:00</option>
-                        <option value="14:00">14:00</option>
-                        <option value="15:00">15:00</option>
-                        <option value="16:00">16:00</option>
-                        <option value="17:00">17:00</option>
-                        <option value="18:00">18:00</option>
-                        <option value="19:00">19:00</option>
-                        <option value="20:00">20:00</option>
-                        <option value="21:00">21:00</option>
-                        <option value="22:00">22:00</option>
-                        <option value="23:00">23:00</option>
-                    </select>
-                </div>                
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label>Departure Date Flexibility</label>
-                    <select name="External_FlightFareSearch_DepartureFlexibility" id="External_FlightFareSearch_DepartureFlexibility" class="form-control">
-                        <option value="" selected>Exact Date</option>
-                        <option value="2M">-2 Days</option>
-                        <option value="1M">-1 Day</option>
-                        <option value="1C">-1/+1 Day</option>
-                        <option value="1P">+1 Day</option>
-                        <option value="2P">+2 Days</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label>+/- 3 Days calendar result<br>(MP calendar) <input type="checkbox" name="External_FlightFareSearch_Calendar" value="on" class="form-control"></label>
-                    
+                    <label>Return Date</label>
+                    <input type="text" name="to_airport" id="to_date" class="form-control">
                 </div>
             </div>
         </div>
     </div>
+    
     <div class="row">
         <div class="col-md-12">
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <div class="form-group">
-                    <label>Inbound Date</label>
-                    <input type="text" name="External_FlightFareSearch_ReturnDate" id="External_FlightFareSearch_ReturnDate" class="form-control">
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label>Inbound Time</label>
-                    <select name="External_FlightFareSearch_ArrivalTime" id="External_FlightFareSearch_ArrivalTime" class="form-control"> 
-                        <option value="00:01" selected="">NoPreference</option>
-                        <option value="MORNING">Morning</option>
-                        <option value="AFTERNOON">Afternoon</option>
-                        <option value="EVENING">Evening</option>
-                        <option value="00:00">00:00</option>
-                        <option value="01:00">01:00</option>
-                        <option value="02:00">02:00</option>
-                        <option value="03:00">03:00</option>
-                        <option value="04:00">04:00</option>
-                        <option value="05:00">05:00</option>
-                        <option value="06:00">06:00</option>
-                        <option value="07:00">07:00</option>
-                        <option value="08:00">08:00</option>
-                        <option value="09:00">09:00</option>
-                        <option value="10:00">10:00</option>
-                        <option value="11:00">11:00</option>
-                        <option value="12:00">12:00</option>
-                        <option value="13:00">13:00</option>
-                        <option value="14:00">14:00</option>
-                        <option value="15:00">15:00</option>
-                        <option value="16:00">16:00</option>
-                        <option value="17:00">17:00</option>
-                        <option value="18:00">18:00</option>
-                        <option value="19:00">19:00</option>
-                        <option value="20:00">20:00</option>
-                        <option value="21:00">21:00</option>
-                        <option value="22:00">22:00</option>
-                        <option value="23:00">23:00</option>
+                    <label>Adult (18+)</label>
+                    <select name="adults" id="adults" class="form-control" style="width:100px;">
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
                     </select>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <div class="form-group">
-                    <label>Inbound Date Flexibility</label>
-                    <select name="External_FlightFareSearch_ArrivalFlexibility" id="External_FlightFareSearch_ArrivalFlexibility" class="form-control">
-                        <option value="" selected>Exact Date</option>
-                        <option value="2M">-2 Days</option>
-                        <option value="1M">-1 Day</option>
-                        <option value="1C">-1/+1 Day</option>
-                        <option value="1P">+1 Day</option>
-                        <option value="2P">+2 Days</option>
+                    <label>Child (2-11)</label>
+                    <select name="childs" id="childs" class="form-control" style="width:100px;">
+                        <option>0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
                     </select>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <div class="form-group">
-                    <label>Adults</label>
-                    <select name="External_FlightFareSearch_NumberOfAdults" id="External_FlightFareSearch_NumberOfAdults" class="form-control">
+                    <label>Infants (0-1)</label>
+                    <select name="infants" id="infants" class="form-control" style="width:100px;">
                         <option value="0" selected="">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
+                        <option>0</option>
+                        <option>1</option>
                     </select>
                 </div>
             </div>
-        </div>
-    </div>
-        
-    <div class="row">
-        <div class="col-md-12">
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label>Infants</label>
-                    <select name="External_FlightFareSearch_NumberOfInfants" id="External_FlightFareSearch_NumberOfInfants" class="form-control">
-                        <option value="0" selected="">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label>Childs</label>
-                    <select name="External_FlightFareSearch_NumberOfChilds" id="External_FlightFareSearch_NumberOfChilds" class="form-control">
-                        <option value="0" selected="">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label>Youths</label>
-                    <select name="External_FlightFareSearch_NumberOfYouths" id="External_FlightFareSearch_NumberOfYouths" class="form-control">
-                        <option value="0" selected="">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label>Seniors</label>
-                    <select name="External_FlightFareSearch_NumberOfSeniors" id="External_FlightFareSearch_NumberOfSeniors" class="form-control">
-                        <option value="0" selected="">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                    </select>
-                </div>
-            </div>            
-        </div>
+         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label>Students</label>
-                    <select name="External_FlightFareSearch_NumberOfStudents" id="External_FlightFareSearch_NumberOfStudents" class="form-control">
-                        <option value="0" selected="">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label>Seamans</label>
-                    <select name="External_FlightFareSearch_NumberOfSeamans" id="External_FlightFareSearch_NumberOfSeamans" class="form-control">
-                        <option value="0" selected="">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label>Max Price</label>
-                    <input name="External_FlightFareSearch_MaxPrice" id="External_FlightFareSearch_MaxPrice" class="form-control">
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label>Cabin Class</label>
-                    <select name="External_FlightFareSearch_FlightClass" id="External_FlightFareSearch_FlightClass" class="form-control">
-                        <option value="" selected="">No Preference</option>
-                        <option value="Y">Economy</option>
-                        <option value="C">Business</option>
-                        <option value="F">First</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label>Show Only Direct Flights</label>
-                    <input type="checkbox" name="External_FlightFareSearch_OnlyDirectFlights" id="External_FlightFareSearch_OnlyDirectFlights" value="on" class="form-control">
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label>Prefered Airlines</label>
-                    <input type="textbox" name="External_FlightFareSearch_PrefferedAirlines" id="External_FlightFareSearch_PrefferedAirlines" class="form-control">
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-3">
             <div class="form-group">
-                <input type="button" name="btn_search" id="btn_search" value="Search" class="btn btn-primary">
-            </div>
+                <input name="_token" type="hidden" value="{{ csrf_token() }}">
+                <input type="hidden" id="fromAirport" value="">
+                <input type="hidden" id="toAirport" value="">
+                <input type="button" name="btn_search" id="flight_search" value="Search" class="btn btn-primary">
         </div>
+        </div>
+        </div>     
 
-    </div>-->
+    </div>
     <div class="row">
         <div class="col-md-6">
             <h1>Contact Us</h1>
