@@ -33,28 +33,31 @@
 		   
 		    
 		    <table class="table table-hover table-striped table-bordered table-advanced tablesorter mbn">
-			<thead>
+			<thead class="warning">
 			<tr>
 			    <th >Name</th>			 
 			    <th>Code</th>
-				
-				<th>Is Europe</th>
-				<th>Actions</th>
+			    <th>Continent</th>
+			    <th>Is Europe</th>
+			    <th>View</th>
 			</tr>
 			</thead>
 			<tbody>
 			@if($result->count() > 0)
 			    @foreach($result AS $r)
-				<tr>
-				    <td>{{ucwords($r->country_name)}}</td>				   					
+				<tr class="warning">
+				    <td>{{ucwords($r->country_name)}}</td>
 					<td>{{$r->country_code}}</td>
+					<td>{{$r->continent}}</td>
 					<td>@if($r->active=='1') {{ 'Yes' }} @else {{ 'No' }} @endif</td>
 					<td>
+					<a href="{{URL::route('city_filter_list',$r->country_code)}}" class="tablectrl_small bDefault tipS" title="View City">
+					<button class="btn btn-yellow btn-square" type="button">View City</button>
+						</a>
+					<a href="{{URL::route('airport_filter_list',$r->country_code)}}" class="tablectrl_small bDefault tipS" title="View Airport">
+					<button class="btn btn-info btn-square" type="button">View Airport</button>
+						</a>
 					
-					<a href="{{URL::route('country_master_details',$r->id)}}" class="tablectrl_small bDefault tipS" title="View Details">
-						<button type="button" class="btn btn-info"><i class="fa fa-list-alt"></i>
-						</button>
-					</a>
 					</td>
 				</tr>
 			    @endforeach

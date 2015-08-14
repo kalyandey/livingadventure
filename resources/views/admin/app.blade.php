@@ -95,7 +95,7 @@
 				    <a href="{{URL::route('supplier_master_list')}}"><i class="fa fa-user">                        
 				    </i><span class="menu-title">Suppliers</span></a>
 				</li>
-				<li class="">
+				<li class="{{Helpers::isActiveRoute('city_master_list')}} || {{Helpers::isActiveRoute('country_master_list')}} || {{Helpers::isActiveRoute('airline_master_list')}} || {{Helpers::isActiveRoute('airport_master_list')}} || {{Helpers::isActiveRoute('city_filter_list')}} || {{Helpers::isActiveRoute('airport_filter_list')}}">
 				<a ><i class="fa fa-globe">
 				<div class="icon-bg bg-pink"></div>
 				</i><span class="menu-title">Location Master</span><span class="fa arrow"></span></a>

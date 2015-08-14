@@ -6,11 +6,11 @@
 
 <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
     <div class="page-header pull-left">
-	<div class="page-title">Car Type</div>
+	<div class="page-title">Suppliers</div>
     </div>
     <ol class="breadcrumb page-breadcrumb pull-right">
 	<li><i class="fa fa-home"></i>&nbsp;<a href="dashboard">Dashboard</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-	<li class="active">Update users</li>
+	<li class="active">Update Suppliers</li>
     </ol>
     <div class="clearfix"></div>
 </div>
@@ -20,7 +20,7 @@
 	<div class="col-lg-12">
 	    <div class="portlet box portlet-grey">
 		<div class="portlet-header">
-		    <div class="caption">New Car Type</div>
+		    <div class="caption">Edit Suppliers</div>
 		</div>
 		<div class="portlet-body">
 		    @if (count($errors) > 0)
@@ -78,7 +78,7 @@
 					<div class="form-actions pal">
 						<div class="form-group mbn">
 							<div class="col-md-offset-3 col-md-6">
-								<button type="submit" class="btn btn-primary" >Create</button>
+								<button type="submit" class="btn btn-primary" >Update</button>
 								<a href="{{URL::route('supplier_list')}}" class="btn default">Cancel</a>
 							</div>
 						</div>

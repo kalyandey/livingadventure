@@ -22,12 +22,12 @@ class LoginController extends Controller
 		$data				= array();
 		$data['supplier_email'] 		= '';
 		$data['supplier_password'] 	= '';
-		$agent_email 			= Cookie::get('supplier_email');
-		$agent_password 		= Cookie::get('supplier_password');
+		$supplier_email 			= Cookie::get('supplier_email');
+		$supplier_password 		= Cookie::get('supplier_password');
 		
-		if( $agent_email && $admin_password ){
-		    $data['supplier_email'] 		= $agent_email;
-		    $data['supplier_password'] 		= $agent_password;
+		if( $supplier_email && $supplier_password ){
+		    $data['supplier_email'] 		= $supplier_email;
+		    $data['supplier_password'] 		= $supplier_password;
 		}			
 		return view('supplier/login',$data);
 	}
@@ -52,15 +52,15 @@ class LoginController extends Controller
 	{
 	  
 	    if ($request->isMethod('post')){			
-			$agent_email		= $request->get('supplier_email');
-			$agent_password		= $request->get('supplier_password');
-			$checkAgentExists	= Supplier::where("email","=",$agent_email);
+			$supplier_email		= $request->get('supplier_email');
+			$supplier_password		= $request->get('supplier_password');
+			$checkAgentExists	= Supplier::where("email","=",$supplier_email);
 			
-			$checkAgentExists	= $checkAgentExists->where("password", "=", md5($agent_password.Config::get('constants.SITENAME')));
+			$checkAgentExists	= $checkAgentExists->where("password", "=", md5($supplier_password.Config::get('constants.SITENAME')));
 			$checkAgentExists	= $checkAgentExists->get();
 			if ($request->get('remember_login')){
-				$cookieJar->queue(Cookie::make('supplier_email', $admin_email, 60));
-				$cookieJar->queue(Cookie::make('supplier_password', $admin_password, 60));
+				$cookieJar->queue(Cookie::make('supplier_email', $supplier_email, 60));
+				$cookieJar->queue(Cookie::make('supplier_password', $supplier_password, 60));
 			}else{
 				$cookieJar->queue(Cookie::forget('supplier_email'));
 				$cookieJar->queue(Cookie::forget('supplier_password'));
