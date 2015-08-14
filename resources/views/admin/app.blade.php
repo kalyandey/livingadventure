@@ -95,10 +95,29 @@
 				    <a href="{{URL::route('supplier_master_list')}}"><i class="fa fa-user">                        
 				    </i><span class="menu-title">Suppliers</span></a>
 				</li>
-					
-				<li class="{{Helpers::isActiveRoute('supplier_master_list')}}">
-				    <a href="{{URL::route('supplier_master_list')}}"><i class="fa fa-globe">                        
-				    </i><span class="menu-title">Location Master</span></a>
+				<li class="">
+				<a ><i class="fa fa-globe">
+				<div class="icon-bg bg-pink"></div>
+				</i><span class="menu-title">Location Master</span><span class="fa arrow"></span></a>
+				<ul class="nav nav-second-level">
+					<li class="{{Helpers::isActiveRoute('country_master_list')}}">
+					 <a href="{{URL::route('country_master_list')}}"><i class="fa fa-globe">                        
+					</i><span class="menu-title">Country</span></a>
+					</li>
+					<li class="{{Helpers::isActiveRoute('city_master_list')}}">
+					 <a href="{{URL::route('city_master_list')}}"><i class="fa fa-globe">                        
+					</i><span class="menu-title">City</span></a>
+					</li>
+					<li class="{{Helpers::isActiveRoute('airline_master_list')}}">
+					 <a href="{{URL::route('airline_master_list')}}"><i class="fa fa-plane">                        
+					</i><span class="menu-title">Airline</span></a>
+					</li>
+						
+					<li class="{{Helpers::isActiveRoute('airport_master_list')}}">
+					 <a href="{{URL::route('airport_master_list')}}"><i class="fa fa-plane">                        
+					</i><span class="menu-title">Airport</span></a>
+					</li>
+				</ul>
 				</li>
 			    </ul>
 			</div>

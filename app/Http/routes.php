@@ -90,5 +90,13 @@ Route::group(array('namespace'=>'admin', 'middleware' => 'admin', 'prefix' => 'a
     Route::any('/export/airlines', 	                   array('as' => 'airlines',   'uses' => 'ImportexcelController@airlines'));
     Route::any('/export/airports', 	                   array('as' => 'airports',   'uses' => 'ImportexcelController@airports'));
     Route::any('/export/cities', 	                   array('as' => 'cities',   'uses' => 'ImportexcelController@cities'));
+    
+    Route::any('/location/countries', 	                   array('as' => 'country_master_list',   'uses' => 'LocationController@countries'));
+    Route::any('/location/countries/details/{id}', 	   array('as' => 'country_master_details','uses' => 'LocationController@countryDetails'));
+    Route::any('/location/airlines', 	                   array('as' => 'airline_master_list',   'uses' => 'LocationController@airlines'));
+    Route::any('/location/airports', 	                   array('as' => 'airport_master_list',   'uses' => 'LocationController@airports'));
+    Route::any('/location/cities', 	                   array('as' => 'city_master_list',      'uses' => 'LocationController@cities'));
+    
+    
 });
 
