@@ -95,6 +95,11 @@
 				    <a href="{{URL::route('supplier_master_list')}}"><i class="fa fa-user">                        
 				    </i><span class="menu-title">Suppliers</span></a>
 				</li>
+					
+				<li class="{{Helpers::isActiveRoute('supplier_master_list')}}">
+				    <a href="{{URL::route('supplier_master_list')}}"><i class="fa fa-globe">                        
+				    </i><span class="menu-title">Location Master</span></a>
+				</li>
 			    </ul>
 			</div>
 		</nav>

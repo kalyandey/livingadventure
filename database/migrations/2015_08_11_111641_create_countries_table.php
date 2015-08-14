@@ -35,8 +35,7 @@ class CreateCountriesTable extends Migration
             $table->enum('iseurope', ['1', '0']);
             $table->timestamps();
             
-            $table->index('country_code');
-            $table->index('country_name');
+            
         });        
     }
 

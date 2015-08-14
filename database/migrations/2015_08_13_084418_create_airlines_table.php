@@ -21,8 +21,7 @@ class CreateAirlinesTable extends Migration
             $table->enum('active', ['1', '0']);
             $table->timestamps();
             
-            $table->index('airline_code');
-            $table->index('airline_name');
+            
         });
     }
 

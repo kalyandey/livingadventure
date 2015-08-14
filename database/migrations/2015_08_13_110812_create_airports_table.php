@@ -36,11 +36,7 @@ class CreateAirportsTable extends Migration
             $table->enum('active', ['1', '0']);
             $table->timestamps();
             
-            $table->index('country_code');
-            $table->index('city_code');
-            $table->index('airport_code');
-            $table->index('state_code');
-            $table->index('airport_name');
+            
         });
     }
 
