@@ -93,9 +93,14 @@ Route::group(array('namespace'=>'admin', 'middleware' => 'admin', 'prefix' => 'a
 
     Route::any('/location/countries', 	                   array('as' => 'country_master_list',   'uses' => 'LocationController@countries'));
     Route::any('/location/countries/details/{id}', 	   array('as' => 'country_master_details','uses' => 'LocationController@countryDetails'));
-    Route::any('/location/airlines', 	                   array('as' => 'airline_master_list',   'uses' => 'LocationController@airlines'));
-    Route::any('/location/airports', 	                   array('as' => 'airport_master_list',   'uses' => 'LocationController@airports'));
-    Route::any('/location/cities', 	                   array('as' => 'city_master_list',      'uses' => 'LocationController@cities'));
     
+    Route::any('/location/airlines', 	                   array('as' => 'airline_master_list',   'uses' => 'LocationController@airlines'));
+    
+    Route::any('/location/airports', 	                   array('as' => 'airport_master_list',   'uses' => 'LocationController@airports'));
+    Route::any('/location/airports/{id}', 	                   array('as' => 'airport_filter_list',    'uses' => 'LocationController@airports'));
+    
+    Route::any('/location/cities', 	                   array('as' => 'city_master_list',      'uses' => 'LocationController@cities')); 
+    Route::any('/location/cities/{id}', 	                   array('as' => 'city_filter_list',      'uses' => 'LocationController@cities'));
+   
 });
 
