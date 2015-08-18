@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use \Validator, \Redirect, \Session;
 
 use Illuminate\Http\Request;
+use App\Airport;
 
 class splashsController extends Controller
 {
@@ -116,5 +117,29 @@ class splashsController extends Controller
     public function destroy($id)
     {
         //
+    }
+    
+    public function get_airport_list(Request $request)
+    {
+        $airport_like   = $request->get('term');
+        $airport_list   = Airport::where('airport_name','LIKE','%'.$airport_like.'%')->get();
+        
+        foreach($airport_list as $data) {
+            $result[] = array(
+           'value'=>$data->airport_name,
+           'airport_name'=>$data->airport_name,
+           'airport_code'=>$data->airport_code,
+           'city_code'=>$data->city_code,
+           'country_code'=>$data->airport_code,
+        );   
+        }
+         echo json_encode($result);
+        flush();
+    }
+    
+    
+    public function search_flight(Request $request)
+    {
+        return view('splash.flight_search');
     }
 }
