@@ -121,8 +121,10 @@ class splashsController extends Controller
     
     public function get_airport_list(Request $request)
     {
+        $result = array();
         $airport_like   = $request->get('term');
         $airport_list   = Airport::where('airport_name','LIKE','%'.$airport_like.'%')->get();
+        
         
         foreach($airport_list as $data) {
             $result[] = array(

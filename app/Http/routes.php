@@ -14,8 +14,9 @@
 //Route::get('/', function () {
 //    return view('welcome');
 //});
+
 Route::get('/', 'splashsController@index');
-Route::any('/splashs/get_airport_list', 'splashsController@get_airport_list');
+Route::any('splashs/get_airport_list', 'splashsController@get_airport_list');
 Route::any('/splashs/search_flight', 'splashsController@search_flight');
 Route::post('/create_contact', 'splashsController@store');
 
@@ -62,6 +63,12 @@ Route::group(array('middleware' => 'supplier', 'namespace'=>'supplier', 'prefix'
 // For Admin Panel
 Route::group(array('namespace'=>'admin', 'prefix' => 'admin'), function(){ 
     Route::any('/', array('as' => 'admin', 'uses' => 'LoginController@index'));
+    Route::any('/export/agodacities', 	                array('as' => 'agoda_cities',   'uses' => 'ImportexcelController@parseagodaCityXML'));
+    Route::any('/export/cities', 	                array('as' => 'cities',   'uses' => 'ImportexcelController@cities'));
+    Route::any('/export/countries', 	                array('as' => 'countries',   'uses' => 'ImportexcelController@countries'));
+    Route::any('/export/airlines', 	                array('as' => 'airlines',   'uses' => 'ImportexcelController@airlines'));
+    Route::any('/export/airports', 	                array('as' => 'airports',   'uses' => 'ImportexcelController@airports'));
+    
 });
 
 Route::group(array('namespace'=>'admin', 'middleware' => 'admin', 'prefix' => 'admin'), function(){
@@ -88,10 +95,8 @@ Route::group(array('namespace'=>'admin', 'middleware' => 'admin', 'prefix' => 'a
     Route::post('/supplier_edit/{id}', 	        	array('as' => 'supplier_master_edit',   'uses' => 'SupplierMasterController@update'));
     Route::get('/supplier_delete/{id}', 	        array('as' => 'supplier_master_delete', 'uses' => 'SupplierMasterController@destroy'));
     
-    Route::any('/export/countries', 	                array('as' => 'countries',   'uses' => 'ImportexcelController@countries'));
-    Route::any('/export/airlines', 	                array('as' => 'airlines',   'uses' => 'ImportexcelController@airlines'));
-    Route::any('/export/airports', 	                array('as' => 'airports',   'uses' => 'ImportexcelController@airports'));
-    Route::any('/export/cities', 	                array('as' => 'cities',   'uses' => 'ImportexcelController@cities'));
+    
+    
 
     Route::any('/location/countries', 	                   array('as' => 'country_master_list',   'uses' => 'LocationController@countries'));
     Route::any('/location/countries/details/{id}', 	   array('as' => 'country_master_details','uses' => 'LocationController@countryDetails'));
@@ -105,4 +110,5 @@ Route::group(array('namespace'=>'admin', 'middleware' => 'admin', 'prefix' => 'a
     Route::any('/location/cities/{id}', 	                   array('as' => 'city_filter_list',      'uses' => 'LocationController@cities'));
    
 });
+
 

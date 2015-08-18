@@ -1,15 +1,9 @@
-APP_ENV=local
-APP_DEBUG=true
-APP_KEY=MY2qVx450GzPuIyFPxUJkhmJrAFulUeZ
+APP_ENV=local APP_DEBUG=true APP_KEY=MY2qVx450GzPuIyFPxUJkhmJrAFulUeZ
 
-DB_HOST=localhost
+DB_HOST=127.0.0.1
 DB_DATABASE=livingadventure
 DB_USERNAME=root
-<<<<<<< HEAD
 DB_PASSWORD=password
-=======
-DB_PASSWORD=db123@
->>>>>>> 1e2cf6e0396a887c05abfa53ceced30153161f62
 
 CACHE_DRIVER=file
 SESSION_DRIVER=file
